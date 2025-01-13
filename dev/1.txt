@@ -1,0 +1,551 @@
+array(109) {
+  ["ID"]=&gt;
+  string(5) "52135"
+  ["LID"]=&gt;
+  string(2) "s1"
+  ["ACCOUNT_NUMBER"]=&gt;
+  string(6) "T52135"
+  ["TRACKING_NUMBER"]=&gt;
+  NULL
+  ["PAY_SYSTEM_ID"]=&gt;
+  string(2) "10"
+  ["DELIVERY_ID"]=&gt;
+  string(2) "17"
+  ["DATE_INSERT"]=&gt;
+  object(Bitrix\Main\Type\DateTime)#494 (1) {
+    ["value":protected]=&gt;
+    object(DateTime)#495 (3) {
+      ["date"]=&gt;
+      string(26) "2020-10-20 10:45:39.000000"
+      ["timezone_type"]=&gt;
+      int(3)
+      ["timezone"]=&gt;
+      string(13) "Europe/Moscow"
+    }
+  }
+  ["DATE_UPDATE"]=&gt;
+  object(Bitrix\Main\Type\DateTime)#496 (1) {
+    ["value":protected]=&gt;
+    object(DateTime)#497 (3) {
+      ["date"]=&gt;
+      string(26) "2020-10-20 10:45:39.000000"
+      ["timezone_type"]=&gt;
+      int(3)
+      ["timezone"]=&gt;
+      string(13) "Europe/Moscow"
+    }
+  }
+  ["PERSON_TYPE_ID"]=&gt;
+  string(1) "1"
+  ["USER_ID"]=&gt;
+  string(5) "29746"
+  ["PAYED"]=&gt;
+  string(1) "N"
+  ["IS_SYNC_B24"]=&gt;
+  string(1) "N"
+  ["DATE_PAYED"]=&gt;
+  NULL
+  ["EMP_PAYED_ID"]=&gt;
+  NULL
+  ["DEDUCTED"]=&gt;
+  string(1) "N"
+  ["DATE_DEDUCTED"]=&gt;
+  NULL
+  ["EMP_DEDUCTED_ID"]=&gt;
+  NULL
+  ["REASON_UNDO_DEDUCTED"]=&gt;
+  NULL
+  ["STATUS_ID"]=&gt;
+  string(1) "N"
+  ["DATE_STATUS"]=&gt;
+  object(Bitrix\Main\Type\DateTime)#498 (1) {
+    ["value":protected]=&gt;
+    object(DateTime)#499 (3) {
+      ["date"]=&gt;
+      string(26) "2020-10-20 10:45:38.000000"
+      ["timezone_type"]=&gt;
+      int(3)
+      ["timezone"]=&gt;
+      string(13) "Europe/Moscow"
+    }
+  }
+  ["EMP_STATUS_ID"]=&gt;
+  string(5) "29746"
+  ["MARKED"]=&gt;
+  string(1) "N"
+  ["DATE_MARKED"]=&gt;
+  NULL
+  ["EMP_MARKED_ID"]=&gt;
+  NULL
+  ["REASON_MARKED"]=&gt;
+  NULL
+  ["PRICE_DELIVERY"]=&gt;
+  float(0)
+  ["ALLOW_DELIVERY"]=&gt;
+  string(1) "N"
+  ["DATE_ALLOW_DELIVERY"]=&gt;
+  NULL
+  ["EMP_ALLOW_DELIVERY_ID"]=&gt;
+  NULL
+  ["RESERVED"]=&gt;
+  string(1) "N"
+  ["PRICE"]=&gt;
+  float(33210)
+  ["CURRENCY"]=&gt;
+  string(3) "RUB"
+  ["DISCOUNT_VALUE"]=&gt;
+  float(3690)
+  ["TAX_VALUE"]=&gt;
+  string(4) "0.00"
+  ["SUM_PAID"]=&gt;
+  float(0)
+  ["USER_DESCRIPTION"]=&gt;
+  string(0) ""
+  ["PAY_VOUCHER_NUM"]=&gt;
+  NULL
+  ["PAY_VOUCHER_DATE"]=&gt;
+  NULL
+  ["ADDITIONAL_INFO"]=&gt;
+  NULL
+  ["COMMENTS"]=&gt;
+  NULL
+  ["COMPANY_ID"]=&gt;
+  string(1) "0"
+  ["CREATED_BY"]=&gt;
+  string(5) "29746"
+  ["RESPONSIBLE_ID"]=&gt;
+  NULL
+  ["STAT_GID"]=&gt;
+  string(38) "BITRIX_SM.Nzg2ODguNjUzNjcuS1ouNS5ZLnMx"
+  ["DATE_PAY_BEFORE"]=&gt;
+  NULL
+  ["DATE_BILL"]=&gt;
+  NULL
+  ["IS_RECURRING"]=&gt;
+  string(1) "N"
+  ["RECURRING_ID"]=&gt;
+  NULL
+  ["LOCKED_BY"]=&gt;
+  string(1) "1"
+  ["DATE_LOCK"]=&gt;
+  object(Bitrix\Main\Type\DateTime)#500 (1) {
+    ["value":protected]=&gt;
+    object(DateTime)#501 (3) {
+      ["date"]=&gt;
+      string(26) "2020-10-20 11:13:23.000000"
+      ["timezone_type"]=&gt;
+      int(3)
+      ["timezone"]=&gt;
+      string(13) "Europe/Moscow"
+    }
+  }
+  ["RECOUNT_FLAG"]=&gt;
+  string(1) "Y"
+  ["AFFILIATE_ID"]=&gt;
+  NULL
+  ["DELIVERY_DOC_NUM"]=&gt;
+  NULL
+  ["DELIVERY_DOC_DATE"]=&gt;
+  NULL
+  ["UPDATED_1C"]=&gt;
+  string(1) "N"
+  ["ORDER_TOPIC"]=&gt;
+  NULL
+  ["XML_ID"]=&gt;
+  string(16) "bx_5f8e95a25661c"
+  ["ID_1C"]=&gt;
+  NULL
+  ["VERSION_1C"]=&gt;
+  NULL
+  ["VERSION"]=&gt;
+  string(1) "0"
+  ["EXTERNAL_ORDER"]=&gt;
+  string(1) "N"
+  ["STORE_ID"]=&gt;
+  NULL
+  ["CANCELED"]=&gt;
+  string(1) "N"
+  ["EMP_CANCELED_ID"]=&gt;
+  NULL
+  ["DATE_CANCELED"]=&gt;
+  NULL
+  ["REASON_CANCELED"]=&gt;
+  NULL
+  ["BX_USER_ID"]=&gt;
+  NULL
+  ["SEARCH_CONTENT"]=&gt;
+  NULL
+  ["RUNNING"]=&gt;
+  string(1) "N"
+  ["SHIPMENT"]=&gt;
+  array(1) {
+    [0]=&gt;
+    array(57) {
+      ["ID"]=&gt;
+      string(4) "1302"
+      ["ORDER_ID"]=&gt;
+      string(5) "52135"
+      ["ACCOUNT_NUMBER"]=&gt;
+      string(8) "T52135/2"
+      ["DATE_INSERT"]=&gt;
+      object(Bitrix\Main\Type\DateTime)#520 (1) {
+        ["value":protected]=&gt;
+        object(DateTime)#519 (3) {
+          ["date"]=&gt;
+          string(26) "2020-10-20 10:45:38.000000"
+          ["timezone_type"]=&gt;
+          int(3)
+          ["timezone"]=&gt;
+          string(13) "Europe/Moscow"
+        }
+      }
+      ["STATUS_ID"]=&gt;
+      string(2) "DN"
+      ["DELIVERY_LOCATION"]=&gt;
+      NULL
+      ["BASE_PRICE_DELIVERY"]=&gt;
+      float(305)
+      ["PRICE_DELIVERY"]=&gt;
+      float(0)
+      ["EXPECTED_PRICE_DELIVERY"]=&gt;
+      NULL
+      ["WEIGHT"]=&gt;
+      string(6) "0.0000"
+      ["CUSTOM_PRICE_DELIVERY"]=&gt;
+      string(1) "N"
+      ["CURRENCY"]=&gt;
+      string(3) "RUB"
+      ["DISCOUNT_PRICE"]=&gt;
+      float(305)
+      ["ALLOW_DELIVERY"]=&gt;
+      string(1) "N"
+      ["DATE_ALLOW_DELIVERY"]=&gt;
+      NULL
+      ["EMP_ALLOW_DELIVERY_ID"]=&gt;
+      NULL
+      ["DEDUCTED"]=&gt;
+      string(1) "N"
+      ["DATE_DEDUCTED"]=&gt;
+      NULL
+      ["EMP_DEDUCTED_ID"]=&gt;
+      NULL
+      ["REASON_UNDO_DEDUCTED"]=&gt;
+      NULL
+      ["RESERVED"]=&gt;
+      string(1) "N"
+      ["DELIVERY_ID"]=&gt;
+      string(2) "17"
+      ["DELIVERY_DOC_NUM"]=&gt;
+      NULL
+      ["DELIVERY_DOC_DATE"]=&gt;
+      NULL
+      ["TRACKING_NUMBER"]=&gt;
+      NULL
+      ["TRACKING_STATUS"]=&gt;
+      NULL
+      ["TRACKING_DESCRIPTION"]=&gt;
+      NULL
+      ["TRACKING_LAST_CHECK"]=&gt;
+      NULL
+      ["TRACKING_LAST_CHANGE"]=&gt;
+      NULL
+      ["XML_ID"]=&gt;
+      string(16) "bx_5f8e95a275e02"
+      ["PARAMS"]=&gt;
+      array(1) {
+        ["DELIVERY_TIME"]=&gt;
+        string(10) "1 день"
+      }
+      ["DELIVERY_NAME"]=&gt;
+      string(44) "СДЭК (Доставка курьером)"
+      ["CANCELED"]=&gt;
+      string(1) "N"
+      ["DATE_CANCELED"]=&gt;
+      NULL
+      ["EMP_CANCELED_ID"]=&gt;
+      NULL
+      ["REASON_CANCELED"]=&gt;
+      string(0) ""
+      ["MARKED"]=&gt;
+      string(1) "N"
+      ["DATE_MARKED"]=&gt;
+      NULL
+      ["EMP_MARKED_ID"]=&gt;
+      NULL
+      ["REASON_MARKED"]=&gt;
+      NULL
+      ["SYSTEM"]=&gt;
+      string(1) "N"
+      ["RESPONSIBLE_ID"]=&gt;
+      NULL
+      ["EMP_RESPONSIBLE_ID"]=&gt;
+      NULL
+      ["DATE_RESPONSIBLE_ID"]=&gt;
+      NULL
+      ["COMMENTS"]=&gt;
+      NULL
+      ["COMPANY_ID"]=&gt;
+      string(1) "0"
+      ["UPDATED_1C"]=&gt;
+      string(1) "N"
+      ["ID_1C"]=&gt;
+      NULL
+      ["VERSION_1C"]=&gt;
+      NULL
+      ["EXTERNAL_DELIVERY"]=&gt;
+      string(1) "N"
+      ["ITEMS"]=&gt;
+      array(1) {
+        [2846]=&gt;
+        array(4) {
+          ["BASKET_ID"]=&gt;
+          int(2846)
+          ["QUANTITY"]=&gt;
+          float(1)
+          ["NAME"]=&gt;
+          string(53) "Шкатулка для подзавода часов"
+          ["MEASURE_NAME"]=&gt;
+          string(4) "шт"
+        }
+      }
+      ["PRICE_DELIVERY_FORMATTED"]=&gt;
+      string(10) "0&nbsp;₽"
+      ["DATE_INSERT_FORMATED"]=&gt;
+      string(10) "20.10.2020"
+      ["DELIVERY"]=&gt;
+      array(17) {
+        ["ID"]=&gt;
+        string(2) "17"
+        ["CODE"]=&gt;
+        string(12) "sdek:courier"
+        ["PARENT_ID"]=&gt;
+        string(2) "16"
+        ["NAME"]=&gt;
+        string(42) "СДЭК:Доставка курьером"
+        ["ACTIVE"]=&gt;
+        string(1) "Y"
+        ["DESCRIPTION"]=&gt;
+        string(72) "Доставка заказа курьером компании СДЭК"
+        ["SORT"]=&gt;
+        string(3) "100"
+        ["LOGOTIP"]=&gt;
+        string(5) "40748"
+        ["CONFIG"]=&gt;
+        array(1) {
+          ["MAIN"]=&gt;
+          array(5) {
+            ["PROFILE_NAME"]=&gt;
+            string(43) "Доставка курьером [courier]"
+            ["MARGIN_VALUE"]=&gt;
+            string(1) "0"
+            ["MARGIN_TYPE"]=&gt;
+            string(1) "%"
+            ["PROFILE_ID"]=&gt;
+            string(7) "courier"
+            ["OLD_SETTINGS"]=&gt;
+            string(13) "s:6:"a:0:{}";"
+          }
+        }
+        ["CLASS_NAME"]=&gt;
+        string(47) "\Bitrix\Sale\Delivery\Services\AutomaticProfile"
+        ["CURRENCY"]=&gt;
+        string(3) "RUB"
+        ["TRACKING_PARAMS"]=&gt;
+        array(0) {
+        }
+        ["ALLOW_EDIT_SHIPMENT"]=&gt;
+        string(1) "Y"
+        ["VAT_ID"]=&gt;
+        string(1) "0"
+        ["XML_ID"]=&gt;
+        string(16) "bx_5f27f90d38a0a"
+        ["STORE"]=&gt;
+        array(0) {
+        }
+        ["SRC_LOGOTIP"]=&gt;
+        string(70) "/upload/sale/delivery/logotip/72a/72ac4290939f3d99b922e7ccf3935da4.png"
+      }
+      ["STORE_ID"]=&gt;
+      int(0)
+      ["STATUS_NAME"]=&gt;
+      string(33) "Ожидает обработки"
+      ["PRICE_DELIVERY_FORMATED"]=&gt;
+      string(10) "0&nbsp;₽"
+    }
+  }
+  ["PAYMENT"]=&gt;
+  array(1) {
+    [623]=&gt;
+    array(51) {
+      ["ID"]=&gt;
+      string(3) "623"
+      ["ORDER_ID"]=&gt;
+      string(5) "52135"
+      ["ACCOUNT_NUMBER"]=&gt;
+      string(8) "T52135/1"
+      ["PAID"]=&gt;
+      string(1) "N"
+      ["DATE_PAID"]=&gt;
+      NULL
+      ["EMP_PAID_ID"]=&gt;
+      NULL
+      ["PAY_SYSTEM_ID"]=&gt;
+      string(2) "10"
+      ["PS_STATUS"]=&gt;
+      NULL
+      ["PS_STATUS_CODE"]=&gt;
+      NULL
+      ["PS_INVOICE_ID"]=&gt;
+      NULL
+      ["PS_STATUS_DESCRIPTION"]=&gt;
+      NULL
+      ["PS_STATUS_MESSAGE"]=&gt;
+      NULL
+      ["PS_SUM"]=&gt;
+      NULL
+      ["PS_CURRENCY"]=&gt;
+      NULL
+      ["PS_RESPONSE_DATE"]=&gt;
+      NULL
+      ["PS_RECURRING_TOKEN"]=&gt;
+      NULL
+      ["PAY_VOUCHER_NUM"]=&gt;
+      NULL
+      ["PAY_VOUCHER_DATE"]=&gt;
+      NULL
+      ["DATE_PAY_BEFORE"]=&gt;
+      NULL
+      ["DATE_BILL"]=&gt;
+      object(Bitrix\Main\Type\DateTime)#709 (1) {
+        ["value":protected]=&gt;
+        object(DateTime)#710 (3) {
+          ["date"]=&gt;
+          string(26) "2020-10-20 10:45:38.000000"
+          ["timezone_type"]=&gt;
+          int(3)
+          ["timezone"]=&gt;
+          string(13) "Europe/Moscow"
+        }
+      }
+      ["XML_ID"]=&gt;
+      string(16) "bx_5f8e95a2b47c0"
+      ["SUM"]=&gt;
+      float(33210)
+      ["PRICE_COD"]=&gt;
+      float(0)
+      ["CURRENCY"]=&gt;
+      string(3) "RUB"
+      ["PAY_SYSTEM_NAME"]=&gt;
+      string(25) "Онлайн картой"
+      ["RESPONSIBLE_ID"]=&gt;
+      NULL
+      ["EMP_RESPONSIBLE_ID"]=&gt;
+      NULL
+      ["DATE_RESPONSIBLE_ID"]=&gt;
+      NULL
+      ["COMMENTS"]=&gt;
+      NULL
+      ["COMPANY_ID"]=&gt;
+      string(1) "0"
+      ["PAY_RETURN_NUM"]=&gt;
+      NULL
+      ["PAY_RETURN_DATE"]=&gt;
+      NULL
+      ["EMP_RETURN_ID"]=&gt;
+      NULL
+      ["PAY_RETURN_COMMENT"]=&gt;
+      NULL
+      ["IS_RETURN"]=&gt;
+      string(1) "N"
+      ["MARKED"]=&gt;
+      string(1) "N"
+      ["DATE_MARKED"]=&gt;
+      NULL
+      ["EMP_MARKED_ID"]=&gt;
+      NULL
+      ["REASON_MARKED"]=&gt;
+      NULL
+      ["UPDATED_1C"]=&gt;
+      string(1) "N"
+      ["ID_1C"]=&gt;
+      NULL
+      ["VERSION_1C"]=&gt;
+      NULL
+      ["EXTERNAL_PAYMENT"]=&gt;
+      string(1) "N"
+      ["CHECK_DATA"]=&gt;
+      array(0) {
+      }
+      ["DATE_BILL_FORMATTED"]=&gt;
+      string(10) "20.10.2020"
+      ["DATE_BILL_FORMATED"]=&gt;
+      string(10) "20.10.2020"
+      ["PAY_SYSTEM"]=&gt;
+      array(32) {
+        ["ID"]=&gt;
+        string(2) "10"
+        ["PAY_SYSTEM_ID"]=&gt;
+        string(2) "10"
+        ["PERSON_TYPE_ID"]=&gt;
+        NULL
+        ["NAME"]=&gt;
+        string(25) "Онлайн картой"
+        ["PSA_NAME"]=&gt;
+        string(25) "Онлайн картой"
+        ["CODE"]=&gt;
+        string(0) ""
+        ["SORT"]=&gt;
+        string(1) "2"
+        ["ACTION_FILE"]=&gt;
+        string(60) "/bitrix/php_interface/include/sale_payment/payanyway.payment"
+        ["RESULT_FILE"]=&gt;
+        NULL
+        ["DESCRIPTION"]=&gt;
+        string(9) "PayAnyWay"
+        ["NEW_WINDOW"]=&gt;
+        string(1) "N"
+        ["PARAMS"]=&gt;
+        string(35) "a:1:{s:16:"BX_PAY_SYSTEM_ID";i:10;}"
+        ["TARIF"]=&gt;
+        NULL
+        ["PS_MODE"]=&gt;
+        string(0) ""
+        ["HAVE_PAYMENT"]=&gt;
+        string(1) "Y"
+        ["HAVE_ACTION"]=&gt;
+        string(1) "N"
+        ["HAVE_RESULT"]=&gt;
+        string(1) "N"
+        ["HAVE_PREPAY"]=&gt;
+        string(1) "N"
+        ["HAVE_PRICE"]=&gt;
+        string(1) "N"
+        ["HAVE_RESULT_RECEIVE"]=&gt;
+        string(1) "N"
+        ["ENCODING"]=&gt;
+        string(5) "utf-8"
+        ["LOGOTIP"]=&gt;
+        string(5) "40743"
+        ["ACTIVE"]=&gt;
+        string(1) "Y"
+        ["ALLOW_EDIT_PAYMENT"]=&gt;
+        string(1) "Y"
+        ["IS_CASH"]=&gt;
+        string(1) "N"
+        ["AUTO_CHANGE_1C"]=&gt;
+        string(1) "N"
+        ["CAN_PRINT_CHECK"]=&gt;
+        string(1) "N"
+        ["ENTITY_REGISTRY_TYPE"]=&gt;
+        string(5) "ORDER"
+        ["XML_ID"]=&gt;
+        string(16) "bx_5f2ad503e39ab"
+        ["SRC_LOGOTIP"]=&gt;
+        string(71) "/upload/sale/paysystem/logotip/f2d/f2d96c52dddefec9fa71526e5ae1d66f.png"
+        ["PSA_ACTION_FILE"]=&gt;
+        string(88) "/home/bitrix/www/bitrix/php_interface/include/sale_payment/payanyway.payment/payment.php"
+        ["PSA_NEW_WINDOW"]=&gt;
+        string(1) "N"
+      }
+      ["BUFFERED_OUTPUT"]=&gt;
+      string(2423) "

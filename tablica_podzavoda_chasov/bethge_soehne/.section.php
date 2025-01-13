@@ -1,0 +1,3 @@
+<?
+$sSectionName="BETHGE & SOEHNE";
+?>

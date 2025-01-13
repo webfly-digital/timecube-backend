@@ -1,0 +1,6 @@
+<?
+$sSectionName = "AEROWATCH";
+$arDirProperties = array(
+
+);
+?>

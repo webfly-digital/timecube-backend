@@ -1,0 +1,146 @@
+/* Mixins:
+   ========================================================================== */
+
+// px to rem
+@function rem($pixels, $context: $mainFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}
+
+// size to one line
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// placeholder helper
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+  ::-moz-placeholder {
+    @content;
+  }
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+// Default: For modern format fonts
+// Files Required: .woff, .woffs
+
+@mixin font-face(
+  $font-family,
+  $file-path,
+  $weight: normal,
+  $style: normal,
+  $asset-pipeline: false
+) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+
+    src: url("#{$file-path}.woff") format("woff"),
+    url("#{$file-path}.woff2") format("woff2");
+  }
+}
+
+@mixin reset-list(){
+  list-style: none;
+  padding: 0;
+}
+
+@mixin horizontal-list(){
+  @include reset-list;
+
+  margin-left: -0.3rem;
+  margin-right: -0.3rem;
+
+  li {
+    display: inline-block;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+}
+
+@mixin horizontal-flex-list($flex-wrap: nowrap){
+  @include horizontal-list;
+  display: flex;
+}
+
+@mixin caption-text(){
+  font-size: $mainFontSize;
+  line-height: 24px;
+  @media (min-width : $xlDesktopWidth) {
+    font-size : $xlFontSize;
+  }
+}
+
+@mixin transparentControl(){
+  background-color: transparent;
+  border: none;
+  transition: background-color $transition-fast;
+  &:focus {
+    background-color: rgba(0,0,0,.1);
+    outline: none;
+  }
+}
+
+@mixin buttonBase(){
+  border: none;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin positionCenter($max-width: 100%, $max-height: 100%){
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: $max-width;
+  max-height: $max-height;
+  transform: translate(-50%,-50%);
+}
+
+@mixin buttonText(){
+  font-size: 16px;
+  line-height : 1.5;
+  letter-spacing: 0.05em;
+  text-transform : uppercase;
+  font-weight : bold;
+
+  @media (max-width: $smDesktopWidth-max) {
+    font-size: 14px;
+  }
+
+  @media (max-width: $tabletWidth-max) {
+    font-size: 13px;
+  }
+}
+
+@mixin ratioBox($x: 1, $y: 1) {
+  width: 100%;
+  position : relative;
+
+  &:before {
+    content: '';
+    width : 100%;
+    display: block;
+    padding-bottom : 100 / $x * $y * 1%;
+  }
+}
+
+@mixin box-shadow($x: 4px, $y: 4px, $blur: 20px, $alpha: 0.35) {
+  box-shadow: $x $y $blur rgba(0,0,0, $alpha);
+}

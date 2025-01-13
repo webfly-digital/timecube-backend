@@ -1,0 +1,292 @@
+(function () {
+    "use strict";
+
+    if (!!window.JCCatalogSectionComponent)
+        return;
+
+    window.JCCatalogSectionComponent = function (params) {
+        this.formPosting = false;
+        this.siteId = params.siteId || "";
+        this.ajaxId = params.ajaxId || "";
+        this.template = params.template || "";
+        this.componentPath = params.componentPath || "";
+        this.parameters = params.parameters || "";
+
+        if (params.navParams) {
+            this.navParams = {
+                NavNum: params.navParams.NavNum || 1,
+                NavPageNomer: parseInt(params.navParams.NavPageNomer) || 1,
+                NavPageCount: parseInt(params.navParams.NavPageCount) || 1
+            };
+        }
+
+        this.bigData = params.bigData || { enabled: false };
+        this.container = document.querySelector("[data-entity=\"" + params.container + "\"]");
+        this.lazyLoadContainer = document.querySelector("[data-entity=\"lazy-" + params.container + "\"]");
+        this.showMoreButton = null;
+        this.showMoreButtonMessage = null;
+        if (params.deferredLoad) {
+            BX.ready(BX.delegate(this.deferredLoad, this));
+        }
+
+        if (params.lazyLoad) {
+            this.showMoreButton = document.querySelector("[data-use=\"show-more-" + this.navParams.NavNum + "\"]");
+            this.showMoreButtonMessage = this.showMoreButton.innerHTML;
+            BX.bind(this.showMoreButton, "click", BX.proxy(this.showMore, this));
+        }
+
+        if (params.loadOnScroll) {
+            BX.bind(window, "scroll", BX.proxy(this.loadOnScroll, this));
+        }
+    };
+
+    window.JCCatalogSectionComponent.prototype =
+        {
+            checkButton: function () {
+                if (this.showMoreButton) {
+                    if (this.navParams.NavPageNomer == this.navParams.NavPageCount) {
+                        BX.remove(this.showMoreButton);
+                    } else {
+                        this.lazyLoadContainer.appendChild(this.showMoreButton);
+                    }
+                }
+            },
+
+            enableButton: function () {
+                if (this.showMoreButton) {
+                    BX.removeClass(this.showMoreButton, "disabled");
+                    this.showMoreButton.innerHTML = this.showMoreButtonMessage;
+                }
+            },
+
+            disableButton: function () {
+                if (this.showMoreButton) {
+                    BX.addClass(this.showMoreButton, "disabled");
+                    this.showMoreButton.innerHTML = BX.message("BTN_MESSAGE_LAZY_LOAD_WAITER");
+                }
+            },
+
+            loadOnScroll: function () {
+                var scrollTop       = BX.GetWindowScrollPos().scrollTop,
+                    containerBottom = BX.pos(this.container).bottom;
+
+                if (scrollTop + window.innerHeight > containerBottom) {
+                    this.showMore();
+                }
+            },
+
+            showMore: function () {
+                if (this.navParams.NavPageNomer < this.navParams.NavPageCount) {
+                    var data = {};
+                    data["action"] = "showMore";
+                    data["PAGEN_" + this.navParams.NavNum] = this.navParams.NavPageNomer + 1;
+
+                    if (!this.formPosting) {
+                        this.formPosting = true;
+                        this.disableButton();
+                        this.sendRequest(data);
+                    }
+                }
+            },
+
+            bigDataLoad: function () {
+            },
+
+            deferredLoad: function () {
+                this.sendRequest({ action: "deferredLoad" });
+            },
+
+            sendRequest: function (data) {
+                var defaultData = {
+                    siteId: this.siteId,
+                    template: this.template,
+                    parameters: this.parameters
+                };
+
+                if (this.ajaxId) {
+                    defaultData.AJAX_ID = this.ajaxId;
+                }
+
+                BX.ajax({
+                    url: this.componentPath + "/ajax.php" + (document.location.href.indexOf("clear_cache=Y") !== -1 ? "?clear_cache=Y" : ""),
+                    method: "POST",
+                    dataType: "json",
+                    timeout: 60,
+                    data: BX.merge(defaultData, data),
+                    onsuccess: BX.delegate(function (result) {
+                        if (!result || !result.JS)
+                            return;
+
+                        BX.ajax.processScripts(
+                            BX.processHTML(result.JS).SCRIPT,
+                            false,
+                            BX.delegate(function () {
+                                this.showAction(result, data);
+                            }, this)
+                        );
+                    }, this)
+                });
+            },
+
+            showAction: function (result, data) {
+                if (!data)
+                    return;
+                switch (data.action) {
+                    case "showMore":
+                        this.processShowMoreAction(result);
+                        break;
+                    case "deferredLoad":
+                        this.processDeferredLoadAction(result, data.bigData === "Y");
+                        break;
+                }
+            },
+
+            processShowMoreAction: function (result) {
+                this.formPosting = false;
+                this.enableButton();
+
+                if (result) {
+                    this.navParams.NavPageNomer++;
+                    this.processItems(result.items);
+                    this.processPagination(result.pagination);
+                    this.processEpilogue(result.epilogue);
+
+                    if (!window.isIE) {
+                        var observer = lozad(); // lazy loads elements with default selector as '.lozad'
+                        observer.observe();
+                    } else {
+                        console.log("isIe");
+                        //TODO:написать функцию, которая бы загружала фотки сразу или подключить полифиллы для работы lozad.js
+                    }
+
+                    this.checkButton();
+
+                }
+            },
+
+            processDeferredLoadAction: function (result, bigData) {
+                if (!result)
+                    return;
+                var position = bigData ? this.bigData.rows : {};
+
+                this.processItems(result.items, BX.util.array_keys(position));
+            },
+
+            processItems: function (itemsHtml, position) {
+                if (!itemsHtml)
+                    return;
+
+                var processed     = BX.processHTML(itemsHtml, false),
+                    temporaryNode = BX.create("DIV");
+
+                var items, k, origRows;
+                temporaryNode.innerHTML = processed.HTML;
+                items = temporaryNode.querySelectorAll("[data-entity=\"items-row\"]");
+                //console.log(temporaryNode);
+                if (items.length) {
+                    this.showHeader(true);
+
+                    for (k in items) {
+                        if (items.hasOwnProperty(k)) {
+                            origRows = position ? this.container.querySelectorAll("[data-entity=\"items-row\"]") : false;
+                            items[k].style.opacity = 0;
+                            if (origRows && BX.type.isDomNode(origRows[position[k]])) {
+                                origRows[position[k]].parentNode.insertBefore(items[k], origRows[position[k]]);
+                            } else {
+                                var target    = this.container, //по умолчанию добавляем к контейнеру
+                                    itemsRows = this.container.querySelectorAll("[data-entity=\"items-row\"]"),
+                                    cards = $(items[k].children); //карточки товаров (только что загруженные)
+                                if (itemsRows.length)
+                                    target = itemsRows[itemsRows.length - 1];
+
+                                $(target).append(cards).queue(function () {
+                                    BX.ajax.processScripts(processed.SCRIPT);
+                                    $(this).dequeue();
+                                });
+                            }
+                        }
+                    }
+
+                    /*new BX.easing({
+                     duration: 2000,
+                     start: {opacity: 0},
+                     finish: {opacity: 100},
+                     transition: BX.easing.makeEaseOut(BX.easing.transitions.quad),
+                     step: function(state){
+                     for (var k in items)
+                     {
+                     if (items.hasOwnProperty(k))
+                     {
+                     items[k].style.opacity = state.opacity / 100;
+                     }
+                     }
+                     },
+                     complete: function(){
+                     for (var k in items)
+                     {
+                     if (items.hasOwnProperty(k))
+                     {
+                     items[k].removeAttribute('style');
+                     }
+                     }
+                     }
+                     }).animate();*/
+                }
+            },
+
+            processPagination: function (paginationHtml) {
+                if (!paginationHtml)
+                    return;
+
+                var pagination = document.querySelectorAll("[data-pagination-num=\"" + this.navParams.NavNum + "\"]");
+                for (var k in pagination) {
+                    if (pagination.hasOwnProperty(k)) {
+                        pagination[k].innerHTML = paginationHtml;
+                    }
+                }
+            },
+
+            processEpilogue: function (epilogueHtml) {
+                if (!epilogueHtml)
+                    return;
+
+                var processed = BX.processHTML(epilogueHtml, false);
+                BX.ajax.processScripts(processed.SCRIPT);
+            },
+
+            showHeader: function (animate) {
+            }
+        };
+})();
+
+document.addEventListener('DOMContentLoaded', function(){
+    var tagsInputs = document.querySelectorAll('.tags-list input');
+    for (var i = 0; i < tagsInputs.length; i++) {
+        tagsInputs[i].addEventListener('change', changeTagsFilter);
+    }
+});
+
+function changeTagsFilter(e) {
+    var form = document.getElementById(e.target.dataset.parent),
+        data = new FormData(form),
+        query = getQueryString(data),
+        currPage = location.href.split('?')[0];
+
+    /*Добавляем выбранные опции из умного фильтра*/
+    var smartFilterForm = document.querySelector('.smart-filter-form');
+    if (false) {
+        var sfData = new FormData(smartFilterForm),
+            sfQuery = getQueryString(sfData);
+        sfQuery = sfQuery.replace('?', '&');
+        query += sfQuery;
+    }
+    location.href = currPage + query;
+}
+
+function getQueryString(formData){
+    var pairs = [];
+    for (var [key, value] of formData.entries()) {
+        pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+    }
+    return '?' + pairs.join('&');
+}

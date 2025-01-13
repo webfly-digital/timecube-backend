@@ -1,0 +1,111 @@
+/* Vars: Переменные. Взяты из вёрстки проекта. Нужны для правки стилей компонентов
+   ========================================================================== */
+
+// Font
+$mainFont                : Roboto, Helvetica, Arial, sans-serif;
+$headingFont             : Roboto, Helvetica, Arial, sans-serif;
+
+// Size
+$mainFontColor           : #101010;
+$mainFontSize            : 14px;
+$lgFontSize              : 15px;
+$xlFontSize              : 16px;
+
+$input-height            : 64px;
+$input-height-sm         : 32px;
+$md-input-height         : 56px;
+$sm-input-height         : 48px;
+
+$lightFontWeight         : 300;
+$mainFontWeight          : 400;
+$mediumFontWeight        : 500;
+$boldFontWeight          : 700;
+$blackFontWeight         : 900;
+$mainLineHeight          : 1.4;
+
+$superxlDesktopWidth     : 2200px;
+$superxlDesktopWidth-max : 2199px;
+$xlDesktopWidth          : 1921px;
+$xlDesktopWidth-max      : 1899px;
+$lgDesktopWidth          : 1400px;
+$lgDesktopWidth-max      : 1399px;
+$desktopWidth            : 1200px;
+$desktopWidth-max        : 1199px;
+$smDesktopWidth          : 992px;
+$smDesktopWidth-max      : 991px;
+$tabletWidth             : 768px;
+$tabletWidth-max         : 767px;
+$smTabletWidth           : 640px;
+$smTabletWidth-max       : 639px;
+$phoneWidth              : 480px;
+$phoneWidth-max          : 479px;
+$smPhoneWidth            : 360px;
+$smPhoneWidth-max        : 359px;
+
+$transition-fast         : 200ms;
+
+/*
+ All colors taken from:
+ https://github.com/vedees/uimini
+*/
+
+//design colors
+$green                   : #367C56;
+$red                     : #B23333;
+$gold                    : #C9BF99;
+$violet                  : #404282;
+$orange                  : #F05727;
+$gray                    : #4C545D;
+$middle-gray             : #9AA6BB;
+$yellow                  : #F8A82C;
+$black                   : #000000;
+$text-black              : #222222;
+$light-gray              : #EEEEEE;
+//promo-colors
+$promo-1                 : #A7A7B5;
+$promo-2                 : #B5C6CF;
+$promo-3                 : #F1E1D1;
+$promo-4                 : #4D4342;
+$promo-5                 : #948C8C;
+$promo-6                 : #B95140;
+$promo-7                 : #7D9C83;
+
+// Main color
+$default-color           : #ffffff;
+$caption-gray-text       : #48596C;
+$label-gray              : #4C545D;
+$label-gold              : $gold;
+$label-red               : $red;
+$label-violet            : $violet;
+$label-orange            : $orange;
+$link-color              : $green;
+$primary-color           : $green;
+$catalog-filter-bg       : $light-gray;
+$success-color           : #26de81;
+$danger-color            : #fc5c65;
+$warning-color           : #fed330;
+$light-color             : #999999;
+$purple-color            : #8854d0;
+
+// Neutral Color
+$neutral-primary         : #303133;
+$neutral-regular         : #606266;
+$neutral-secondary       : #909399;
+$neutral-placeholder     : #C0C4CC;
+
+// Border Color
+$border-base             : #DCDFE6;
+$border-light            : #E4E7ED;
+$border-lighter          : #EBEEF5;
+$border-lightex          : #F2F6FC;
+
+//zindexes
+$zindex-bottom           : 0;
+$zindex                  : 5;
+$zindex-top              : 50;
+$zindex-super            : 500;
+
+//durations
+$duration                : 200ms;
+$duration-md             : 450ms;
+$duration-lg             : 700ms;

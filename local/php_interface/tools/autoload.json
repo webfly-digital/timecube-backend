@@ -1,0 +1,7 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Webfly\\": "/local/php_interface/lib/Webfly"
+    }
+  }
+}

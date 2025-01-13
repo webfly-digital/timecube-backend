@@ -1,0 +1,4 @@
+.zverushki-tags{display: flex;align-items: center;flex-wrap: wrap;margin: 0 -5px;padding-left: 0}
+.zverushki-tags a{display: inline-block;margin: 0 5px 5px;text-decoration: none}
+.zverushki-tags a:hover{text-decoration: none}
+.zverushki-tags a.zver-hide{display: none;}

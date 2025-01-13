@@ -1,0 +1,10 @@
+# Игнорируем
+/bitrix/
+/logs/
+
+# Исключаем из игнорирования
+!bitrix/local/
+!bitrix/php_interface/include/
+!bitrix/php_interface/subscribe/
+!bitrix/php_interface/ammina.optimizer.init.php
+!bitrix/templates/

@@ -1,0 +1,3 @@
+<?
+$sSectionName="CX SWISS MILITARY";
+?>

@@ -1,0 +1,21 @@
+.wf-popup {
+
+  .price-free {
+    display: none;
+  }
+
+  .product-card__buttons {
+    justify-content : center;
+  }
+
+  &.free-price {
+    .price-normally {
+      display: none;
+    }
+    .price-free {
+      display: block;
+      font-size: 18px;
+      color: #B23333;
+    }
+  }
+}
