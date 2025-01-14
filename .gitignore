@@ -15,3 +15,6 @@ bitrix/php_interface/*
 # Исключаем остальные нужные папки
 !bitrix/local/
 !bitrix/templates/
+
+# todo: временно исключаю из gitignore файлы ядра битрикс для их последующий правки под версионнмым контролям в рамках апдейта версии php
+!bitrix/modules/
