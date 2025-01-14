@@ -1,0 +1,16 @@
+.dreview_block.black .marks .marks-list li .mark-item .rate-bar-container .rate-bar{background: #323232}
+.dreview_block.black .rate-diagram svg circle{stroke: #323232}
+.dreview_block.black .d-btn.active{border: 1px solid #323232!important}
+.dreview_block.black .dr-select-selection .dr-select-selection-input:hover{border: 1px solid #323232}
+.dreview_block.black .d-btn:hover{border: 1px solid #323232}
+.black .d-btn.new-send{background-color: #323232;border-color: #323232}
+.dreview_block.black .sources-container .d-active span{color:#323232}
+.dreview_block.black .sources-container .d-btn:hover{border: 1px solid #323232}
+.dreview_block.black .sources-container .d-active {border: 1px solid #323232}
+.dreview_block.black .drm_green_problem{background: url(cool-black.png) 50% 50% no-repeat}
+.dreview_block.black .star-item.active{background: url(star-filled-black.png) no-repeat;background-size: 21px}
+.opinions-block .rate-container .overall-rate .rate-block .rate-stars .fill-stars {background: url(star-filled-black.png) repeat-x;background-size: 26px;height: 25px}
+.opinions-block .rate-container .marks .marks-list li .mark-item:before{content: "";display: inline-block;height: 14px;width: 35px;background: url(star-filled-black.png) no-repeat;background-size: 14px;background-position: center}
+.dreview_block .DropBox ul li:hover{background:#323232;color:#fff}
+.drm_user-rating__bar-filled{background-image:linear-gradient(-90deg, #323232 0%, #474747 100%)}
+.dreview_block .more-load button{border-color: #323232}

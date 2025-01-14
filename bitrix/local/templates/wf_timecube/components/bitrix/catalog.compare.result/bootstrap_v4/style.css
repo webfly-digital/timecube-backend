@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* Vars: Переменные. Взяты из вёрстки проекта. Нужны для правки стилей компонентов
+   ========================================================================== */
+/*
+ All colors taken from:
+ https://github.com/vedees/uimini
+*/
+/* Mixins:
+   ========================================================================== */
+.catalog-compare-filter {
+  display: none;
+}
+
+.catalog-compare-item-title {
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+}
+.catalog-compare-item-heading {
+  padding-right: 54px;
+  position: relative;
+}
+.catalog-compare-item-heading .btn-animated-wrapper {
+  width: 44px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.catalog-compare-table {
+  overflow: auto;
+}
+.catalog-compare-table table {
+  border-collapse: collapse;
+}
+.catalog-compare-table td, .catalog-compare-table th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.catalog-compare-table td {
+  width: 180px;
+  padding-right: 20px;
+  box-sizing: content-box;
+  vertical-align: top;
+}
+.catalog-compare-table th {
+  width: 60px;
+  font-weight: normal;
+  font-size: 13px;
+  color: #48596C;
+  text-align: right;
+  padding-right: 15px;
+  line-height: 1.2;
+}
+.catalog-compare-table tr {
+  transition: background 200ms;
+}
+.catalog-compare-table tr:first-child, .catalog-compare-table tr:nth-child(2) {
+  background-color: transparent !important;
+}
+.catalog-compare-table tr:first-child th, .catalog-compare-table tr:nth-child(2) th {
+  opacity: 0;
+}
+.catalog-compare-table tr:hover {
+  background-color: #EEEEEE;
+}
+.catalog-compare-table .pic-ratio {
+  display: block;
+}
+.catalog-compare-table .pic-ratio img {
+  bottom: 0;
+  top: auto;
+  transform: translate(-50%, 0);
+}
+
+/*region themes*/
+.bx-theme-yellow .catalog-compare-filter,
+.bx-yellow.catalog-compare .catalog-compare-filter {
+  border: 7px solid #fbf7db;
+  background: #f3ebb6;
+}
+
+.bx-theme-red .catalog-compare-filter,
+.bx-red.catalog-compare .catalog-compare-filter {
+  border: 7px solid #fdf1ef;
+  background: #f3dcd9;
+}
+
+.bx-theme-green .catalog-compare-filter,
+.bx-green.catalog-compare .catalog-compare-filter {
+  border: 7px solid #e9f3e1;
+  background: #d2e7be;
+}
+
+.bx-theme-blue .catalog-compare-filter,
+.bx-blue.catalog-compare .catalog-compare-filter {
+  border: 7px solid #e1f5fb;
+  background: #c3e9f4;
+}
+
+/*endregion*/
+
+/*# sourceMappingURL=style.css.map */

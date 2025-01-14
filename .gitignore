@@ -1,10 +1,17 @@
-# Игнорируем
-/bitrix/
+# Игнорируем всё содержимое папки bitrix и папку logs
+/bitrix/*
 /logs/
 
-# Исключаем из игнорирования
-!bitrix/local/
+# Сначала исключаем саму папку php_interface, чтобы её содержимое можно было обработать
+!bitrix/php_interface/
+bitrix/php_interface/*
+
+# Исключаем конкретные файлы и папки внутри php_interface
 !bitrix/php_interface/include/
 !bitrix/php_interface/subscribe/
 !bitrix/php_interface/ammina.optimizer.init.php
+!bitrix/php_interface/this_site_support.php
+
+# Исключаем остальные нужные папки
+!bitrix/local/
 !bitrix/templates/

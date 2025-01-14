@@ -1,0 +1,109 @@
+<?
+$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Будет удалена вся информация, связанная с этой записью. Продолжить?";
+$MESS["DISPROVE_REVIEWSMARKET_OTZYVY"] = "Отзывы о магазине";
+$MESS["DISPROVE_REVIEWSMARKET_NA_ANDEKS_MARKET"] = "Написать и посмотреть все отзывы<br /> на Яндекс.Маркет";
+$MESS["DISPROVE_REVIEWSMARKET_NA_ANDEKS_MARKET_2"] = "Перейти в Я.Маркет";
+$MESS["DISPROVE_REVIEWSMARKET_UJASNYY_MAGAZIN"] = "Ужасный магазин";
+$MESS["DISPROVE_REVIEWSMARKET_PLOHOY_MAGAZIN"] = "Плохой магазин";
+$MESS["DISPROVE_REVIEWSMARKET_OBYCNYY_MAGAZIN"] = "Обычный магазин";
+$MESS["DISPROVE_REVIEWSMARKET_HOROSIY_MAGAZIN"] = "Хороший магазин";
+$MESS["DISPROVE_REVIEWSMARKET_OTLICNYY_MAGAZIN"] = "Отличный магазин";
+$MESS["DISPROVE_REVIEWSMARKET_DOSTOINSTVA"] = "Достоинства";
+$MESS["DISPROVE_REVIEWSMARKET_NEDOSTATKI"] = "Недостатки";
+$MESS["DISPROVE_REVIEWSMARKET_KOMMENTARIY"] = "Комментарий";
+$MESS["DISPROVE_REVIEWSMARKET_SPOSOB"] = "Способ покупки";
+$MESS["DISPROVE_REVIEWSMARKET_AUTHOR_NUM"] = "Оставил ";
+$MESS["DISPROVE_REVIEWSMARKET_ORDER"] = "Пользователь сделал заказ №";
+$MESS["DISPROVE_REVIEWSMARKET_ALL_STARS"] = "Все отзывы клиентов";
+$MESS["DISPROVE_REVIEWSMARKET_SUBMIT"] = "Написать отзыв";
+$MESS["DISPROVE_REVIEWSMARKET_SHOW_ORDER"] = "Развернуть список товаров";
+$MESS["DISPROVE_REVIEWSMARKET_HIDDEN_ORDER"] = "Свернуть список товаров";
+$MESS["DISPROVE_REVIEWSMARKET_ORDER_LIST"] = "Выполненный заказ";
+$MESS["DISPROVE_REVIEWSMARKET_CITY"] = "г. ";
+$MESS['DRM_USER_TO'] = "Отзыв от ";
+$MESS["DISPROVE_REVIEWS_DATE_3_MONTH"] = "Отзывы старше 3 месяцев";
+$MESS['DISPROVE_REVIEWSMARKET_USER_ASK'] = "Ответ ";
+$MESS["DISPROVE_REVIEWSMARKET_PROBLEM_NOT"] = "Проблема не решена";
+$MESS['DISPROVE_REVIEWSMARKET_USER_NONE'] = "Ответ клиента";
+$MESS["DISPROVE_REVIEWSMARKET_COMMENTS"] = "Ответ магазина";
+$MESS["DISPROVE_REVIEWSMARKET_SUMMING_VALUE"] = "Общая оценка";
+$MESS["DISPROVE_REVIEWSMARKET_COMMENTS_NONE"] = "Комментариев нет";
+$MESS["DISPROVE_REVIEWSMARKET_COMMENT_TEXT"] = "Комментарии";
+$MESS["DISPROVE_REVIEWSMARKET_FACTS_NONE"] = "Оценок пользователей нет";
+$MESS["DISPROVE_REVIEWSMARKET_FACTS_TEXT"] = "Оценка пользователя";
+$MESS["DISPROVE_REVIEWSMARKET_SORT_DATE"] = "По дате";
+$MESS["DISPROVE_REVIEWSMARKET_SORT_POPULAR"] = "По популярности";
+$MESS["DISPROVE_REVIEWSMARKET_FILTER_SORT"] = "Сортировка";
+$MESS["DISPROVE_REVIEWSMARKET_FILTER_STAR"] = "Фильтр по оценке";
+$MESS["DISPROVE_REVIEWSMARKET_WHERE"] = "Источник отзывов";
+$MESS["DISPROVE_REVIEWSMARKET_WHERE_TAB_1"] = "Яндекс.Маркет";
+$MESS["DISPROVE_REVIEWSMARKET_STAR_FILTER_0"] = "Все";
+$MESS["DISPROVE_REVIEWSMARKET_STAR_FILTER_1"] = "1 звезда";
+$MESS["DISPROVE_REVIEWSMARKET_STAR_FILTER_2"] = "2 звезды";
+$MESS["DISPROVE_REVIEWSMARKET_STAR_FILTER_3"] = "3 звезды";
+$MESS["DISPROVE_REVIEWSMARKET_STAR_FILTER_4"] = "4 звезды";
+$MESS["DISPROVE_REVIEWSMARKET_STAR_FILTER_5"] = "5 звезд";
+$MESS["DISPROVE_REVIEWSMARKET_TEXT_1"] = "Сортировать";
+$MESS["DISPROVE_REVIEWSMARKET_TEXT_2"] = "по дате";
+$MESS["DISPROVE_REVIEWSMARKET_TEXT_3"] = "по оценке";
+$MESS["DISPROVE_REVIEWSMARKET_USER_NON_NAME"] = "Пользователь скрыл свои данные";
+$MESS["DISPROVE_REVIEWSMARKET_AJAX_SUCCESS"] = "Спасибо, ваш отзыв отправлен на модерацию";
+?>
+<?
+$MESS["DYMARKET_BOX_BTN_ADD"] = "Написать отзыв";
+$MESS["DYMARKET_BOX_TITLE"] = "Мой отзыв о Магазине";
+$MESS["DYMARKET_LABEL_FIO"] = "ФИО";
+$MESS["DYMARKET_INPUT_FIO"] = "Укажите ФИО";
+$MESS["DYMARKET_LABEL_STARS"] = "Оценка";
+$MESS["DYMARKET_LABEL_CITY"] = "Город";
+$MESS["DYMARKET_LABEL_SOURCE"] = "Период использования";
+$MESS["DYMARKET_LABEL_SOURCE_1"] = "Менее месяца";
+$MESS["DYMARKET_LABEL_SOURCE_2"] = "Не более года";
+$MESS["DYMARKET_LABEL_SOURCE_3"] = "Более года";
+
+$MESS["DYMARKET_BTN_SEND"] = "Отправить отзыв";
+$MESS["DYMARKET_BTN_CANCEL"] = "Отмена";
+$MESS["DYMARKET_LABEL_TEXT"] = "Поля обязательные для заполнения";
+$MESS["DYMARKET_LABEL_PRO"] = "Преимущества";
+$MESS["DYMARKET_LABEL_CONTRA"] = "Недостатки";
+$MESS["DYMARKET_LABEL_TEXT"] = "Комментарий";
+
+
+$MESS["DYMARKET_BTN_EXPAND"] = "Развернуть";
+$MESS["DYMARKET_BTN_COLLAPSE"] = "Свернуть";
+
+
+$MESS["DYMARKET_BTN_SHOW_MORE"] = "Показать еще";
+
+
+
+$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Будет удалена вся информация, связанная с этой записью. Продолжить?";
+$MESS["DISPROVE_REVIEWSMARKET_OTZYVY"] = "Отзывы о магазине";
+$MESS["DISPROVE_REVIEWSMARKET_NA_ANDEKS_MARKET"] = "Написать и посмотреть все отзывы<br /> на Яндекс.Маркет";
+$MESS["DISPROVE_REVIEWSMARKET_NA_ANDEKS_MARKET_2"] = "Написать отзыв в Я.Маркет";
+$MESS["DISPROVE_REVIEWSMARKET_UJASNYY_MAGAZIN"] = "Ужасный магазин";
+$MESS["DISPROVE_REVIEWSMARKET_PLOHOY_MAGAZIN"] = "Плохой магазин";
+$MESS["DISPROVE_REVIEWSMARKET_OBYCNYY_MAGAZIN"] = "Обычный магазин";
+$MESS["DISPROVE_REVIEWSMARKET_HOROSIY_MAGAZIN"] = "Хороший магазин";
+$MESS["DISPROVE_REVIEWSMARKET_OTLICNYY_MAGAZIN"] = "Отличный магазин";
+$MESS["DISPROVE_REVIEWSMARKET_DOSTOINSTVA"] = "Достоинства";
+$MESS["DISPROVE_REVIEWSMARKET_NEDOSTATKI"] = "Недостатки";
+$MESS["DISPROVE_REVIEWSMARKET_KOMMENTARIY"] = "Комментарий";
+$MESS["DISPROVE_REVIEWSMARKET_SPOSOB"] = "Способ покупки";
+$MESS["DISPROVE_REVIEWSMARKET_AUTHOR_NUM"] = "Оставил ";
+$MESS["DISPROVE_REVIEWSMARKET_ORDER"] = "Пользователь сделал заказ №";
+$MESS["DISPROVE_REVIEWSMARKET_ALL_STARS"] = "Все отзывы клиентов";
+$MESS["DISPROVE_REVIEWSMARKET_SUBMIT"] = "Написать отзыв";
+
+$MESS["DISPROVE_REVIEWSMARKET_SHOW_ORDER"] = "Развернуть список товаров";
+$MESS["DISPROVE_REVIEWSMARKET_HIDDEN_ORDER"] = "Свернуть список товаров";
+$MESS["DISPROVE_REVIEWSMARKET_ORDER_LIST"] = "Выполненный заказ";
+
+$MESS["DISPROVE_REVIEWSMARKET_COMMENTS"] = "Ответ магазина";
+
+$MESS["DISPROVE_REVIEWSMARKET_TEXT_1"] = "Сортировать";
+$MESS["DISPROVE_REVIEWSMARKET_TEXT_2"] = "по дате";
+$MESS["DISPROVE_REVIEWSMARKET_TEXT_3"] = "по оценке";
+
+$MESS["DISPROVE_REVIEWSMARKET_USER_NON_NAME"] = "Пользователь скрыл свои данные";
+?>
