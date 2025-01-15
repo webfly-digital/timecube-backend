@@ -409,14 +409,26 @@ function ExecuteModuleEvent($arEvent, $param1=NULL, $param2=NULL, $param3=NULL, 
 
 	if(is_set($arEvent, "CALLBACK"))
 	{
+        //Переход на php8.2
+    if (is_array($arEvent["CALLBACK"]) && class_exists($arEvent["CALLBACK"][0])) {
+        $object = new $arEvent["CALLBACK"][0]();
+        $resmod = call_user_func_array([$object, $arEvent["CALLBACK"][1]], $args);
+        unset($object);
+    } else {
 		$resmod = call_user_func_array($arEvent["CALLBACK"], $args);
 	}
+}
 	else
 	{
 		//php bug: http://bugs.php.net/bug.php?id=47948
-		class_exists($arEvent["TO_CLASS"]);
-		$resmod = call_user_func_array(array($arEvent["TO_CLASS"], $arEvent["TO_METHOD"]), $args);
+        //Переход на php8.2
+    if (class_exists($arEvent["TO_CLASS"])) {
+        $object = new $arEvent["TO_CLASS"]();
+        $resmod = call_user_func_array([$object, $arEvent["TO_METHOD"]], $args);
+        unset($object);
 	}
+}
+
 
 	return $resmod;
 }
@@ -461,6 +473,14 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
 			$args = array_merge($arEvent["TO_METHOD_ARG"], $arParams);
 		else
 			$args = $arParams;
+
+        //Переход на php8.2
+        if (is_array($arEvent["CALLBACK"]) && class_exists($arEvent["CALLBACK"][0])) {
+            $object = new $arEvent["CALLBACK"][0]();
+            $result = call_user_func_array([$object, $arEvent["CALLBACK"][1]], $args);
+            unset($object);
+            return $result;
+        }
 
 		return call_user_func_array($arEvent["CALLBACK"], $args);
 	}
