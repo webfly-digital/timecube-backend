@@ -7,6 +7,9 @@ use Bitrix\Main\Type\DateTime,
     Bitrix\Main\Localization\Loc;
 Loc::loadMessages(__FILE__);
 
+//РџРµСЂРµС…РѕРґ РЅР° php8.2
+Loader::includeModule('sale');
+
 class cashboxCreativeKkmserver extends Cashbox implements IPrintImmediately
 {
     const CODE_VAT_0 = 0;
@@ -178,7 +181,7 @@ class cashboxCreativeKkmserver extends Cashbox implements IPrintImmediately
 
     protected static function extractCheckData(array $data)
     {
-        // извлечение данных по чеку дальнейшего сохранения
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     public static function getCashboxList($select = array('*'), $filter = array('%HANDLER' => 'cashboxCreativeKkmserver', 'ACTIVE' => 'Y'), $order = array('SORT' => 'ASC'))
