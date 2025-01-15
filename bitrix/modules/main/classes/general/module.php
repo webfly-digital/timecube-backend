@@ -403,7 +403,7 @@ function ExecuteModuleEvent($arEvent, $param1=NULL, $param2=NULL, $param3=NULL, 
 	for($i = $CNT_PREDEF + 1; $i < $nArgs; $i++)
 		$args[] = func_get_arg($i);
 
-	//TODO: Возможно заменить на EventManager::getInstance()->getLastEvent();
+	//TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ EventManager::getInstance()->getLastEvent();
 	global $BX_MODULE_EVENT_LAST;
 	$BX_MODULE_EVENT_LAST = $arEvent;
 
@@ -453,7 +453,7 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
 
 	if(array_key_exists("CALLBACK", $arEvent))
 	{
-		//TODO: Возможно заменить на EventManager::getInstance()->getLastEvent();
+		//TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ EventManager::getInstance()->getLastEvent();
 		global $BX_MODULE_EVENT_LAST;
 		$BX_MODULE_EVENT_LAST = $arEvent;
 
@@ -466,7 +466,7 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
 	}
 	elseif($arEvent["TO_CLASS"] != "" && $arEvent["TO_METHOD"] != "")
 	{
-		//TODO: Возможно заменить на EventManager::getInstance()->getLastEvent();
+		//TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ EventManager::getInstance()->getLastEvent();
 		global $BX_MODULE_EVENT_LAST;
 		$BX_MODULE_EVENT_LAST = $arEvent;
 
@@ -476,9 +476,17 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
 			$args = $arParams;
 
 		//php bug: http://bugs.php.net/bug.php?id=47948
-		class_exists($arEvent["TO_CLASS"]);
-		return call_user_func_array(array($arEvent["TO_CLASS"], $arEvent["TO_METHOD"]), $args);
-	}
+        //РџРµСЂРµС…РѕРґ РЅР° php8.2
+//		class_exists($arEvent["TO_CLASS"]);
+//		return call_user_func_array(array($arEvent["TO_CLASS"], $arEvent["TO_METHOD"]), $args);
+        if (class_exists($arEvent["TO_CLASS"])) {
+            $object = new $arEvent["TO_CLASS"]();
+            $result = call_user_func_array(array($object, $arEvent["TO_METHOD"]), $args);
+            unset($object); // РЈРґР°Р»СЏРµРј СЌРєР·РµРјРїР»СЏСЂ РґР»СЏ РѕСЃРІРѕР±РѕР¶РґРµРЅРёСЏ РїР°РјСЏС‚Рё
+            return $result;
+        }
+
+    }
 	else
 	{
 		return $r;
