@@ -1,0 +1,4 @@
+<?
+$MESS['SEOFILTER_SYMBOL_SOFT'] = 'ь';
+$MESS['SEOFILTER_SYMBOL_SOLID'] = 'ъ';
+?>

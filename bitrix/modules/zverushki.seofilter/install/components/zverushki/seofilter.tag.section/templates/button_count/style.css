@@ -1,0 +1,3 @@
+.zverushki-tags{display: flex;align-items: center;flex-wrap: wrap;margin: 0 -5px;padding-left: 0}
+.zverushki-tags>a{display: inline-block; padding: 2px 5px;margin:  0 5px 5px;text-decoration: none}
+.zverushki-tags>a.zver-hide{display: none;}
