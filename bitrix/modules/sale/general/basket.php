@@ -1793,12 +1793,19 @@ class CAllSaleBasket
 		if(COption::GetOptionString("sale", "encode_fuser_id", "N") != "Y")
 			$_SESSION["SALE_USER_ID"] = intval($_SESSION["SALE_USER_ID"]);
 
-		if ($_SESSION["SALE_USER_ID"] == '' || $_SESSION["SALE_USER_ID"] === 0)
-		{
-			$ID = CSaleUser::GetID($bSkipFUserInit);
-			$_SESSION["SALE_USER_ID"] = $ID;
-		}
-	}
+        //Переход на php8.2
+//		if ($_SESSION["SALE_USER_ID"] == '' || $_SESSION["SALE_USER_ID"] === 0)
+//		{
+//			$ID = CSaleUser::GetID($bSkipFUserInit);
+//			$_SESSION["SALE_USER_ID"] = $ID;
+//		}
+        if ($_SESSION["SALE_USER_ID"] == '' || $_SESSION["SALE_USER_ID"] === 0) {
+            $userInstance = new CSaleUser(); // Создаём экземпляр класса
+            $ID = $userInstance->GetID($bSkipFUserInit); // Вызываем метод через объект
+            $_SESSION["SALE_USER_ID"] = $ID;
+        }
+
+    }
 
 	public static function GetBasketUserID($bSkipFUserInit = false)
 	{
@@ -1807,9 +1814,17 @@ class CAllSaleBasket
 		if (!isset($_SESSION["SALE_USER_ID"]))
 			$_SESSION["SALE_USER_ID"] = 0;
 
-		CSaleBasket::Init(false, $bSkipFUserInit);
+        //Переход на php8.2
+		//CSaleBasket::Init(false, $bSkipFUserInit);
+		//CSaleUser::UpdateSessionSaleUserID();
 
-		CSaleUser::UpdateSessionSaleUserID();
+        // Создаём экземпляр и вызываем Init нестатически
+        $basketInstance = new CSaleBasket();
+        $basketInstance->Init(false, $bSkipFUserInit);
+
+        // Создаём экземпляр и вызываем UpdateSessionSaleUserID нестатически
+        $userInstance = new CSaleUser();
+        $userInstance->UpdateSessionSaleUserID();
 
 		$ID = $_SESSION["SALE_USER_ID"];
 
