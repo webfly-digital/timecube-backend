@@ -12,6 +12,13 @@ bitrix/php_interface/*
 !bitrix/php_interface/ammina.optimizer.init.php
 !bitrix/php_interface/this_site_support.php
 
+# Сначала исключаем саму папку components, чтобы её содержимое можно было обработать
+!bitrix/components/
+bitrix/components/*
+
+# Исключаем конкретные файлы и папки внутри components
+!bitrix/components/alexkova.market/
+
 # Исключаем остальные нужные папки
 !bitrix/local/
 !bitrix/templates/
