@@ -1,0 +1,29 @@
+ul.bxr-topline-menu {
+    display: inline-block;
+    padding: 0;
+    margin: 8px 0 4px;
+    margin-right: -18px;
+    padding-left: 10px !important;
+    list-style: none;
+    font-size: 13px;
+}
+
+.bxr-topline-menu li {
+    float: left;
+    margin-right: 18px;
+}
+
+.bxr-topline-menu li:last-child {
+    margin-right: 0;
+}
+
+
+
+ul.bxr-topline-menu a{
+    text-decoration: none;
+    color: #696969;
+}
+
+.bxr-topline-menu li a:hover {
+    text-decoration: underline;
+}

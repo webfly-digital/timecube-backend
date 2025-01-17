@@ -1,0 +1,13 @@
+.success-message {
+	text-align: center;
+	font-size: 16px;
+}
+
+.starrequired {
+    color: red;
+}
+
+.errortext {    
+    margin: 20px 0;
+    display: block;
+}

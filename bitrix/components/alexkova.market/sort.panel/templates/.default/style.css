@@ -1,0 +1,100 @@
+.text-xs-left { text-align: left; }
+.text-xs-right { text-align: right; }
+.text-xs-center { text-align: center; }
+.text-xs-justify { text-align: justify; }
+
+a:focus, a:active, a:visited, a:link {
+	text-decoration:none;
+}
+
+@media (min-width: 500px) {
+    .text-sm-left { text-align: left; }
+    .text-sm-right { text-align: right; }
+    .text-sm-center { text-align: center; }
+    .text-sm-justify { text-align: justify; }
+}
+
+@media (min-width: 700px) {
+    .text-md-left { text-align: left; }
+    .text-md-right { text-align: right; }
+    .text-md-center { text-align: center; }
+    .text-md-justify { text-align: justify; }
+}
+
+@media (min-width: 900px) {
+    .text-lg-left { text-align: left; }
+    .text-lg-right { text-align: right; }
+    .text-lg-center { text-align: center; }
+    .text-lg-justify { text-align: justify; }
+}
+
+@media (max-width: 700px) {
+.text-xs-right .bxr-sortbutton {
+	margin: 5px 0 5px 10px !important;
+}
+}
+
+.bxr-sort-panel{
+    margin-bottom: 20px;
+}
+
+
+.bxr-sortbutton::first-letter {
+    text-transform:  capitalize;
+}
+
+.bxr-color-flat .bxr-sortbutton
+,.bxr-color-flat .bxr-view-mode{
+    color: #FFF;
+    text-decoration: none;
+    margin: 5px 10px 5px 0px;
+    padding: 5px 10px;
+    display: inline-block;
+    border: 1px solid rgba(255,255,255, 0);
+}
+
+.bxr-border-color .bxr-sortbutton
+,.bxr-border-color .bxr-view-mode{
+    text-decoration: none;
+    margin: 10px 10px 10px 0px;
+    padding: 7px 10px;
+    display: inline-block;
+    border: 1px solid rgba(255,255,255, 0);
+    font-size: 13px;
+}
+
+.bxr-sortbutton i{
+    margin-left: 10px;
+}
+
+
+.bxr-sortbutton i{
+    margin: 0 0 0 10px;
+}
+
+.bxr-view-mode {
+    margin-left: 3px;
+    margin-right: 0;
+    min-width: 36px;
+    text-align: center;
+}
+
+.bxr-view-mode i{
+    font-size: 16px;
+    padding: 0;
+}
+
+.bxr-sortbutton.active
+,.bxr-sortbutton:hover
+,.bxr-view-mode.active
+,.bxr-view-mode:hover{
+    text-decoration: none;
+}
+
+.bxr-color-flat .bxr-sortbutton.active
+,.bxr-color-flat .bxr-sortbutton:hover
+,.bxr-color-flat .bxr-view-mode.active
+,.bxr-color-flat .bxr-view-mode:hover{
+    border: rgba(255,255,255, 0.5) 1px solid;
+    color:  #FFF;
+}

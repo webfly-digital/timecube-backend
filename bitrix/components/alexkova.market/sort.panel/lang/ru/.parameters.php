@@ -1,0 +1,27 @@
+<?
+$MESS["IBLOCK_TYPE"] = "Тип инфоблока";
+$MESS["IBLOCK_IBLOCK"] = "Инфоблок";
+$MESS["IBLOCK_SORT_ASC"] = "по возрастанию";
+$MESS["IBLOCK_SORT_DESC"] = "по убыванию";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD"] = "По какому полю сортируем товары в разделе";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER"] = "Порядок сортировки товаров в разделе";
+$MESS["IBLOCK_ELEMENT_SORT_FIELD2"] = "Поле для второй сортировки товаров в разделе";
+$MESS["IBLOCK_ELEMENT_SORT_ORDER2"] = "Порядок второй сортировки товаров в разделе";
+$MESS["KZNC_CATALOG_DEFAULT_SORT"] = "Сортировка по-умолчанию";
+$MESS["PAGE_ELEMENT_COUNT_TIP"] = "Указанное число определяет кол-во элементов на одной странице. Остальные элементы будут выведены с помощью постраничной навигации.";
+$MESS["ELEMENT_SORT_FIELD_TIP"] = "Указывается поле, по которому будет происходить сортировка товаров внутри каждого раздела.";
+$MESS["ELEMENT_SORT_ORDER_TIP"] = "Определяется направление сортировки элементов в разделе.";
+$MESS["KZNC_IBLOCK_SORT_PANEL_SETTINGS"] = "Панель сортировки";
+$MESS["KZNC_DEFAULT_CATALOG_VIEW"] = "Вид каталога по-умолчанию";
+$MESS["KZNC_PAGE_ELEMENT_COUNT_SHOW"] = "Показывать ограничение по количеству элементов";
+$MESS["IBLOCK_PAGE_ELEMENT_COUNT"] = "Количество элементов на странице по-умолчанию";
+$MESS["KZNC_PAGE_ELEMENT_COUNT_LIST"] = "Варианты количества элементов на странице";
+$MESS["KZNC_CATALOG_VIEW_SHOW"] = "Показывать варианты отображения каталога";
+$MESS["KZNC_THEME_NAME"] = "Тема оформления";
+$MESS["KZNC_THEME_DEFAULT"] = "Обычный";
+$MESS["KZNC_THEME_SOLID"] = "Залитый";
+$MESS["KZNC_VIEW_TITLE"] = "Плитка";
+$MESS["KZNC_VIEW_LIST"] = "Список";
+$MESS["KZNC_VIEW_TABLE"] = "Таблица";
+$MESS ['KZNC_SORT_NAME_NAME'] = "Название";
+$MESS ['KZNC_SORT_PRICE_NAME'] = "Цена";

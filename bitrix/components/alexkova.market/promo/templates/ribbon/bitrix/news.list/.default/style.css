@@ -1,0 +1,25 @@
+.bxr-promo-ribbon  {
+    margin: 20px -5px;
+    padding-left: 5px;
+    padding-right: 5px;    
+}
+
+.bxr-promo-ribbon .bxr-promo-element {
+    height: 250px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+
+.bxr-promo-ribbon.bxr-promo-block .bxr-promo-element {
+    margin-bottom: 10px;
+}
+.bxr-promo-ribbon.bxr-promo-block .bxr-promo-element {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.bxr-promo-ribbon.bxr-promo-mono .bxr-promo-element {
+    padding-left: 0;
+    padding-right: 0;
+}

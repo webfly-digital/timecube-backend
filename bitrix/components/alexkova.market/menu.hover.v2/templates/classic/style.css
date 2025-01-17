@@ -1,0 +1,247 @@
+.bxr-classic-hover-menu {
+    position: relative;
+    z-index: 1016;
+    font-size: 13px;
+    width: auto;
+    border: 1px solid #e6e6e6;
+    border: none; /*!!!*/
+}
+
+.bxr-classic-hover-menu .bxr-ico-hover-menu > img {
+    margin-right: 12px; 
+}
+
+.bxr-classic-hover-menu .bxr-ico-hover-menu > i{
+    margin-right: 10px; 
+}
+
+.bxr-classic-hover-menu ul > li .bxr-ico-menu-hover-hover
+,.bxr-classic-hover-menu ul > li:hover > a .bxr-ico-menu-hover-default
+,.bxr-classic-hover-menu ul > li[data-selected="1"] > a .bxr-ico-menu-hover-default{
+    display: none;
+}
+
+.bxr-classic-hover-menu ul > li:hover > a .bxr-ico-menu-hover-hover
+,.bxr-classic-hover-menu ul > li[data-selected="1"] > a .bxr-ico-menu-hover-hover{
+    display: inline-block;
+}
+
+.bxr-classic-hover-menu ul {
+    float: left;
+    top: 0px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    background-color: #fff;
+    width: auto;
+}
+
+.bxr-classic-hover-menu ul ul {
+    display: none;
+    /*top: -1px;*/
+    top: 0px; /*!!!*/
+    left: 100%;
+    position: absolute;
+    border: 1px solid #e6e6e6;
+    border: none; /*!!!*/
+    min-width: 200px;
+}
+
+.bxr-classic-hover-menu ul li {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    border-top: 1px solid rgba(125, 125, 125, 0.1);
+}
+
+.bxr-classic-hover-menu ul li:first-child {
+    border-top: none;
+}
+
+.bxr-classic-hover-menu ul li a {
+    white-space: nowrap;
+    padding: 14px 25px 13px 15px;
+    margin-right: 33px;
+    display: block;
+    text-decoration: none;
+}
+
+.bxr-classic-hover-menu ul li a:hover {
+    text-decoration: none;
+}
+
+.bxr-classic-hover-menu ul li .glyphicon
+,.bxr-classic-hover-menu ul li .fa{
+    padding-right: 10px;
+    top: 2px;
+}
+
+.bxr-classic-hover-menu .bxr-ico-menu{
+    float: left;
+    width: 16px;
+    margin-right: 15px;
+    margin-top: 1px;
+    opacity: 0.7;
+}
+
+.bxr-classic-hover-menu .hover-not-ico {
+    width: 16px;
+    margin-right: 15px;
+    display: block;
+    float: left;
+}
+
+.bxr-classic-hover-menu ul li .glyphicon.glyphicon-chevron-right {
+    padding-right: 0px;
+    right: 10px;
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    margin-top: -5px;
+    font-size: 10px;
+    color: #747474;
+}
+
+.bxr-classic-hover-menu ul li .fa.fa-angle-right
+,.bxr-classic-hover-menu ul li .fa.fa-angle-left
+,.bxr-classic-hover-menu ul li .fa.fa-circle-o{
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    margin-top: -9px;
+    font-size: 16px;
+    color: #747474;
+    z-index: 1;
+}
+
+.bxr-classic-hover-menu ul li .fa.fa-angle-right {
+    right: 10px;
+    padding-right: 0px;
+}
+
+.bxr-classic-hover-menu ul li .fa.fa-angle-left
+,.bxr-classic-hover-menu ul li .fa.fa-circle-o{
+    left: 7px;
+    padding: 0px 8px;
+}
+
+.bxr-classic-hover-menu ul li .fa.fa-circle-o{
+    font-size: 10px;
+    margin-top: -5px;
+    left: 6px;
+    padding: 0px 8px;
+}
+
+/*RIGHT*/
+
+.bxr-hover-menu-right .bxr-classic-hover-menu ul ul {
+    left: inherit;
+    right: 100%;
+}
+
+.bxr-classic-hover-menu ul li .fa.fa-angle-left
+,.bxr-classic-hover-menu ul li .fa.fa-circle-o{
+    display: none;
+}
+
+.bxr-hover-menu-right .bxr-classic-hover-menu ul li .fa.fa-angle-right {
+    display: none;
+}
+
+.bxr-hover-menu-right .bxr-classic-hover-menu ul li .fa.fa-angle-left
+,.bxr-hover-menu-right .bxr-classic-hover-menu ul li .fa.fa-circle-o{
+    display: inline-block;
+}
+
+.bxr-hover-menu-right ul li a {
+    margin-left: 33px;
+    margin-right: 0;
+    border-left: 1px solid rgba(125, 125, 125, 0.1);
+}
+
+.bxr-hover-menu-right ul li:hover a
+,.bxr-hover-menu-right ul li.bxr-color-flat a
+,.bxr-hover-menu-right ul li.bxr-dark-flat a{
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bxr-hover-menu-right a.margin-no {
+    margin: 0;
+}
+
+/* END RIGHT*/
+
+.bxr-classic-hover-menu ul > li:hover > ul {
+    display: block;
+    -webkit-animation:submenu_view 400ms;
+    animation:submenu_view 400ms;
+}
+
+.bxr-classic-hover-menu .bxr-bg-hover-light:hover > a{
+    color: #FFF;
+}
+
+.bxr-classic-hover-menu ul li > a  {
+    color: #414141;
+}
+
+.bxr-classic-hover-menu .bxr-color-flat > a
+,.bxr-classic-hover-menu .bxr-color-flat > a > .glyphicon.glyphicon-chevron-right
+,.bxr-classic-hover-menu .bxr-color-flat > a > .fa.fa-angle-right
+,.bxr-classic-hover-menu .bxr-color-flat > a > .fa.fa-angle-left
+,.bxr-classic-hover-menu .bxr-color-flat > a > .fa.fa-circle-o
+,.bxr-classic-hover-menu .bxr-color-dark-flat > a
+,.bxr-classic-hover-menu .bxr-color-dark-flat > a > .glyphicon.glyphicon-chevron-right
+,.bxr-classic-hover-menu .bxr-color-dark-flat > a > .fa.fa-angle-right
+,.bxr-classic-hover-menu .bxr-color-dark-flat > a > .fa.fa-angle-left
+,.bxr-classic-hover-menu .bxr-color-dark-flat > a > .fa.fa-circle-o
+,.bxr-classic-hover-menu .bxr-dark-flat > a
+,.bxr-classic-hover-menu .bxr-dark-flat > a > .glyphicon.glyphicon-chevron-right
+,.bxr-classic-hover-menu .bxr-dark-flat > a > .fa.fa-angle-right
+,.bxr-classic-hover-menu .bxr-dark-flat > a > .fa.fa-angle-left
+,.bxr-classic-hover-menu .bxr-dark-flat > a > .fa.fa-circle-o
+{
+    color: #fff;
+}
+
+.bxr-classic-hover-menu ul li:hover > a
+,.bxr-classic-hover-menu ul li:hover > a > .glyphicon
+,.bxr-classic-hover-menu ul li:hover > a > .fa
+{
+    color: #fff;
+}
+
+.bxr-classic-hover-menu.menu-arrow-top {
+    border-top: 4px solid #ccc;
+}
+
+.bxr-classic-hover-menu.menu-arrow-top:before {
+    content: '';
+    position: absolute;
+    left: 48px;
+    top: -14px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #CCC;
+}
+
+.bxr-classic-hover-menu-color
+,.bxr-classic-hover-menu-color ul ul {
+    //border: none !important; /*!!!*/
+}
+
+/*!!!*/
+.bxr-classic-hover-menu-color ul li
+,.bxr-left-menu-hover li.bxr-color-flat
+,.bxr-classic-hover-menu-dark ul li {
+    border-top: 1px solid rgba(255,255,255, 0.2) !important; /*!!!*/
+}
+
+.bxr-classic-hover-menu-color ul li:first-child
+,.bxr-left-menu-hover li.bxr-color-flat:first-child
+,.bxr-classic-hover-menu-dark ul li:first-child {
+    border-top: none  !important;
+}

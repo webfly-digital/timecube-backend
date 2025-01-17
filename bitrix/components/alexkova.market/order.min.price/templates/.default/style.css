@@ -1,0 +1,9 @@
+.min-order-price-notify-order {
+    border: 1px solid rgba(255, 20, 0, 0.13);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 0px;
+    margin-bottom: 20px;
+    background: #f2dede;
+    color: #a94442;
+}
