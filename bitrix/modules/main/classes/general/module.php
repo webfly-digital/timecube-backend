@@ -505,8 +505,31 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
 			$args = $arParams;
         }
 
+        //Переход на php8.2
+//        if (class_exists($arEvent["TO_CLASS"])) {
+//            $object = new $arEvent["TO_CLASS"]();
+//            $result = call_user_func_array([$object, $arEvent["TO_METHOD"]], $args);
+//            unset($object);
+//            return $result;
+//        }
         if (class_exists($arEvent["TO_CLASS"])) {
-            $object = new $arEvent["TO_CLASS"]();
+            $className = $arEvent["TO_CLASS"];
+            $reflection = new \ReflectionClass($className); //встроенный в PHP класс, который предоставляет инструменты для анализа структуры классов и работы с ними на уровне метаданных
+
+            // Проверяем, есть ли конструктор и какие аргументы он требует
+            if ($reflection->getConstructor()) {
+                $parameters = $reflection->getConstructor()->getParameters();
+
+                // Если конструктор требует аргументы, передаём null или дефолтное значение
+                if (count($parameters) > 0) {
+                    $object = $reflection->newInstanceArgs([null]); // Заменить null на нужный параметр, если известен
+                } else {
+                    $object = $reflection->newInstance();
+                }
+            } else {
+                $object = new $className();
+            }
+
             $result = call_user_func_array([$object, $arEvent["TO_METHOD"]], $args);
             unset($object);
             return $result;
