@@ -271,8 +271,13 @@ if($USER->CanDoOperation('fileman_view_file_structure'))
 	$arSites = Array();
 	$arSitesDR = Array();
 	$arSitesDR_ = Array();
-	$dbSitesList = CSite::GetList($b = "SORT", $o = "asc");
-	while($arSites = $dbSitesList->GetNext())
+    //Переход на php8.2
+	//$dbSitesList = CSite::GetList($b = "SORT", $o = "asc");
+    $b = "SORT";
+    $o = "asc";
+    $dbSitesList = CSite::GetList($b, $o);
+
+    while($arSites = $dbSitesList->GetNext())
 	{
 		$arSite[] = $arSites;
 		$arSiteDirs[rtrim($arSites["DIR"], "/")] = true;
