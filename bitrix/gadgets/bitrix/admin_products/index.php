@@ -70,8 +70,13 @@ else
 	$arResult = array();
 	$arResult["SEL"] = array();
 	$arFilter["PAYED"] = "Y";
-	$dbR = CSaleProduct::GetBestSellerList("AMOUNT", array(), $arFilter, $arGadgetParams["LIMIT"]);
-	while($arR = $dbR->Fetch())
+    //Переход на php8.2
+//	$dbR = CSaleProduct::GetBestSellerList("AMOUNT", array(), $arFilter, $arGadgetParams["LIMIT"]);
+    $saleProduct = new CSaleProduct();
+    $dbR = $saleProduct->GetBestSellerList("AMOUNT", array(), $arFilter, $arGadgetParams["LIMIT"]);
+    unset($saleProduct); // Освобождаем память
+
+    while($arR = $dbR->Fetch())
 	{
 		$arResult["SEL"][] = $arR;
 	}
