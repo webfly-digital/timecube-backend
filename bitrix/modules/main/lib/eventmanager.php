@@ -430,16 +430,43 @@ class EventManager
 					$callback = array($handler["TO_CLASS"], $handler["TO_METHOD"]);
 				}
 
-				if ($callback != null)
-				{
-					$result = call_user_func_array($callback, $args);
-				}
-				else
-				{
-					$result = $includeResult;
-				}
+                //Переход на php8.2
+//				if ($callback != null)
+//				{
+//					$result = call_user_func_array($callback, $args);
+//				}
+//				else
+//				{
+//					$result = $includeResult;
+//				}
+                if ($callback != null)
+                {
+                    if (is_array($callback) && class_exists($callback[0])) {
+                        $className = $callback[0];
+                        $methodName = $callback[1];
 
-				if (($result != null) && !($result instanceof EventResult))
+                        $reflectionMethod = new \ReflectionMethod($className, $methodName);
+
+                        if ($reflectionMethod->isStatic()) {
+                            // Вызов статического метода напрямую
+                            $result = call_user_func_array($callback, $args);
+                        } else {
+                            // Вызов нестатического метода через объект
+                            $object = new $className();
+                            $result = call_user_func_array([$object, $methodName], $args);
+                            unset($object);
+                        }
+                    } else {
+                        // Если callback не массив или не является методом класса
+                        $result = call_user_func_array($callback, $args);
+                    }
+                }
+                else
+                {
+                    $result = $includeResult;
+                }
+
+                if (($result != null) && !($result instanceof EventResult))
 				{
 					$result = new EventResult(EventResult::UNDEFINED, $result, $handler["TO_MODULE_ID"]);
 				}
