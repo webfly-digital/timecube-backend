@@ -116,7 +116,9 @@ abstract class CAllBitrixCloudOption
 		");
 
 		$sort = 0;
-		while (list($key, $val) = each($value))
+        //Переход на php8.2
+		//while (list($key, $val) = each($value))
+		foreach ($value as $key => $val)  // Замена each() на foreach
 		{
 			if ($db_row = $rs->fetch())
 			{
