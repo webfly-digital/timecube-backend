@@ -14,10 +14,22 @@ abstract class AdminExtension
 		return '\\' . static::class;
 	}
 
-	public function __construct(Environment $environment)
-	{
-		$this->environment = $environment;
-	}
+    //Переход на php8.2
+//	public function __construct(Environment $environment)
+//	{
+//		$this->environment = $environment;
+//	}
+//    public function __construct(?Environment $environment)
+//    {
+//        if ($environment === null) {
+//            throw new \InvalidArgumentException('Environment instance is required');
+//        }
+//        $this->environment = $environment;
+//    }
+    public function __construct(?Environment $environment = null)
+    {
+        $this->environment = $environment;
+    }
 
 	public function install()
 	{
