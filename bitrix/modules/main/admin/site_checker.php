@@ -22,7 +22,10 @@ define('DEBUG_FLAG', str_replace('\\','/',$_SERVER['DOCUMENT_ROOT'] . '/bitrix/s
 require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/classes/general/site_checker.php');
 
 // NO AUTH TESTS
-if ($_REQUEST['unique_id'])
+//Переход на php8.2
+//if ($_REQUEST['unique_id'])
+if (isset($_REQUEST['unique_id']) && $_REQUEST['unique_id'])
+
 {
 	if (!file_exists(DEBUG_FLAG) && $_REQUEST['unique_id'] != checker_get_unique_id())
 		die('Permission denied: UNIQUE ID ERROR');
@@ -247,7 +250,10 @@ if (file_exists(DEBUG_FLAG))
 	define('NOT_CHECK_PERMISSIONS', true);
 }
 
-if($_REQUEST['test_start'])
+//Переход на php8.2
+//if($_REQUEST['test_start'])
+if (isset($_REQUEST['test_start']) && $_REQUEST['test_start'])
+
 {
 	define("NO_KEEP_STATISTIC", true);
 	define("NO_AGENT_CHECK", true);
@@ -490,7 +496,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_aft
 			color:#000000;
 			vertical-align: middle;
 		}
-		
+
 		.sc_error {
 			color:#DD0000 !important;
 			vertical-align: middle;
@@ -743,7 +749,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_aft
 			}
 			else
 			{
-				try 
+				try
 				{
 					if (result)
 						eval(result);
