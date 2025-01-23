@@ -23,6 +23,11 @@ bitrix/components/*
 !bitrix/local/
 !bitrix/templates/
 
+# Исключаем логи
+/bitrix/logs/
+/local/logs/
+/logs/
+
 # todo: временно исключаю из gitignore файлы ядра битрикс для их последующий правки под версионнмым контролям в рамках апдейта версии php
 !bitrix/modules/
 !bitrix/gadgets/
