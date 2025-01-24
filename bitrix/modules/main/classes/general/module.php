@@ -475,7 +475,9 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
         }
 
         // Универсальная обработка CALLBACK
-        if (is_array($arEvent["CALLBACK"]) && class_exists($arEvent["CALLBACK"][0])) {
+        //Переход на php8.2
+        //if (is_array($arEvent["CALLBACK"]) && class_exists($arEvent["CALLBACK"][0])) {
+        if (is_array($arEvent["CALLBACK"]) && is_string($arEvent["CALLBACK"][0]) && class_exists($arEvent["CALLBACK"][0])) {
             $className = $arEvent["CALLBACK"][0];
             $reflection = new \ReflectionClass($className);
 

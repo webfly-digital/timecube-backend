@@ -432,7 +432,10 @@ class CAdminFilter
 	{
 		global $DB;
 
-		$err_mess = (CAdminFilter::err_mess())."<br>Function: GetList<br>Line: ";
+        //Переход на php8.2
+		//$err_mess = (CAdminFilter::err_mess())."<br>Function: GetList<br>Line: ";
+        $filterInstance = new CAdminFilter("perfmon_filter");
+        $err_mess = ($filterInstance->err_mess())."<br>Function: GetList<br>Line: ";
 		$arSqlSearch = Array();
 		if (is_array($arFilter))
 		{

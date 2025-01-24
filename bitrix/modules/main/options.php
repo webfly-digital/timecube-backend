@@ -23,7 +23,11 @@ $mid = $_REQUEST["mid"];
 
 $arGROUPS = array();
 $groups = array();
-$z = CGroup::GetList(($v1=""), ($v2=""), array("ACTIVE"=>"Y", "ADMIN"=>"N", "ANONYMOUS"=>"N"));
+//Переход на php8.2
+//$z = CGroup::GetList(($v1=""), ($v2=""), array("ACTIVE"=>"Y", "ADMIN"=>"N", "ANONYMOUS"=>"N"));
+$v1 = "";
+$v2 = "";
+$z = CGroup::GetList($v1, $v2, array("ACTIVE"=>"Y", "ADMIN"=>"N", "ANONYMOUS"=>"N"));
 while($zr = $z->Fetch())
 {
 	$ar = array();
@@ -614,13 +618,20 @@ if($SET_LICENSE_KEY == "")
 if ($_SERVER["REQUEST_METHOD"]=="POST" && $_POST["stop_site"]=="Y" && $USER->CanDoOperation('edit_other_settings') && check_bitrix_sessid())
 {
 	COption::SetOptionString("main", "site_stopped", "Y");
-	CAdminMessage::ShowNote(GetMessage("MAIN_OPTION_PUBL_CLOSES"));
+    //Переход на php8.2
+//	CAdminMessage::ShowNote(GetMessage("MAIN_OPTION_PUBL_CLOSES"));
+    $message = new CAdminMessage(GetMessage("MAIN_OPTION_PUBL_CLOSES"));
+    echo $message->Show();
+
 }
 
 if ($_SERVER["REQUEST_METHOD"]=="POST" && $_POST["start_site"]=="Y" && $USER->CanDoOperation('edit_other_settings') && check_bitrix_sessid())
 {
 	COption::SetOptionString("main", "site_stopped", "N");
-	CAdminMessage::ShowNote(GetMessage("MAIN_OPTION_PUBL_OPENED"));
+    //Переход на php8.2
+//	CAdminMessage::ShowNote(GetMessage("MAIN_OPTION_PUBL_OPENED"));
+    $message = new CAdminMessage(GetMessage("MAIN_OPTION_PUBL_OPENED"));
+    echo $message->Show();
 }
 
 function ShowParamsHTMLByArray($arParams)

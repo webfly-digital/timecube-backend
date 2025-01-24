@@ -407,13 +407,44 @@ if(COption::GetOptionString("main", "update_devsrv", "") == "Y")
 {
 	$systemMessage .= '<br>' . GetMessage("SUP_DEVSRV_MESS");
 }
+//Переход на php8.2
+//if ($errorMessage <> '')
+//	CAdminMessage::ShowMessage(Array("DETAILS" => $errorMessage, "TYPE" => "ERROR", "MESSAGE" => GetMessage("SUP_ERROR"), "HTML" => true));
+//if ($strongSystemMessage <> '')
+//	CAdminMessage::ShowMessage(Array("DETAILS" => $strongSystemMessage, "TYPE" => "ERROR", "MESSAGE" => GetMessage("SUP_ERROR"), "HTML" => true));
+//if ($systemMessage <> '')
+//	CAdminMessage::ShowMessage(Array("DETAILS" => $systemMessage, "TYPE" => "OK", "MESSAGE" => GetMessage("SUP_SYSTEM_MESSAGE"), "HTML" => true));
+if ($errorMessage <> '') {
+    $adminMessage = new CAdminMessage([
+        "DETAILS" => $errorMessage,
+        "TYPE" => "ERROR",
+        "MESSAGE" => GetMessage("SUP_ERROR"),
+        "HTML" => true
+    ]);
+    $adminMessage->Show();
+}
 
-if ($errorMessage <> '')
-	CAdminMessage::ShowMessage(Array("DETAILS" => $errorMessage, "TYPE" => "ERROR", "MESSAGE" => GetMessage("SUP_ERROR"), "HTML" => true));
-if ($strongSystemMessage <> '')
-	CAdminMessage::ShowMessage(Array("DETAILS" => $strongSystemMessage, "TYPE" => "ERROR", "MESSAGE" => GetMessage("SUP_ERROR"), "HTML" => true));
-if ($systemMessage <> '')
-	CAdminMessage::ShowMessage(Array("DETAILS" => $systemMessage, "TYPE" => "OK", "MESSAGE" => GetMessage("SUP_SYSTEM_MESSAGE"), "HTML" => true));
+if ($strongSystemMessage <> '') {
+    $adminMessage = new CAdminMessage([
+        "DETAILS" => $strongSystemMessage,
+        "TYPE" => "ERROR",
+        "MESSAGE" => GetMessage("SUP_ERROR"),
+        "HTML" => true
+    ]);
+    $adminMessage->Show();
+}
+
+
+if ($systemMessage <> '') {
+    $adminMessage = new CAdminMessage([
+        "DETAILS" => $systemMessage,
+        "TYPE" => "OK",
+        "MESSAGE" => GetMessage("SUP_SYSTEM_MESSAGE"),
+        "HTML" => true
+    ]);
+    $adminMessage->Show();
+}
+
 // endregion
 
 $events = GetModuleEvents("main", "OnUpdateCheck");

@@ -44,10 +44,39 @@ class CDatabase extends CDatabaseMysql
 		return true;
 	}
 
-	protected function QueryInternal($strSql)
-	{
-		return mysqli_query($this->db_Conn, $strSql, MYSQLI_STORE_RESULT);
-	}
+//	protected function QueryInternal($strSql)
+//	{
+//        //Переход на php8.2
+//		//return mysqli_query($this->db_Conn, $strSql, MYSQLI_STORE_RESULT);
+//        $result = mysqli_query($this->db_Conn, $strSql, MYSQLI_STORE_RESULT);
+//        if (!$result) {
+//            throw new Exception("SQL Error: " . mysqli_error($this->db_Conn) . "\nQuery: " . $strSql);
+//        }
+//        return $result;
+//
+//    }
+
+    protected function QueryInternal($strSql)
+    {
+        // Логирование SQL-запроса перед выполнением
+//        file_put_contents(
+//            "/home/bitrix/www/local/logs/sql_errors.log",
+//            date("Y-m-d H:i:s") . " - Query: " . $strSql . PHP_EOL,
+//            FILE_APPEND
+//        );
+
+        $result = mysqli_query($this->db_Conn, $strSql, MYSQLI_STORE_RESULT);
+        if (!$result) {
+            $errorMessage = mysqli_error($this->db_Conn);
+            file_put_contents(
+                "/home/bitrix/www/logs/log1.txt",
+                date("Y-m-d H:i:s") . " - SQL Error: " . $errorMessage . PHP_EOL,
+                FILE_APPEND
+            );
+            throw new Exception("SQL Error: " . $errorMessage . "\nQuery: " . $strSql);
+        }
+        return $result;
+    }
 
 	protected function GetError()
 	{

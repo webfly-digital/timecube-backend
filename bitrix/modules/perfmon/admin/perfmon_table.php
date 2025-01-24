@@ -201,7 +201,11 @@ $arChildren = $obSchema->GetChildren($table_name);
 $arParents = $obSchema->GetParents($table_name);
 
 CTimeZone::Disable();
-$rsData = $obTable->GetList($arSelectedFields, $arFilter, array($by => $order), array("nPageSize" => CAdminResult::GetNavSize($sTableID)));
+//Переход на php8.2
+//$rsData = $obTable->GetList($arSelectedFields, $arFilter, array($by => $order), array("nPageSize" => CAdminResult::GetNavSize($sTableID)));
+$navSize = new CAdminResult([], $sTableID);
+$rsData = $obTable->GetList($arSelectedFields, $arFilter, array($by => $order), array("nPageSize" => $navSize->GetNavSize($sTableID)));
+
 CTimeZone::Enable();
 
 function TableExists($tableName)
