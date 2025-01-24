@@ -439,30 +439,33 @@ class EventManager
 //				{
 //					$result = $includeResult;
 //				}
-                if ($callback != null)
-                {
+                if ($callback != null) {
                     if (is_array($callback) && class_exists($callback[0])) {
                         $className = $callback[0];
                         $methodName = $callback[1];
 
-                        $reflectionMethod = new \ReflectionMethod($className, $methodName);
+                        if (method_exists($className, $methodName)) {
+                            $reflectionMethod = new \ReflectionMethod($className, $methodName);
 
-                        if ($reflectionMethod->isStatic()) {
-                            // Вызов статического метода напрямую
-                            $result = call_user_func_array($callback, $args);
+                            if ($reflectionMethod->isStatic()) {
+                                // Вызов статического метода напрямую
+                                $result = call_user_func_array($callback, $args);
+                            } else {
+                                // Вызов нестатического метода через объект
+                                $object = new $className();
+                                $result = call_user_func_array([$object, $methodName], $args);
+                                unset($object);
+                            }
                         } else {
-                            // Вызов нестатического метода через объект
-                            $object = new $className();
-                            $result = call_user_func_array([$object, $methodName], $args);
-                            unset($object);
+                            throw new \Exception("Method $methodName does not exist in class $className");
                         }
-                    } else {
-                        // Если callback не массив или не является методом класса
+                    } else if (is_callable($callback)) {
+                        // Если callback является допустимой функцией или замыканием
                         $result = call_user_func_array($callback, $args);
+                    } else {
+                        throw new \Exception("Invalid callback provided: " . print_r($callback, true));
                     }
-                }
-                else
-                {
+                } else {
                     $result = $includeResult;
                 }
 

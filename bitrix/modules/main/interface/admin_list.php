@@ -244,6 +244,10 @@ class CAdminList
 	 */
 	public function IsUpdated($ID)
 	{
+    if (!isset($_REQUEST['FIELDS'][$ID]) || !isset($_REQUEST['FIELDS_OLD'][$ID])) {
+        return false;
+    }
+
 		$f = $_REQUEST['FIELDS'][$ID];
 		$f_old = $_REQUEST['FIELDS_OLD'][$ID];
 
