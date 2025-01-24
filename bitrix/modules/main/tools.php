@@ -4105,8 +4105,12 @@ function InitURLParam($url=false)
 		$_REQUEST += $arr;
         //Переход на php8.2
 		//$GLOBALS += $arr;
-        foreach ($arr as $key => $value) {
-            $GLOBALS[$key] = $value;
+		foreach ($arr as $key => $val)
+		{
+			if (!isset($GLOBALS[$key]))
+			{
+				$GLOBALS[$key] = $val;
+			}
         }
 	}
 }
