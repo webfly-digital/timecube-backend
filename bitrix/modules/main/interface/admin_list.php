@@ -299,15 +299,13 @@ class CAdminList
 
         // Проверка наличия 'FIELDS' в $GLOBALS перед добавлением в массив
         if (isset($GLOBALS['FIELDS']) && is_array($GLOBALS['FIELDS'])) {
-            $arrays[] = &$GLOBALS['FIELDS'];
+            $fieldsGlobal = $GLOBALS['FIELDS']; // Копируем глобальную переменную в локальную
+            $arrays[] = &$fieldsGlobal;
         }
 
-			foreach($arrays as $i => $array)
-			{
-            if (isset($array["FIELDS"]) && is_array($array["FIELDS"]))
-				{
-					foreach($array["FIELDS"] as $id=>$fields)
-					{
+        foreach ($arrays as $i => &$array) {
+            if (isset($array["FIELDS"]) && is_array($array["FIELDS"])) {
+                foreach ($array["FIELDS"] as $id => &$fields) {
 						if(is_array($fields))
 						{
 							$keys = array_keys($fields);
@@ -315,7 +313,7 @@ class CAdminList
 							{
 								if(($c = mb_substr($key,0,1)) == '~' || $c == '=')
 								{
-									unset($arrays[$i]["FIELDS"][$id][$key]);
+                                unset($fields[$key]);
 								}
 							}
 						}
