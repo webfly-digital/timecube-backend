@@ -4091,36 +4091,28 @@ function init_get_params($url)
 	InitURLParam($url);
 }
 
-function InitURLParam($url=false)
+function InitURLParam($url = false)
 {
     if ($url === false) {
         $url = $_SERVER["REQUEST_URI"];
     }
 
-	$start = mb_strpos($url, "?");
-	if ($start!==false)
-	{
-		$end = mb_strpos($url, "#");
-        $length = ($end !== false) ? $end - $start - 1 : mb_strlen($url) - $start - 1;
-		$params = mb_substr($url, $start + 1, $length);
-		parse_str($params, $_GET);
-		parse_str($params, $arr);
+    $start = mb_strpos($url, "?");
+    if ($start !== false) {
+        $end = mb_strpos($url, "#");
+        $length = ($end > 0) ? $end - $start - 1 : mb_strlen($url);
+        $params = mb_substr($url, $start + 1, $length);
+        parse_str($params, $_GET);
+        parse_str($params, $arr);
+        $_REQUEST = array_merge($_REQUEST, $arr);
 
-        // Безопасное добавление в $_REQUEST
-        if (is_array($_REQUEST)) {
-            $_REQUEST = array_merge($_REQUEST, $arr);
-        } else {
-            $_REQUEST = $arr;
-        }
-
-        // Корректный способ изменения $GLOBALS для PHP 8.2
+        // Исправленный код для PHP 8.2
         foreach ($arr as $key => $val) {
-            if (!array_key_exists($key, $GLOBALS)) {
-				$GLOBALS[$key] = $val;
-			}
+            $GLOBALS[$key] = $val;
         }
-	}
+    }
 }
+
 
 function _ShowHtmlspec($str)
 {
