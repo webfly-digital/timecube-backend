@@ -295,12 +295,16 @@ class CAdminList
 		if($_SERVER['REQUEST_METHOD']=='POST' && isset($_REQUEST['save'])  && check_bitrix_sessid())
 		{
 			//Переход на php8.2
-//			$arrays = array(&$_POST, &$_REQUEST, &$GLOBALS);
             $arrays = array(&$_POST, &$_REQUEST);
+
+        // Проверка наличия 'FIELDS' в $GLOBALS перед добавлением в массив
+        if (isset($GLOBALS['FIELDS']) && is_array($GLOBALS['FIELDS'])) {
             $arrays[] = &$GLOBALS['FIELDS'];
+        }
+
 			foreach($arrays as $i => $array)
 			{
-				if(is_array($array["FIELDS"]))
+            if (isset($array["FIELDS"]) && is_array($array["FIELDS"]))
 				{
 					foreach($array["FIELDS"] as $id=>$fields)
 					{
