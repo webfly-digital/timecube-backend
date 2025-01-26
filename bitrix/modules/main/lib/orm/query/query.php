@@ -3644,9 +3644,17 @@ elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
 
 		foreach ($this->select_chains as $chain)
 		{
-			if ($chain->getLastElement()->getValue()->getFetchDataModifiers())
+        $lastElement = $chain->getLastElement();
+
+        // Проверка на null перед вызовом метода getValue()
+        if ($lastElement !== null && $lastElement->getValue() !== null)
 			{
-				$this->selectFetchModifiers[$chain->getAlias()] = $chain->getLastElement()->getValue()->getFetchDataModifiers();
+            $modifiers = $lastElement->getValue()->getFetchDataModifiers();
+
+            if ($modifiers)
+            {
+                $this->selectFetchModifiers[$chain->getAlias()] = $modifiers;
+            }
 			}
 		}
 
