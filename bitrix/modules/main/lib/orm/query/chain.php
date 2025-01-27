@@ -343,12 +343,10 @@ class Chain
 
 			if ($not_found)
 			{
-                //Переход на php8.2
-//				throw new SystemException(sprintf(
-//					'Unknown field definition `%s` (%s) for %s Entity.',
-//					$def_element, $definition, $prev_entity->getFullName()
-//				), 100);
-                return new Chain();
+				throw new SystemException(sprintf(
+					'Unknown field definition `%s` (%s) for %s Entity.',
+					$def_element, $definition, $prev_entity->getFullName()
+				), 100);
 			}
 		}
 
@@ -496,23 +494,18 @@ class Chain
 	 * @return mixed|string
 	 * @throws SystemException
 	 */
-    public function getSqlDefinition($with_alias = false)
-    {
-        $lastElement = $this->getLastElement();
+	public function getSqlDefinition($with_alias = false)
+	{
+		$sql_def = $this->getLastElement()->getSqlDefinition();
 
-        if ($lastElement === null) {
-            return ''; // Возвращаем пустую строку, если элемент отсутствует
-        }
+		if ($with_alias)
+		{
+			$helper = $this->getLastElement()->getValue()->getEntity()->getConnection()->getSqlHelper();
+			$sql_def .= ' AS ' . $helper->quote($this->getAlias());
+		}
 
-        $sql_def = $lastElement->getSqlDefinition();
-
-        if ($with_alias) {
-            $helper = $lastElement->getValue()->getEntity()->getConnection()->getSqlHelper();
-            $sql_def .= ' AS ' . $helper->quote($this->getAlias());
-        }
-
-        return $sql_def;
-    }
+		return $sql_def;
+	}
 
 	public function __clone()
 	{
