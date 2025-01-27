@@ -403,32 +403,20 @@ function ExecuteModuleEvent($arEvent, $param1=NULL, $param2=NULL, $param3=NULL, 
 	for($i = $CNT_PREDEF + 1; $i < $nArgs; $i++)
 		$args[] = func_get_arg($i);
 
-	//TODO: �������� �������� �� EventManager::getInstance()->getLastEvent();
+	//TODO: �������� �������� �� EventManager::getInstance()->getLastEvent();
 	global $BX_MODULE_EVENT_LAST;
 	$BX_MODULE_EVENT_LAST = $arEvent;
 
 	if(is_set($arEvent, "CALLBACK"))
 	{
-        //Переход на php8.2
-    if (is_array($arEvent["CALLBACK"]) && class_exists($arEvent["CALLBACK"][0])) {
-        $object = new $arEvent["CALLBACK"][0]();
-        $resmod = call_user_func_array([$object, $arEvent["CALLBACK"][1]], $args);
-        unset($object);
-    } else {
 		$resmod = call_user_func_array($arEvent["CALLBACK"], $args);
 	}
-}
 	else
 	{
 		//php bug: http://bugs.php.net/bug.php?id=47948
-        //Переход на php8.2
-    if (class_exists($arEvent["TO_CLASS"])) {
-        $object = new $arEvent["TO_CLASS"]();
-        $resmod = call_user_func_array([$object, $arEvent["TO_METHOD"]], $args);
-        unset($object);
+		class_exists($arEvent["TO_CLASS"]);
+		$resmod = call_user_func_array(array($arEvent["TO_CLASS"], $arEvent["TO_METHOD"]), $args);
 	}
-}
-
 
 	return $resmod;
 }
@@ -441,11 +429,12 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
 		isset($arEvent["TO_MODULE_ID"])
 		&& $arEvent["TO_MODULE_ID"]<>""
 		&& $arEvent["TO_MODULE_ID"]<>"main"
-    ) {
-        if (!CModule::IncludeModule($arEvent["TO_MODULE_ID"])) {
+	)
+	{
+		if(!CModule::IncludeModule($arEvent["TO_MODULE_ID"]))
 			return null;
 	}
-    } elseif (
+	elseif(
 		isset($arEvent["TO_PATH"])
 		&& $arEvent["TO_PATH"]<>""
 		&& file_exists($_SERVER["DOCUMENT_ROOT"].BX_ROOT.$arEvent["TO_PATH"])
@@ -462,82 +451,34 @@ function ExecuteModuleEventEx($arEvent, $arParams = array())
 		$r = include_once($arEvent["FULL_PATH"]);
 	}
 
-    //Переход на php8.2
-	if(array_key_exists("CALLBACK", $arEvent)) {
-		//TODO: �������� �������� �� EventManager::getInstance()->getLastEvent();
+	if(array_key_exists("CALLBACK", $arEvent))
+	{
+		//TODO: �������� �������� �� EventManager::getInstance()->getLastEvent();
 		global $BX_MODULE_EVENT_LAST;
 		$BX_MODULE_EVENT_LAST = $arEvent;
 
-        if (isset($arEvent["TO_METHOD_ARG"]) && is_array($arEvent["TO_METHOD_ARG"]) && count($arEvent["TO_METHOD_ARG"])) {
+		if(isset($arEvent["TO_METHOD_ARG"]) && is_array($arEvent["TO_METHOD_ARG"]) && count($arEvent["TO_METHOD_ARG"]))
 			$args = array_merge($arEvent["TO_METHOD_ARG"], $arParams);
-        } else {
+		else
 			$args = $arParams;
-        }
-
-        // Универсальная обработка CALLBACK
-        //Переход на php8.2
-        //if (is_array($arEvent["CALLBACK"]) && class_exists($arEvent["CALLBACK"][0])) {
-        if (is_array($arEvent["CALLBACK"]) && is_string($arEvent["CALLBACK"][0]) && class_exists($arEvent["CALLBACK"][0])) {
-            $className = $arEvent["CALLBACK"][0];
-            $reflection = new \ReflectionClass($className);
-
-            // Проверка наличия конструктора и его доступности
-            if ($reflection->getConstructor() && $reflection->getConstructor()->isPublic()) {
-                $object = new $className();
-            } elseif (method_exists($className, 'getEntity')) {
-                $object = $className::getEntity();
-            } else {
-                // Невозможно создать объект — возвращаем null
-                return null;
-            }
-
-            $result = call_user_func_array([$object, $arEvent["CALLBACK"][1]], $args);
-            unset($object);
-            return $result;
-        }
 
 		return call_user_func_array($arEvent["CALLBACK"], $args);
-    } elseif ($arEvent["TO_CLASS"] != "" && $arEvent["TO_METHOD"] != "") {
+	}
+	elseif($arEvent["TO_CLASS"] != "" && $arEvent["TO_METHOD"] != "")
+	{
+		//TODO: �������� �������� �� EventManager::getInstance()->getLastEvent();
 		global $BX_MODULE_EVENT_LAST;
 		$BX_MODULE_EVENT_LAST = $arEvent;
 
-        if (is_array($arEvent["TO_METHOD_ARG"]) && count($arEvent["TO_METHOD_ARG"])) {
+		if(is_array($arEvent["TO_METHOD_ARG"]) && count($arEvent["TO_METHOD_ARG"]))
 			$args = array_merge($arEvent["TO_METHOD_ARG"], $arParams);
-        } else {
+		else
 			$args = $arParams;
-        }
 
-        //Переход на php8.2
-//        if (class_exists($arEvent["TO_CLASS"])) {
-//            $object = new $arEvent["TO_CLASS"]();
-//            $result = call_user_func_array([$object, $arEvent["TO_METHOD"]], $args);
-//            unset($object);
-//            return $result;
-//        }
-        if (class_exists($arEvent["TO_CLASS"])) {
-            $className = $arEvent["TO_CLASS"];
-            $reflection = new \ReflectionClass($className); //встроенный в PHP класс, который предоставляет инструменты для анализа структуры классов и работы с ними на уровне метаданных
-
-            // Проверяем, есть ли конструктор и какие аргументы он требует
-            if ($reflection->getConstructor()) {
-                $parameters = $reflection->getConstructor()->getParameters();
-
-                // Если конструктор требует аргументы, передаём null или дефолтное значение
-                if (count($parameters) > 0) {
-                    $object = $reflection->newInstanceArgs([null]); // Заменить null на нужный параметр, если известен
-                } else {
-                    $object = $reflection->newInstance();
-                }
-            } else {
-                $object = new $className();
-            }
-
-            $result = call_user_func_array([$object, $arEvent["TO_METHOD"]], $args);
-            unset($object);
-            return $result;
-        }
-
-    }
+		//php bug: http://bugs.php.net/bug.php?id=47948
+		class_exists($arEvent["TO_CLASS"]);
+		return call_user_func_array(array($arEvent["TO_CLASS"], $arEvent["TO_METHOD"]), $args);
+	}
 	else
 	{
 		return $r;
