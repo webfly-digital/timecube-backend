@@ -42,6 +42,19 @@ class EventManager
 		return self::$instance;
 	}
 
+	/**
+	 * @static
+	 * @param EventManager $instance
+	 */
+	public static function setInstance($instance)
+	{
+		$c = __CLASS__;
+		if ($instance instanceof $c)
+		{
+			self::$instance = $instance;
+		}
+	}
+
 	protected function addEventHandlerInternal($fromModuleId, $eventType, $callback, $includeFile, $sort, $version)
 	{
 		$arEvent = array(
@@ -430,46 +443,16 @@ class EventManager
 					$callback = array($handler["TO_CLASS"], $handler["TO_METHOD"]);
 				}
 
-                //Переход на php8.2
-//				if ($callback != null)
-//				{
-//					$result = call_user_func_array($callback, $args);
-//				}
-//				else
-//				{
-//					$result = $includeResult;
-//				}
-                if ($callback != null) {
-                    if (is_array($callback) && class_exists($callback[0])) {
-                        $className = $callback[0];
-                        $methodName = $callback[1];
+				if ($callback != null)
+				{
+					$result = call_user_func_array($callback, $args);
+				}
+				else
+				{
+					$result = $includeResult;
+				}
 
-                        if (method_exists($className, $methodName)) {
-                            $reflectionMethod = new \ReflectionMethod($className, $methodName);
-
-                            if ($reflectionMethod->isStatic()) {
-                                // Вызов статического метода напрямую
-                                $result = call_user_func_array($callback, $args);
-                            } else {
-                                // Вызов нестатического метода через объект
-                                $object = new $className();
-                                $result = call_user_func_array([$object, $methodName], $args);
-                                unset($object);
-                            }
-                        } else {
-                            throw new \Exception("Method $methodName does not exist in class $className");
-                        }
-                    } else if (is_callable($callback)) {
-                        // Если callback является допустимой функцией или замыканием
-                        $result = call_user_func_array($callback, $args);
-                    } else {
-                        throw new \Exception("Invalid callback provided: " . print_r($callback, true));
-                    }
-                } else {
-                    $result = $includeResult;
-                }
-
-                if (($result != null) && !($result instanceof EventResult))
+				if (($result != null) && !($result instanceof EventResult))
 				{
 					$result = new EventResult(EventResult::UNDEFINED, $result, $handler["TO_MODULE_ID"]);
 				}
