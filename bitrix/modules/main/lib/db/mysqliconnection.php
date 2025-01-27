@@ -131,12 +131,14 @@ class MysqliConnection extends MysqlCommonConnection
             $trackerQuery->startQuery($sql, $binds);
         }
 
-        // Удаление лишней запятой перед ключевыми словами и после SELECT
+        // Удаление лишних запятых перед ключевыми словами и в начале SELECT
         $sql = preg_replace([
-            '/,\s*(FROM|WHERE|ORDER BY|GROUP BY|LIMIT|HAVING|JOIN)/i',  // Удаление запятой перед ключевыми словами
-            '/\bSELECT\s*,\s*/i'  // Удаление запятой после SELECT
+            '/,\s*(FROM|WHERE|ORDER BY|GROUP BY|LIMIT|HAVING|JOIN)\b/i',  // Удаление запятых перед ключевыми словами
+            '/\bSELECT\s*,\s*/i',  // Удаление запятых после SELECT
+            '/SELECT\s+\r?\n?\s*,/i'  // Удаление запятых в начале после SELECT на новой строке
         ], [
             ' $1',
+            'SELECT ',
             'SELECT '
         ], $sql);
 
