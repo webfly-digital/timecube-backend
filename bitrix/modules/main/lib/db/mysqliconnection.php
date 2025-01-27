@@ -123,39 +123,31 @@ class MysqliConnection extends MysqlCommonConnection
 	/**
 	 * @inheritDoc
 	 */
-    protected function queryInternal($sql, array $binds = null, Diag\SqlTrackerQuery $trackerQuery = null)
-    {
-        $this->connectInternal();
+	protected function queryInternal($sql, array $binds = null, Diag\SqlTrackerQuery $trackerQuery = null)
+	{
+		$this->connectInternal();
 
-        if ($trackerQuery !== null) {
-            $trackerQuery->startQuery($sql, $binds);
-        }
+		if ($trackerQuery != null)
+		{
+			$trackerQuery->startQuery($sql, $binds);
+		}
 
-        // Удаление лишних запятых перед ключевыми словами и в начале SELECT
-        $sql = preg_replace([
-            '/,\s*(FROM|WHERE|ORDER BY|GROUP BY|LIMIT|HAVING|JOIN)\b/i',  // Удаление запятых перед ключевыми словами
-            '/\bSELECT\s*,\s*/i',  // Удаление запятых после SELECT
-            '/SELECT\s+\r?\n?\s*,/i'  // Удаление запятых в начале после SELECT на новой строке
-        ], [
-            ' $1',
-            'SELECT ',
-            'SELECT '
-        ], $sql);
+		$result = $this->resource->query($sql, MYSQLI_STORE_RESULT);
 
-        $result = $this->resource->query($sql, MYSQLI_STORE_RESULT);
+		if ($trackerQuery != null)
+		{
+			$trackerQuery->finishQuery();
+		}
 
-        if ($trackerQuery !== null) {
-            $trackerQuery->finishQuery();
-        }
+		$this->lastQueryResult = $result;
 
-        $this->lastQueryResult = $result;
+		if (!$result)
+		{
+			throw new SqlQueryException('Mysql query error', $this->getErrorMessage(), $sql);
+		}
 
-        if (!$result) {
-            throw new SqlQueryException('Mysql query error', $this->getErrorMessage(), $sql);
-        }
-
-        return $result;
-    }
+		return $result;
+	}
 
 	/**
 	 * @inheritDoc
