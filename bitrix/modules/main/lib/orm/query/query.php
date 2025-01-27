@@ -760,10 +760,9 @@ class Query
 		// check in filter
 		foreach ($this->filter_chains as $chain)
 		{
-        $lastElement = $chain->getLastElement();
-        if ($lastElement !== null && static::isFieldPrivate($lastElement->getValue()))
+			if (static::isFieldPrivate($chain->getLastElement()->getValue()))
 			{
-            $columnField = $lastElement->getValue();
+				$columnField = $chain->getLastElement()->getValue();
 
 				throw new SystemException(sprintf(
 					'Private field %s.%s is restricted in filter',
@@ -778,10 +777,9 @@ class Query
 		{
 			foreach ($this->global_chains as $chain)
 			{
-            $lastElement = $chain->getLastElement();
-            if ($lastElement !== null && static::isFieldPrivate($lastElement->getValue()))
+				if (static::isFieldPrivate($chain->getLastElement()->getValue()))
 				{
-                $columnField = $lastElement->getValue();
+					$columnField = $chain->getLastElement()->getValue();
 
 					trigger_error(sprintf(
 						'Private field %s.%s is restricted in query, use Query::enablePrivateFields() to allow it',
@@ -1215,23 +1213,23 @@ class Query
 			/** @var null|Entity $expand_entity */
 			$expand_entity = null;
 
-			if ($last_elem && $last_elem->getValue() instanceof Reference)
+			if ($last_elem->getValue() instanceof Reference)
 			{
 				$expand_entity = $last_elem->getValue()->getRefEntity();
 			}
-elseif ($last_elem && is_array($last_elem->getValue()))
+			elseif (is_array($last_elem->getValue()))
 			{
 				list($expand_entity, ) = $last_elem->getValue();
 			}
-elseif ($last_elem && $last_elem->getValue() instanceof Entity)
+			elseif ($last_elem->getValue() instanceof Entity)
 			{
 				$expand_entity = $last_elem->getValue();
 			}
-elseif ($last_elem && $last_elem->getValue() instanceof OneToMany)
+			elseif ($last_elem->getValue() instanceof OneToMany)
 			{
 				$expand_entity = $last_elem->getValue()->getRefEntity();
 			}
-elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
+			elseif ($last_elem->getValue() instanceof ManyToMany)
 			{
 				$expand_entity = $last_elem->getValue()->getRefEntity();
 			}
@@ -1310,10 +1308,11 @@ elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
 				// e.g. in expressions or in data_doubling=off filter
 
 				// collect buildFrom fields (recursively)
-                if ($chain->getLastElement() && $chain->getLastElement()->getValue() instanceof ExpressionField) {
-                    $this->collectExprChains($chain, ['hidden', 'select_expr']);
-                }
-            }
+				if ($chain->getLastElement()->getValue() instanceof ExpressionField)
+				{
+					$this->collectExprChains($chain, array('hidden', 'select_expr'));
+				}
+			}
 		}
 
 		return $this;
@@ -1912,10 +1911,11 @@ elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
 
 		foreach ($chains as $chain)
 		{
-            if ($chain->getLastElement() && $chain->getLastElement()->getParameter('talias')) {
-                // already been here
-                continue;
-            }
+			if ($chain->getLastElement()->getParameter('talias'))
+			{
+				// already been here
+				continue;
+			}
 
 			// in NO_DOUBLING mode skip 1:N relations that presented in filter only
 			if ($chain->forcesDataDoublingOff() || ($this->data_doubling_off && $chain->hasBackReference()))
@@ -3239,7 +3239,9 @@ elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
 		foreach ($chains as $chain)
 		{
 			$last = $chain->getLastElement();
-        if ($last !== null && $last->getValue() instanceof ExpressionField && $last->getValue()->isAggregated())
+			$is_aggr = $last->getValue() instanceof ExpressionField && $last->getValue()->isAggregated();
+
+			if ($is_aggr)
 			{
 				return true;
 			}
@@ -3255,12 +3257,7 @@ elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
 
 		foreach ($chains as $chain)
 		{
-        $lastElement = $chain->getLastElement();
-        if ($lastElement === null) {
-            continue; // Пропускаем итерацию, если последний элемент отсутствует
-        }
-
-        $field = $lastElement->getValue();
+			$field = $chain->getLastElement()->getValue();
 
 			if ($field instanceof ExpressionField)
 			{
@@ -3644,17 +3641,9 @@ elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
 
 		foreach ($this->select_chains as $chain)
 		{
-        $lastElement = $chain->getLastElement();
-
-        // Проверка на null перед вызовом метода getValue()
-        if ($lastElement !== null && $lastElement->getValue() !== null)
+			if ($chain->getLastElement()->getValue()->getFetchDataModifiers())
 			{
-            $modifiers = $lastElement->getValue()->getFetchDataModifiers();
-
-            if ($modifiers)
-            {
-                $this->selectFetchModifiers[$chain->getAlias()] = $modifiers;
-            }
+				$this->selectFetchModifiers[$chain->getAlias()] = $chain->getLastElement()->getValue()->getFetchDataModifiers();
 			}
 		}
 
