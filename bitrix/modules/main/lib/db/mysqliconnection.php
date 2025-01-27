@@ -127,19 +127,22 @@ class MysqliConnection extends MysqlCommonConnection
     {
         $this->connectInternal();
 
-        if ($trackerQuery != null) {
+        if ($trackerQuery !== null) {
             $trackerQuery->startQuery($sql, $binds);
         }
 
-        // Удаление лишней запятой перед FROM и других ключевых слов
-        $sql = preg_replace('/,\s*(FROM|WHERE|ORDER BY|GROUP BY|LIMIT)/i', ' $1', $sql);
-
-        // Удаление запятой в начале строки запроса после SELECT
-        $sql = preg_replace('/SELECT\s*,/', 'SELECT', $sql);
+        // Удаление лишней запятой перед ключевыми словами и после SELECT
+        $sql = preg_replace([
+            '/,\s*(FROM|WHERE|ORDER BY|GROUP BY|LIMIT|HAVING|JOIN)/i',  // Удаление запятой перед ключевыми словами
+            '/\bSELECT\s*,\s*/i'  // Удаление запятой после SELECT
+        ], [
+            ' $1',
+            'SELECT '
+        ], $sql);
 
         $result = $this->resource->query($sql, MYSQLI_STORE_RESULT);
 
-        if ($trackerQuery != null) {
+        if ($trackerQuery !== null) {
             $trackerQuery->finishQuery();
         }
 
