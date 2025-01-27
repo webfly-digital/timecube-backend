@@ -186,12 +186,12 @@ class CAllStatistics extends CKeepStatistics
 					}
 				}
 
-				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+				// если имеем массив количеств переходов по ссылкам то
 				if((count($arHashLink) > 0) && ($SUM > 0))
 				{
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
-					// 1) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
-					// 2) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+					// отсортируем ссылки в порядке убывания количества переходов и
+					// 1) присвоим каждой ссылке порядковый номер
+					// 2) посчитаем процент переходов по каждой ссылке
 					uasort($arHashLink, "__SortLinkStat");
 					$i=0;
 					foreach($arHashLink as $link_crc => $arLink)
@@ -201,7 +201,7 @@ class CAllStatistics extends CKeepStatistics
 						$arHashLink[$link_crc]["PERCENT"] = round((100*$arLink["CNT"])/$SUM, 1);
 					}
 
-					// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ <a> пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					// парсим контент и добавляем к тэгам <a> желтую табличку с процентом переходов
 					$pcre_backtrack_limit = intval(ini_get("pcre.backtrack_limit"));
 					$content_len = function_exists('mb_strlen')? mb_strlen($content, 'latin1') : mb_strlen($content);
 					$content_len++;
@@ -210,7 +210,7 @@ class CAllStatistics extends CKeepStatistics
 
 					$content = preg_replace_callback("#(<a[^>]+?href\\s*=\\s*)([\"'])(.*?)(\\2.*?>)(.*?)(</.+?>)#is", "__ModifyATags", $content);
 
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					// сформируем диаграмму переходов для данной страницы
 					ob_start();
 					?>
 					<style>
@@ -257,7 +257,7 @@ class CAllStatistics extends CKeepStatistics
 					$js_table = "wnd.document.write('".CUtil::JSEscape($stat_table)."');";
 					ob_end_clean();
 
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ JS пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					// сформируем JS открывающий отдельное окно со статистикой переходов
 					ob_start();
 					?>
 					<script language="JavaScript">
@@ -425,7 +425,7 @@ class CAllStatistics extends CKeepStatistics
 	}
 
 	///////////////////////////////////////////////////////////////////
-	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// Обновляем счетчик по рекламной кампании
 	///////////////////////////////////////////////////////////////////
 	public static function Update_Adv()
 	{
@@ -435,10 +435,10 @@ class CAllStatistics extends CKeepStatistics
 
 		$REMOTE_ADDR_NUMBER = ip2number($_SERVER["REMOTE_ADDR"]);
 
-		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// если это прямой вход по рекламной кампании
 		if (intval($_SESSION["SESS_ADV_ID"])>0)
 		{
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// проверяем был ли уже прямой заход либо возврат у данного посетителя и с данного хоста
 			$t = CStatistics::GetAdvGuestHost(
 				$_SESSION["SESS_ADV_ID"],
 				$_SESSION["SESS_GUEST_ID"],
@@ -454,14 +454,14 @@ class CAllStatistics extends CKeepStatistics
 				if ($host_counter != 1)
 					$host_counter = (intval($tr["ADV_HOSTS"])>0) ? 0 : 1;
 
-				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// дата прямого захода посетителя
 				$MAX_DATE_GUEST_HIT = $tr["MAX_DATE_GUEST_HIT"];
 
-				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+				// дата прямого захода с хоста
 				$MAX_DATE_HOST_HIT = $tr["MAX_DATE_HOST_HIT"];
 			}
 
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// если посетитель новый, то нужно увеличить счетчик новых посетителей
 			$new_guest_counter = ($_SESSION["SESS_GUEST_NEW"] == "Y") ? 1 : 0;
 
 			$arFields = Array(
@@ -472,7 +472,7 @@ class CAllStatistics extends CKeepStatistics
 				);
 			$arFields_temp = $arFields;
 
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// обновляем основной обсчет рекламной кампании
 			$arFields["DATE_LAST"] = $DB->GetNowFunction();
 
 			$DB->Update("b_stat_adv", $arFields, "WHERE ID=".intval($_SESSION["SESS_ADV_ID"]), $err_mess.__LINE__,false,false,false);
@@ -481,7 +481,7 @@ class CAllStatistics extends CKeepStatistics
 
 			$arFields = $arFields_temp;
 
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// определяем возвращался ли уже сегодня данный посетитель и с данного хоста
 			$now_date = GetTime(time());
 			$guest_day_counter = ($MAX_DATE_GUEST_HIT!=$now_date) ? 1 : 0;
 			$host_day_counter = ($MAX_DATE_HOST_HIT!=$now_date) ? 1 : 0;
@@ -489,12 +489,12 @@ class CAllStatistics extends CKeepStatistics
 			$arFields["GUESTS_DAY"] = "GUESTS_DAY + ".$guest_day_counter;
 			$arFields["C_HOSTS_DAY"] = "C_HOSTS_DAY + ".$host_day_counter;
 
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+			// обновляем обсчет рекламной кампании по дням
 			$rows = $DB->Update("b_stat_adv_day", $arFields, "WHERE ADV_ID=".intval($_SESSION["SESS_ADV_ID"])." and  ".CStatistics::DBDateCompare("DATE_STAT"), $err_mess.__LINE__,false,false,false);
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ
+			// если обсчета по дням нет то
 			if (intval($rows)<=0)
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+				// добавляем его
 				$arFields_i = Array(
 					"ADV_ID" => intval($_SESSION["SESS_ADV_ID"]),
 					"DATE_STAT" => $DB->GetNowDate(),
@@ -507,9 +507,9 @@ class CAllStatistics extends CKeepStatistics
 					);
 				$DB->Insert("b_stat_adv_day",$arFields_i, $err_mess.__LINE__);
 			}
-			elseif ($rows>1) // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ
+			elseif ($rows>1) // если обновили более одного дня то
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+				// удалим лишние
 				$i=0;
 				$strSql = "SELECT ID FROM b_stat_adv_day WHERE ADV_ID=".intval($_SESSION["SESS_ADV_ID"])." and  ".CStatistics::DBDateCompare("DATE_STAT")." ORDER BY ID";
 				$rs = $DB->Query($strSql, false, $err_mess.__LINE__);
@@ -524,10 +524,10 @@ class CAllStatistics extends CKeepStatistics
 				}
 			}
 
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+			// если данный гость, либо с данного хоста еще не заходили по данной рекламной кампании то
 			if (intval($guest_counter)==1 || intval($host_counter)==1)
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
+				// добавляем их в базу
 				$arFields = Array(
 					"ADV_ID" => intval($_SESSION["SESS_ADV_ID"]),
 					"GUEST_ID" => intval($_SESSION["SESS_GUEST_ID"]),
@@ -540,23 +540,23 @@ class CAllStatistics extends CKeepStatistics
 					);
 				$DB->Insert("b_stat_adv_guest",$arFields, $err_mess.__LINE__);
 			}
-			else // пїЅпїЅпїЅпїЅпїЅ
+			else // иначе
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// обновляем дату прямого захода посетителя
 				$arFields = Array("DATE_GUEST_HIT" => $DB->GetNowFunction());
 				$DB->Update("b_stat_adv_guest", $arFields, "WHERE ADV_ID=".intval($_SESSION["SESS_ADV_ID"])." and GUEST_ID=".intval($_SESSION["SESS_GUEST_ID"])." and BACK='N'", $err_mess.__LINE__);
 
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+				// обновляем дату прямого захода с хоста
 				$arFields = Array("DATE_HOST_HIT" => $DB->GetNowFunction());
 				$DB->Update("b_stat_adv_guest", $arFields, "WHERE ADV_ID=".intval($_SESSION["SESS_ADV_ID"])." and IP_NUMBER='".$DB->ForSql($REMOTE_ADDR_NUMBER)."' and BACK='N'", $err_mess.__LINE__);
 			}
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ cookie
+			// записываем прямую рекламную кампанию в cookie
 			$GLOBALS["APPLICATION"]->set_cookie("LAST_ADV", $_SESSION["SESS_ADV_ID"]."_Y");
 		}
-		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// если это возврат по рекламной кампании
 		elseif (intval($_SESSION["SESS_LAST_ADV_ID"])>0)
 		{
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// проверяем был ли уже возврат у данного посетителя, либо с данного хоста
 			$t = CStatistics::GetAdvGuestHost(
 				$_SESSION["SESS_LAST_ADV_ID"],
 				$_SESSION["SESS_GUEST_ID"],
@@ -568,29 +568,29 @@ class CAllStatistics extends CKeepStatistics
 			$host_back_counter = 0;
 			while ($tr = $t->Fetch())
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// счетчик для уникальных вернувшихся посетителей
 				if ($guest_back_counter!=1) $guest_back_counter = (intval($tr["ADV_GUESTS"])>0) ? 0 : 1;
 
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+				// счетчик для уникальных вернувшихся хостов
 				if ($host_back_counter!=1) $host_back_counter = (intval($tr["ADV_HOSTS"])>0) ? 0 : 1;
 
-				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// дата последнего возврата посетителя
 				$MAX_DATE_GUEST_HIT = $tr["MAX_DATE_GUEST_HIT"];
 
-				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+				// дата последнего возврата с хоста
 				$MAX_DATE_HOST_HIT = $tr["MAX_DATE_HOST_HIT"];
 			}
 
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// обновляем обсчет рекламной кампании
 			$arFields = Array(
 				"GUESTS_BACK"	=> "GUESTS_BACK + ".$guest_back_counter,
 				"HOSTS_BACK"	=> "HOSTS_BACK + ".$host_back_counter,
 				"SESSIONS_BACK"	=> "SESSIONS_BACK + 1"
 			);
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+			// если происходит восстановление профайла посетителя то
 			if($_SESSION["SESS_LAST_ADV_ID"] > 0)
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// оставляем значение счетчиков посетителей и хостов без изменений
 				$arFields["GUESTS_BACK"] = "GUESTS_BACK";
 				$arFields["HOSTS_BACK"] = "HOSTS_BACK";
 				$guest_back_counter = 0;
@@ -598,7 +598,7 @@ class CAllStatistics extends CKeepStatistics
 			}
 			$DB->Update("b_stat_adv", $arFields, "WHERE ID=".intval($_SESSION["SESS_LAST_ADV_ID"]), $err_mess.__LINE__,false,false,false);
 
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// определяем возвращался ли уже сегодня данный посетитель и с данного хоста
 			$now_date = GetTime(time());
 			$guest_day_back_counter = ($MAX_DATE_GUEST_HIT!=$now_date) ? 1 : 0;
 			$host_day_back_counter = ($MAX_DATE_HOST_HIT!=$now_date) ? 1 : 0;
@@ -606,12 +606,12 @@ class CAllStatistics extends CKeepStatistics
 			$arFields["GUESTS_DAY_BACK"] = "GUESTS_DAY_BACK + ".$guest_day_back_counter;
 			$arFields["HOSTS_DAY_BACK"] = "HOSTS_DAY_BACK + ".$host_day_back_counter;
 
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+			// обновляем обсчет рекламной кампании по дням
 			$rows = $DB->Update("b_stat_adv_day", $arFields, "WHERE ADV_ID=".intval($_SESSION["SESS_LAST_ADV_ID"])." and  ".CStatistics::DBDateCompare("DATE_STAT"), $err_mess.__LINE__,false,false,false);
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ
+			// если обсчета по дням нет то
 			if (intval($rows)<=0)
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+				// добавляем его
 				$arFields = Array(
 					"ADV_ID" => intval($_SESSION["SESS_LAST_ADV_ID"]),
 					"DATE_STAT" => $DB->GetNowDate(),
@@ -623,9 +623,9 @@ class CAllStatistics extends CKeepStatistics
 					);
 				$DB->Insert("b_stat_adv_day", $arFields, $err_mess.__LINE__);
 			}
-			elseif ($rows>1) // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ
+			elseif ($rows>1) // если обновили более одного дня то
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+				// удалим лишние
 				$i=0;
 				$strSql = "SELECT ID FROM b_stat_adv_day WHERE ADV_ID=".intval($_SESSION["SESS_LAST_ADV_ID"])." and  ".CStatistics::DBDateCompare("DATE_STAT")." ORDER BY ID";
 				$rs = $DB->Query($strSql, false, $err_mess.__LINE__);
@@ -640,11 +640,11 @@ class CAllStatistics extends CKeepStatistics
 				}
 			}
 
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
-			// пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+			// если данный гость либо с данного хоста
+			// еще не возвращались по данной рекламной кампании то
 			if (intval($guest_back_counter)==1 || intval($host_back_counter)==1)
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
+				// добавляем их в базу
 				$arFields = Array(
 					"ADV_ID" => intval($_SESSION["SESS_LAST_ADV_ID"]),
 					"GUEST_ID" => intval($_SESSION["SESS_GUEST_ID"]),
@@ -657,44 +657,44 @@ class CAllStatistics extends CKeepStatistics
 					);
 				$DB->Insert("b_stat_adv_guest",$arFields, $err_mess.__LINE__);
 			}
-			else // пїЅпїЅпїЅпїЅпїЅ
+			else // иначе
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// обновляем дату последнего возврата посетителя
 				$arFields = Array("DATE_GUEST_HIT" => $DB->GetNowFunction());
 				$DB->Update("b_stat_adv_guest",$arFields,"WHERE ADV_ID=".intval($_SESSION["SESS_LAST_ADV_ID"])." and GUEST_ID=".intval($_SESSION["SESS_GUEST_ID"])." and BACK='Y'",$err_mess.__LINE__);
 
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+				// обновляем дату последнего возврата с хоста
 				$arFields = Array("DATE_HOST_HIT" => $DB->GetNowFunction());
 				$DB->Update("b_stat_adv_guest",$arFields,"WHERE ADV_ID=".intval($_SESSION["SESS_LAST_ADV_ID"])." and IP_NUMBER='".$DB->ForSql($REMOTE_ADDR_NUMBER)."' and BACK='Y'",$err_mess.__LINE__);
 			}
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ cookie
+			// записываем возврат по рекламной кампании в cookie
 			$GLOBALS["APPLICATION"]->set_cookie("LAST_ADV", $_SESSION["SESS_LAST_ADV_ID"]);
 		}
 	}
 
 	///////////////////////////////////////////////////////////////////
-	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// Устанавливаем рекламную кампанию
 	///////////////////////////////////////////////////////////////////
 	public static function Set_Adv()
 	{
 		$err_mess = "File: ".__FILE__."<br>Line: ";
-		stat_session_register("SESS_ADV_ID"); // ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		stat_session_register("SESS_ADV_ID"); // ID рекламной кампании
 		$DB = CDatabase::GetModuleConnection('statistic');
 
-		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		// если это начало сессии
 		if (intval($_SESSION["SESS_SESSION_ID"])<=0 && intval($_SESSION["SESS_ADV_ID"])<=0)
 		{
-			$arrADV = array(); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			$arrADV = array(); // массив рекламных кампаний
 
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// проверяем страницу на которую пришел посетитель
 			$page_to = __GetFullRequestUri();
 			CAdv::SetByPage($page_to, $arrADV, $ref1, $ref2, "TO");
 
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+			// если посетитель пришел с ссылающегося сайта то
 			if (__GetReferringSite($PROT, $SN, $SN_WithoutPort, $PAGE_FROM))
 			{
 				$site_name = $PROT.$SN;
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// проверяем поисковики
 				$strSql = "
 					SELECT
 						A.REFERER1,
@@ -718,12 +718,12 @@ class CAllStatistics extends CKeepStatistics
 					$arrADV[] = intval($wr["ADV_ID"]);
 				}
 
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// проверяем ссылающиеся страницы
 				$site_name = $PROT.$SN.$PAGE_FROM;
 				CAdv::SetByPage($site_name, $arrADV, $ref1, $ref2, "FROM");
 			}
 
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ referer1, пїЅпїЅпїЅпїЅ referer2 пїЅпїЅ
+			// если гость пришел с referer1, либо referer2 то
 			if ($_SESSION["referer1"] <> '' || $_SESSION["referer2"] <> '')
 			{
 				CAdv::SetByReferer(trim($_SESSION["referer1"]), trim($_SESSION["referer2"]), $arrADV, $ref1, $ref2);
@@ -751,10 +751,10 @@ class CAllStatistics extends CKeepStatistics
 			}
 			$arrADV = array_unique($arrADV);
 
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+			// если было выявлено более одной рекламной кампании подходящей под условия то
 			if (count($arrADV)>1)
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID)
+				// выберем рекламную кампанию по наивысшему приоритету (либо по наивысшему ID)
 				$str = implode(",",$arrADV);
 				$strSql = "SELECT ID, REFERER1, REFERER2 FROM b_stat_adv WHERE ID in ($str) ORDER BY PRIORITY desc, ID desc";
 				$z = $DB->Query($strSql, false, $err_mess.__LINE__);
@@ -765,10 +765,7 @@ class CAllStatistics extends CKeepStatistics
 			}
 			else
 			{
-			    //РџРµСЂРµС…РѕРґ РЅР° php8.2
-				//list(,$value) = each($arrADV);
-				reset($arrADV); // РЎР±СЂРѕСЃ СѓРєР°Р·Р°С‚РµР»СЏ РјР°СЃСЃРёРІР°
-                $value = current($arrADV); // РџРѕР»СѓС‡РµРЅРёРµ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РјР°СЃСЃРёРІР°
+				list(,$value) = each($arrADV);
 				$_SESSION["SESS_ADV_ID"] = intval($value);
 				$_SESSION["referer1"] = $ref1;
 				$_SESSION["referer2"] = $ref2;
@@ -779,17 +776,17 @@ class CAllStatistics extends CKeepStatistics
 	}
 
 	///////////////////////////////////////////////////////////////////
-	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅ
+	// Устанавливаем ID гостя
 	///////////////////////////////////////////////////////////////////
 	public static function Set_Guest()
 	{
 		$err_mess = "File: ".__FILE__."<br>Line: ";
-		stat_session_register("SESS_GUEST_ID");			// ID пїЅпїЅпїЅпїЅпїЅ
-		stat_session_register("SESS_GUEST_NEW");		// пїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
-		stat_session_register("SESS_LAST_USER_ID");		// пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
-		stat_session_register("SESS_LAST_ADV_ID");		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
-		stat_session_register("SESS_GUEST_FAVORITES");	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
-		stat_session_register("SESS_LAST");				// Y - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ; N - пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		stat_session_register("SESS_GUEST_ID");			// ID гостя
+		stat_session_register("SESS_GUEST_NEW");		// флаг "новый гость"
+		stat_session_register("SESS_LAST_USER_ID");		// под кем гость был авторизован в последний раз
+		stat_session_register("SESS_LAST_ADV_ID");		// по какой рекламной кампании был в последний раз
+		stat_session_register("SESS_GUEST_FAVORITES");	// флаг добавлял ли гость сайт в фавориты
+		stat_session_register("SESS_LAST");				// Y - гость сегодня уже заходил; N - еще не заходил
 
 		global $USER, $APPLICATION;
 		$DB = CDatabase::GetModuleConnection('statistic');
@@ -809,27 +806,27 @@ class CAllStatistics extends CKeepStatistics
 		$COOKIE_GUEST_ID = intval($APPLICATION->get_cookie("GUEST_ID"));
 		if($COOKIE_GUEST_ID==0) $COOKIE_GUEST_ID = intval($_SESSION["SESS_GUEST_ID"]);
 
-		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// если сессия только открылась
 		if (intval($_SESSION["SESS_SESSION_ID"])<=0)
 		{
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// выбираем из базы параметры гостя
 			$q = CGuest::GetLastByID($COOKIE_GUEST_ID);
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+			// если ничего не выбрали то
 			if (!($qr=$q->Fetch()))
 			{
-				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+				// считаем гостя новым
 				$_SESSION["SESS_GUEST_ID"] = 0;
 				$_SESSION["SESS_GUEST_NEW"] = "Y";
 				$_SESSION["SESS_GUEST_FAVORITES"] = "N";
-				// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ cookie пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GUEST_ID пїЅпїЅ
+				// если у него в cookie хранится GUEST_ID то
 				if ($COOKIE_GUEST_ID>0)
 				{
 					$_SESSION["SESS_GUEST_NEW"] = "N";
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-					// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+					// получаем дату последнего посещения сайта данным гостем
+					// если формат корректный то
 					if ($LAST_VISIT = MkDateTime($GLOBALS["APPLICATION"]->get_cookie("LAST_VISIT"),"d.m.Y H:i:s"))
 					{
-						// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+						// получаем дату последней инсталляции таблиц модуля
 						$DATE_INSTALL = COption::GetOptionString("main", "INSTALL_STATISTIC_TABLES", "NOT_FOUND");
 						if ($DATE_INSTALL=="NOT_FOUND")
 						{
@@ -838,23 +835,23 @@ class CAllStatistics extends CKeepStatistics
 						}
 						if ($DATE_INSTALL = MkDateTime($DATE_INSTALL,"d.m.Y H:i:s"))
 						{
-							// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+							// если таблицы были инсталлированы после последнего посещения сайта то
 							if ($DATE_INSTALL>$LAST_VISIT)
 							{
-								// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ.пїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+								// посетитель считается новым т.к. он нигде не был учтен
 								$_SESSION["SESS_GUEST_NEW"] = "Y";
 							}
 						}
 					}
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+					// устанавливаем флаг того что мы восстанавливаем гостя
 					$REPAIR_COOKIE_GUEST = "Y";
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					// получаем идентификатор его последней рекламной кампании
 					$COOKIE_ADV = $GLOBALS["APPLICATION"]->get_cookie("LAST_ADV");
 				}
 			}
-			else // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+			else // иначе если выбрали параметры гостя то
 			{
-				// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+				// то запоминаем их в сессии
 				$_SESSION["SESS_GUEST_FAVORITES"] = $qr["FAVORITES"];
 				$_SESSION["SESS_GUEST_FAVORITES"] = ($_SESSION["SESS_GUEST_FAVORITES"]=="Y") ? "Y" : "N";
 				if (!isset($_SESSION["SESS_GUEST_NEW"])) $_SESSION["SESS_GUEST_NEW"] = "N";
@@ -875,10 +872,10 @@ class CAllStatistics extends CKeepStatistics
 			}
 
 		}
-		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+		// если есть необходимость то
 		if ($_SESSION["SESS_GUEST_ID"]<=0)
 		{
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
+			// вставляем гостя в базу
 			$arFields = Array(
 				"FIRST_DATE"		=> $DB->GetNowFunction(),
 				"FIRST_URL_FROM"	=> "'".$DB->ForSql($_SERVER["HTTP_REFERER"],2000)."'",
@@ -890,25 +887,25 @@ class CAllStatistics extends CKeepStatistics
 				"FIRST_REFERER2"	=> "'".$DB->ForSql($_SESSION["referer2"],255)."'",
 				"FIRST_REFERER3"	=> "'".$DB->ForSql($_SESSION["referer3"],255)."'"
 				);
-			// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ cookie пїЅпїЅ
+			// если мы восстанавливаем гостя по данным записаным в его cookie то
 			if ($REPAIR_COOKIE_GUEST=="Y")
 			{
-				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+				// если гость не считается новым то добавим ему одну сессию
 				if ($_SESSION["SESS_GUEST_NEW"]=="N") $arFields["SESSIONS"] = 1;
-				// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ cookie пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+				// если у него в cookie была рекламная кампания то
 				$COOKIE_ADV = intval($COOKIE_ADV);
 				if ($COOKIE_ADV>0)
 				{
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
+					// проверяем есть ли такая кампания в базе
 					$strSql = "SELECT REFERER1, REFERER2 FROM b_stat_adv WHERE ID='".$COOKIE_ADV."'";
 					$w = $DB->Query($strSql, false, $err_mess.__LINE__);
-					// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+					// если в базе есть такая рекламная кампания то
 					if ($wr = $w->Fetch())
 					{
-						// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+						// считаем что гость вернулся по данной рекламной кампании
 						$_SESSION["SESS_LAST_ADV_ID"] = $COOKIE_ADV;
-						// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ cookie
-						// пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+						// если последний вход записанный в cookie
+						// не был прямым входом по рекламной кампании то
 						$arFields["FIRST_ADV_ID"] = $COOKIE_ADV;
 						$arFields["FIRST_REFERER1"]	= "'".$DB->ForSql($wr["REFERER1"],255)."'";
 						$arFields["FIRST_REFERER2"]	= "'".$DB->ForSql($wr["REFERER2"],255)."'";
@@ -928,10 +925,10 @@ class CAllStatistics extends CKeepStatistics
 			}
 		}
 
-		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+		// если гость авторизовался то
 		if (is_object($USER) && intval($USER->GetID())>0)
 		{
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ
+			// запоминаем кто он
 			$_SESSION["SESS_LAST_USER_ID"] = intval($USER->GetID());
 		}
 		if (intval($_SESSION["SESS_LAST_USER_ID"])<=0) $_SESSION["SESS_LAST_USER_ID"] = "";
@@ -939,10 +936,10 @@ class CAllStatistics extends CKeepStatistics
 
 		if ($_SESSION["SESS_GUEST_ID"]>0)
 		{
-			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+			// сохраним ID посетителя в куках
 			$GLOBALS["APPLICATION"]->set_cookie("GUEST_ID", $_SESSION["SESS_GUEST_ID"]);
 		}
-		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ cookie пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		// сохраним в cookie дату последнего посещения данным гостем сайта
 		$GLOBALS["APPLICATION"]->set_cookie("LAST_VISIT", date("d.m.Y H:i:s",time()));
 
 		return array(
@@ -952,8 +949,8 @@ class CAllStatistics extends CKeepStatistics
 	}
 
 	///////////////////////////////////////////////////////////////////
-	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
-	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ true пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//	функция блокировки посетителя по превышению лимита активности,
+	//	возвращает true если посетителя пора блокировать
 	///////////////////////////////////////////////////////////////////
 	public static function BlockVisitorActivity()
 	{
@@ -965,37 +962,37 @@ class CAllStatistics extends CKeepStatistics
 		if(COption::GetOptionString("statistic", "DEFENCE_ON")=="Y")
 		{
 			$_SESSION["SESS_SEARCHER_CHECK_ACTIVITY"] = ($_SESSION["SESS_SEARCHER_CHECK_ACTIVITY"]=="N") ? "N" : "Y";
-			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+			// если это не поисковик или поисковик, но с установленным флагом "проверять лимит активности"
 			if (
 				intval($_SESSION["SESS_SEARCHER_ID"]) <= 0
 				|| $_SESSION["SESS_SEARCHER_CHECK_ACTIVITY"] == "Y"
 			)
 			{
-				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+				// если установлен максимальный интервал времени для стэка защиты то
 				$DEFENCE_DELAY = intval(COption::GetOptionString("statistic", "DEFENCE_DELAY"));
 				$STACK_TIME = COption::GetOptionString("statistic", "DEFENCE_STACK_TIME");
 				$MAX_STACK_HITS = COption::GetOptionString("statistic", "DEFENCE_MAX_STACK_HITS");
 				if (intval($STACK_TIME)>0)
 				{
-					// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+					// если лимит активности уже превышался то
 					if ($_SESSION["SESS_GRABBER_STOP_TIME"] <> '')
 					{
-						// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+						// если время задержки еще не истекло то
 						if ((time()-$_SESSION["SESS_GRABBER_STOP_TIME"])<=$DEFENCE_DELAY)
 						{
-							// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+							// держим дальше
 							$_SESSION["SESS_GRABBER_DEFENCE_STACK"] = array();
 							return true;
 						}
-						else // пїЅпїЅпїЅпїЅпїЅ
+						else // иначе
 						{
-							// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+							// обнуляем время блокирования
 							$_SESSION["SESS_GRABBER_STOP_TIME"] = "";
 						}
 					}
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+					// запомним время текущего хита в стэке
 					$_SESSION["SESS_GRABBER_DEFENCE_STACK"][] = time();
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					// почистим стэк до заданного максимального интервала времени
 					$first_element = reset($_SESSION["SESS_GRABBER_DEFENCE_STACK"]);
 					$stmp = time();
 					$current_stack_length = $stmp-$first_element;
@@ -1005,10 +1002,10 @@ class CAllStatistics extends CKeepStatistics
 						$current_stack_length = $stmp-$first_element;
 					}
 					$STACK_HITS = count($_SESSION["SESS_GRABBER_DEFENCE_STACK"]);
-					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+					// проверим стэк на превышение максимального кол-ва хитов
 					if (intval($STACK_HITS)>$MAX_STACK_HITS)
 					{
-						// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+						// инициализируем превышение активности
 						$stmp = time();
 						$_SESSION["SESS_GRABBER_STOP_TIME"] = $stmp;
 
@@ -1019,7 +1016,7 @@ class CAllStatistics extends CKeepStatistics
 								"#ACTIVITY_EXCEEDING#" => (intval($STACK_HITS) - intval($MAX_STACK_HITS)),
 							)));
 
-						// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+						// если в этой сессии письмо еще не отсылали то
 						if ($_SESSION["ACTIVITY_EXCEEDING_NOTIFIED"]!="Y")
 						{
 							if (defined("SITE_ID") && SITE_ID <> '')
@@ -1114,7 +1111,7 @@ class CAllStatistics extends CKeepStatistics
 	}
 
 	///////////////////////////////////////////////////////////////////
-	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// очистка статистики до определенной даты
 	///////////////////////////////////////////////////////////////////
 	public static function CleanUp($cleanup_date="", &$arErrors)
 	{
@@ -1175,7 +1172,7 @@ class CAllStatistics extends CKeepStatistics
 	}
 
 	///////////////////////////////////////////////////////////////////
-	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пересчет финансовых показателей при смене базовой валюты
 	///////////////////////////////////////////////////////////////////
 	public static function RecountBaseCurrency($new_base_currency)
 	{
@@ -1221,7 +1218,7 @@ class CAllStatistics extends CKeepStatistics
 		}
 	}
 
-	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// функции для совместимости
 	public static function GetEventParam($site_id = false)
 	{
 		return CStatEvent::GetGID($site_id);
