@@ -760,9 +760,10 @@ class Query
 		// check in filter
 		foreach ($this->filter_chains as $chain)
 		{
-			if (static::isFieldPrivate($chain->getLastElement()->getValue()))
+        $lastElement = $chain->getLastElement();
+        if ($lastElement !== null && static::isFieldPrivate($lastElement->getValue()))
 			{
-				$columnField = $chain->getLastElement()->getValue();
+            $columnField = $lastElement->getValue();
 
 				throw new SystemException(sprintf(
 					'Private field %s.%s is restricted in filter',
@@ -777,9 +778,10 @@ class Query
 		{
 			foreach ($this->global_chains as $chain)
 			{
-				if (static::isFieldPrivate($chain->getLastElement()->getValue()))
+            $lastElement = $chain->getLastElement();
+            if ($lastElement !== null && static::isFieldPrivate($lastElement->getValue()))
 				{
-					$columnField = $chain->getLastElement()->getValue();
+                $columnField = $lastElement->getValue();
 
 					trigger_error(sprintf(
 						'Private field %s.%s is restricted in query, use Query::enablePrivateFields() to allow it',
@@ -1213,23 +1215,23 @@ class Query
 			/** @var null|Entity $expand_entity */
 			$expand_entity = null;
 
-			if ($last_elem->getValue() instanceof Reference)
+			if ($last_elem && $last_elem->getValue() instanceof Reference)
 			{
 				$expand_entity = $last_elem->getValue()->getRefEntity();
 			}
-			elseif (is_array($last_elem->getValue()))
+elseif ($last_elem && is_array($last_elem->getValue()))
 			{
 				list($expand_entity, ) = $last_elem->getValue();
 			}
-			elseif ($last_elem->getValue() instanceof Entity)
+elseif ($last_elem && $last_elem->getValue() instanceof Entity)
 			{
 				$expand_entity = $last_elem->getValue();
 			}
-			elseif ($last_elem->getValue() instanceof OneToMany)
+elseif ($last_elem && $last_elem->getValue() instanceof OneToMany)
 			{
 				$expand_entity = $last_elem->getValue()->getRefEntity();
 			}
-			elseif ($last_elem->getValue() instanceof ManyToMany)
+elseif ($last_elem && $last_elem->getValue() instanceof ManyToMany)
 			{
 				$expand_entity = $last_elem->getValue()->getRefEntity();
 			}
@@ -1308,9 +1310,8 @@ class Query
 				// e.g. in expressions or in data_doubling=off filter
 
 				// collect buildFrom fields (recursively)
-				if ($chain->getLastElement()->getValue() instanceof ExpressionField)
-				{
-					$this->collectExprChains($chain, array('hidden', 'select_expr'));
+                if ($chain->getLastElement() && $chain->getLastElement()->getValue() instanceof ExpressionField) {
+                    $this->collectExprChains($chain, ['hidden', 'select_expr']);
 				}
 			}
 		}
@@ -1911,8 +1912,7 @@ class Query
 
 		foreach ($chains as $chain)
 		{
-			if ($chain->getLastElement()->getParameter('talias'))
-			{
+            if ($chain->getLastElement() && $chain->getLastElement()->getParameter('talias')) {
 				// already been here
 				continue;
 			}
@@ -3239,9 +3239,7 @@ class Query
 		foreach ($chains as $chain)
 		{
 			$last = $chain->getLastElement();
-			$is_aggr = $last->getValue() instanceof ExpressionField && $last->getValue()->isAggregated();
-
-			if ($is_aggr)
+        if ($last !== null && $last->getValue() instanceof ExpressionField && $last->getValue()->isAggregated())
 			{
 				return true;
 			}
@@ -3257,7 +3255,12 @@ class Query
 
 		foreach ($chains as $chain)
 		{
-			$field = $chain->getLastElement()->getValue();
+        $lastElement = $chain->getLastElement();
+        if ($lastElement === null) {
+            continue; // Пропускаем итерацию, если последний элемент отсутствует
+        }
+
+        $field = $lastElement->getValue();
 
 			if ($field instanceof ExpressionField)
 			{
@@ -3641,9 +3644,17 @@ class Query
 
 		foreach ($this->select_chains as $chain)
 		{
-			if ($chain->getLastElement()->getValue()->getFetchDataModifiers())
+        $lastElement = $chain->getLastElement();
+
+        // Проверка на null перед вызовом метода getValue()
+        if ($lastElement !== null && $lastElement->getValue() !== null)
 			{
-				$this->selectFetchModifiers[$chain->getAlias()] = $chain->getLastElement()->getValue()->getFetchDataModifiers();
+            $modifiers = $lastElement->getValue()->getFetchDataModifiers();
+
+            if ($modifiers)
+            {
+                $this->selectFetchModifiers[$chain->getAlias()] = $modifiers;
+            }
 			}
 		}
 

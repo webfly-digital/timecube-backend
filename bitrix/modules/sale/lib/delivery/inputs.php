@@ -108,7 +108,9 @@ Input\Manager::register('DELIVERY_PERIOD', array(
 	'NAME' => Loc::getMessage('INPUT_DELIVERY_PERIOD')
 ));
 
-class ReadOnly extends Input\Base
+//Переход на php8.2
+//class ReadOnly extends Input\Base
+class ReadOnlyField extends Input\Base
 {
 	public static function getViewHtmlSingle(array $input, $value)
 	{
@@ -158,7 +160,9 @@ class ReadOnly extends Input\Base
 }
 
 Input\Manager::register('DELIVERY_READ_ONLY', array(
-	'CLASS' => __NAMESPACE__.'\\ReadOnly',
+    //Переход на php8.2
+//	'CLASS' => __NAMESPACE__.'\\ReadOnly',
+    'CLASS' => __NAMESPACE__.'\\ReadOnlyField',
 	'NAME' => Loc::getMessage('INPUT_DELIVERY_READ_ONLY')
 ));
 
@@ -592,4 +596,3 @@ Input\Manager::register('DELIVERY_BUTTON_SELECTOR', array(
 	'CLASS' => __NAMESPACE__.'\\ButtonSelector',
 	'NAME' => Loc::getMessage('INPUT_DELIVERY_BUTTON_SELECTOR')
 ));
-
