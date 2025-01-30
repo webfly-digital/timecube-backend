@@ -275,7 +275,7 @@ class Application
 			$_SERVER["REQUEST_URI"] = str_replace("?iswebp=", "", $_SERVER["REQUEST_URI"]);
 			$_SERVER["REQUEST_URI"] = str_replace("?iswebp", "", $_SERVER["REQUEST_URI"]);
 		}
-		$APPLICATION->reinitPath();
+		//$APPLICATION->reinitPath();
 		$server = \Bitrix\Main\Context::getCurrent()->getServer();
 		$arServer = $server->toArray();
 		$arServer['REQUEST_URI'] = $_SERVER["REQUEST_URI"];

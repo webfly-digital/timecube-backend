@@ -323,7 +323,7 @@ class SettingsTable extends DataManager
 		return $result;
 	}
 
-	public static function cleanCache()
+	public static function cleanCache() : void
 	{
 		$strCacheDir = $_SERVER['DOCUMENT_ROOT'] . "/bitrix/cache/ammina.optimizer/settings/sites/";
 		$arFiles = scandir($strCacheDir);
