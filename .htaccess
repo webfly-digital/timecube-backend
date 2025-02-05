@@ -1,0 +1,265 @@
+Options -Indexes 
+ErrorDocument 404 /404.php
+
+<IfModule mod_php5.c>
+  php_flag session.use_trans_sid off
+  #php_value mbstring.func_overload 2
+  #php_flag default_charset UTF-8
+  #php_value display_errors 1
+  #php_value opcache.revalidate_freq 0
+</IfModule>
+
+
+<IfModule mod_php7.c>
+  php_flag session.use_trans_sid off
+  # php_value default_charset UTF-8  
+  #php_value default_charset windows-1251
+  php_value mbstring.func_overload 2
+  #php_value mbstring.internal_encoding cp1251
+  php_value display_errors 1
+  php_value opcache.revalidate_freq 0  
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+
+#  RewriteCond %{HTTP_HOST} ^www.timecube.ru$ [NC]
+#  RewriteRule ^(.*)$ https://timecube.ru/$1 [R=301,L]
+
+  # trailing slashes
+##  RewriteCond %{REQUEST_FILENAME} !-f
+##  RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+
+##  RewriteCond %{REQUEST_URI} !^/bitrix/admin/1c_exchange.php
+##  RewriteCond %{SERVER_PORT} !^443$
+##  RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+#	RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+#	RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+  RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+  RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+
+
+
+</IfModule>
+
+
+
+<IfModule mod_dir.c>
+  DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  	# Web Open Font Format (WOFF) 2.0
+  ExpiresByType application/font-woff2 "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 3 day"
+  ExpiresByType image/gif "access plus 3 day"
+  ExpiresByType image/png "access plus 3 day"
+  ExpiresByType text/css "access plus 3 day"
+  ExpiresByType application/javascript "access plus 3 day"  
+</IfModule>
+
+Redirect 301 /faq/detail.php?ID=10272 https://timecube.ru/blog/poleznye-stati/chto-takoe-zavodchik-dlya-chasov-shkatulka-dlya-avtopodzavoda-chasov-avtopodzavodchik-dlya-chasov/
+Redirect 301 /faq/detail.php?ID=10273 https://timecube.ru/blog/poleznye-stati/kak-rabotaet-shkatulka-dlya-chasov-s-avtopodzavodom/
+Redirect 301 /faq/detail.php?ID=10274 https://timecube.ru/blog/poleznye-stati/zachem-nuzhno-ispolzovat-zavodchik-dlya-chasov/
+Redirect 301 /faq/detail.php?ID=10290 https://timecube.ru/blog/dostavka-i-upakovka/kak-proiskhodit-proverka-tovara-i-upakovka/
+Redirect 301 /faq/detail.php?ID=10275 https://timecube.ru/blog/poleznye-stati/vot-osnovnye-funktsii-zavodchika-/
+Redirect 301 /faq/detail.php?ID=10305 https://timecube.ru/blog/skidki-i-aktsii/10-skidka-na-parallelnuyu-pokupku/
+Redirect 301 /faq/detail.php?ID=10304 https://timecube.ru/blog/skidki-i-aktsii/7-skidki-za-otzyv-na-markete/
+Redirect 301 /faq/detail.php?ID=10303 https://timecube.ru/blog/dostavka-i-upakovka/besplatnaya-dostavka-po-moskve-i-spb/
+Redirect 301 /faq/detail.php?ID=103025 https://timecube.ru/blog/skidki-i-aktsii/karty-loyalnosti/
+Redirect 301 /faq/detail.php?ID=10301 https://timecube.ru/blog/dostavka-i-upakovka/besplatnaya-dostavka-po-rossii/
+Redirect 301 /faq/detail.php?ID=10298 https://timecube.ru/blog/dostavka-i-upakovka/podarochnaya-upakovka/
+Redirect 301 /faq/detail.php?ID=10297 https://timecube.ru/blog/skidki-i-aktsii/skidka-na-den-rozhdeniya/
+Redirect 301 /faq/detail.php?ID=10296 https://timecube.ru/blog/skidki-i-aktsii/nashli-tovar-deshevle/
+Redirect 301 /faq/detail.php?ID=10295 https://timecube.ru/blog/dostavka-i-upakovka/u-nas-vse-v-nalichii-est-ofis-prodazh-i-konsultatsiya/
+Redirect 301 /faq/detail.php?ID=10294 https://timecube.ru/blog/poleznye-stati/kakie-byvayut-tipy-zastezhek-dlya-remeshkov-informatsiya-po-razmeram-zastezhki/
+Redirect 301 /faq/detail.php?ID=10293 https://timecube.ru/blog/skidki-i-aktsii/pravila-polucheniya-skidki-10-i-15-dlya-derzhateley-skidochnykh-kart/
+Redirect 301 /faq/detail.php?ID=10289 https://timecube.ru/blog/poleznye-stati/postanovlenie-ot-21-iyulya-1997-g-n-918/
+Redirect 301 /faq/detail.php?ID=10276 https://timecube.ru/blog/poleznye-stati/kak-podzavodchik-dlya-chasov-mozhet-prodlit-zhizn-moim-chasam/
+Redirect 301 /faq/detail.php?ID=10277 https://timecube.ru/blog/poleznye-stati/mozhet-li-avtopodzavodchik-dlya-chasov-perezavesti-moi-chasy/
+
+Redirect 301 /2_chasov/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_2_kh_chasov/
+Redirect 301 /2_chasov/shkatulka_dlya_2_kh_chasov_s_avtopodzavodom_033_dbw_5/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_2_kh_chasov/shkatulka_dlya_2_kh_chasov_s_avtopodzavodom_033_dbw_5/
+Redirect 301 /4_5_chasov/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_4_kh_5_i_chasov/
+Redirect 301 /4_5_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_1022_e/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_4_kh_5_i_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_1022_e/
+Redirect 301 /6_7_chasov/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_6_7_chasov/
+Redirect 301 /6_7_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_141/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_6_7_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_141/
+Redirect 301 /8_10_chasov/ https://timecube.ru/shkatulki_dlya_8_10_chasov/
+Redirect 301 /8_10_chasov/korobochka_dlya_8_mi_chasov_841_8b/ https://timecube.ru/shkatulki_dlya_8_10_chasov/korobochka_dlya_8_mi_chasov_841_8b/
+Redirect 301 /agreement/ https://timecube.ru/
+Redirect 301 /articles/1/ https://timecube.ru/articles/
+Redirect 301 /articles/2806/ https://timecube.ru/articles/
+Redirect 301 /articles/2827/ https://timecube.ru/articles/
+Redirect 301 /articles/3/ https://timecube.ru/articles/
+Redirect 301 /articles/3003/ https://timecube.ru/articles/
+Redirect 301 /articles/3517/ https://timecube.ru/articles/
+Redirect 301 /articles/689/ https://timecube.ru/articles/
+Redirect 301 /articles/690/ https://timecube.ru/articles/
+Redirect 301 /articles/877/ https://timecube.ru/articles/
+Redirect 301 /braslety_dlya_chasov/22-mm/ https://timecube.ru/braslety_dlya_chasov/
+Redirect 301 /braslety_dlya_chasov/zhenskie/ https://timecube.ru/braslety_dlya_chasov/
+Redirect 301 /catalog-root/futlyar_dlya_khraneniya_chasov_kozhanyy/ https://timecube.ru/futlyary_dlya_chasy/
+Redirect 301 /catalog/shkatulki_dlya_chasov/ https://timecube.ru/shkatulki_dlya_chasov/
+Redirect 301 /catalog/shkatulki_dlya_chasov_s_avtopodzavodom/ https://timecube.ru/shkatulki-dlya-chasov-s-avtopodzavodom/
+### Redirect 301 /chasy_s_kukushkoy/chasy_s_kukushkoy_6050/ https://timecube.ru/
+###Redirect 301 /chasy_s_kukushkoy/chasy_s_kukushkoy_6050_deer/ https://timecube.ru/
+###Redirect 301 /chasy_s_kukushkoy/ https://timecube.ru/
+Redirect 301 /diskont_1/ https://timecube.ru/diskont/
+Redirect 301 /diskont_1/kaminnye_chasy_t325_6_diskont_tg017/ https://timecube.ru/diskont/
+Redirect 301 /hit/ https://timecube.ru/
+Redirect 301 /napolnye_chasy/ https://timecube.ru/
+Redirect 301 /napolnye_chasy/napolnye_chasy_08g01_tempus_fugit/ https://timecube.ru/
+Redirect 301 /napolnye_chasy/napolnye_chasy_g5039_tempus_fugit/ https://timecube.ru/
+Redirect 301 /nastennye_chasy/ https://timecube.ru/
+Redirect 301 /nastennye_chasy/nastennye_chasy_g910j/ https://timecube.ru/
+Redirect 301 /nastennye_chasy/nastennye_chasy_gc_wl005_s/ https://timecube.ru/
+Redirect 301 /news/6/1084/ https://timecube.ru/news/
+Redirect 301 /news/6/1158/ https://timecube.ru/news/
+Redirect 301 /news/6/1236/ https://timecube.ru/news/
+Redirect 301 /news/6/1647/ https://timecube.ru/news/
+Redirect 301 /news/6/2329/ https://timecube.ru/news/
+Redirect 301 /news/6/2802/ https://timecube.ru/news/
+Redirect 301 /news/6/2887/ https://timecube.ru/news/
+Redirect 301 /news/6/3078/ https://timecube.ru/news/
+Redirect 301 /news/6/3346/ https://timecube.ru/news/
+Redirect 301 /news/6/4270/ https://timecube.ru/news/
+Redirect 301 /news/6/8063/ https://timecube.ru/news/
+Redirect 301 /news/6/844/ https://timecube.ru/news/
+Redirect 301 /news/6/1428/ https://timecube.ru/news/
+Redirect 301 /news/6/2559/ https://timecube.ru/news/
+Redirect 301 /news/6/7642/ https://timecube.ru/news/
+Redirect 301 /news/6/ https://timecube.ru/news/
+Redirect 301 /payments/ https://timecube.ru/
+Redirect 301 /remeshki_dlya_chasov_1/22-mm/ https://timecube.ru/remeshki_dlya_chasov_1/
+Redirect 301 /remeshki_dlya_chasov_1/zastezhka-babochka/ https://timecube.ru/remeshki_dlya_chasov_1/
+Redirect 301 /shkatulki_dlya_chasov_s_avtopodzavodom/ https://timecube.ru/shkatulki-dlya-chasov-s-avtopodzavodom/
+Redirect 301 /shkatulki_dlya_kolets_i_zaponok_1/ https://timecube.ru/shkatulki_dlya_zaponok_i_kolets/
+Redirect 301 /shkatulki_dlya_ochkov/futlyary/ https://timecube.ru/shkatulki_dlya_ochkov/
+Redirect 301 /shkatulki_dlya_ochkov/futlyary/kozhanye/ https://timecube.ru/shkatulki_dlya_ochkov/
+Redirect 301 /11_14_chasov/boks_dlya_khraneniya_chasov_12w_sqw/ https://timecube.ru/shkatulki_dlya_11_14_chasov/boks_dlya_khraneniya_chasov_12w_sqw/
+Redirect 301 /2_chasov/shkatulka_dlya_2_kh_chasov_s_avtopodzavodom_modalo_design_carbon/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_2_kh_chasov/shkatulka_dlya_2_kh_chasov_s_avtopodzavodom_modalo_design_carbon/
+Redirect 301 /6_7_chasov_2/shkatulka_dlya_chasov_s_avtopodzavodom_luxwinder_2/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_6_7_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_luxwinder_2/
+Redirect 301 /8_10_chasov/shkatulka_dlya_khraneniya_8_mi_chasov_wb_p_3038_db/ https://timecube.ru/shkatulki_dlya_8_10_chasov/shkatulka_dlya_khraneniya_8_mi_chasov_wb_p_3038_db/
+Redirect 301 /8_i_bolee/shkatulka_dlya_8_mi_chasov_s_avtopodzavodom_95548_e/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_8_i_bolee_chasov/shkatulka_dlya_8_mi_chasov_s_avtopodzavodom_95548_e/
+Redirect 301 /8_i_bolee_1/shkatulka_dlya_8_mi_chasov_s_avtopodzavodom_ww_8224_r/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_8_i_bolee_chasov/shkatulka_dlya_8_mi_chasov_s_avtopodzavodom_ww_8224_r/
+Redirect 301 /actions/aktsiya-3/ https://timecube.ru/actions/
+Redirect 301 /articles/2/ https://timecube.ru/articles/
+Redirect 301 /diskont_1/futlyar_dlya_chasov_diskont_368_1/ https://timecube.ru/diskont/
+Redirect 301 /diskont_1/shkatulka_dlya_chasov_diskont_327/ https://timecube.ru/diskont/
+Redirect 301 /diskont_1/shkatulka_dlya_chasov_diskont_482/ https://timecube.ru/diskont/
+Redirect 301 /diskont_1/shkatulka_dlya_podzavoda_chasov_diskont_357/ https://timecube.ru/diskont/
+Redirect 301 /diskont_2/shkatulka_dlya_chasov_diskont_382/ https://timecube.ru/diskont/
+Redirect 301 /diskont_2/shkatulka_dlya_chasov_s_avtopodzavodom_diskont_137/ https://timecube.ru/diskont/
+Redirect 301 /diskont_2/shkatulka_dlya_ukrasheniy_diskont_217/ https://timecube.ru/diskont/
+Redirect 301 /shkatulki_dlya_1_5_chasov/shkatulka_dlya_5_ti_chasov_wb_3061_eb/ https://timecube.ru/shkatulki_dlya_1_5_chasov/
+Redirect 301 /shkatulki_dlya_6_7_chasov/shkatulka_dlya_6_ti_chasov_6w_kc_2/ https://timecube.ru/shkatulki_dlya_6_7_chasov/
+Redirect 301 /shkatulki_dlya_avtopodzavoda_4_kh_5_i_chasov/shkatulka_dlya_podzavoda_chasov_modalo_30_40_61_2/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_4_kh_5_i_chasov/
+Redirect 301 /shkatulki_dlya_avtopodzavoda_8_i_bolee_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_modalo_30_12_12_3_2/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_8_i_bolee_chasov/
+Redirect 301 /shkatulki_dlya_avtopodzavoda_chasov_premium/shkatulka_dlya_3_kh_chasov_s_avtopodzavodom_jbw_611_krd/ https://timecube.ru/premium_shkatulki_dlya_avtopodzavoda_chasov/
+Redirect 301 /shkatulki_dlya_chasov_2/shkatulka_dlya_khraneniya_chasov_827_rl/ https://timecube.ru/shkatulki_dlya_chasov/
+Redirect 301 /shkatulki_dlya_chasov_4/shkatulka_dlya_khraneniya_chasov_827_rl/ https://timecube.ru/shkatulki_dlya_chasov/
+Redirect 301 /shkatulki_dlya_chasov_4/shkatulka_dlya_khraneniya_chasov_846/ https://timecube.ru/shkatulki_dlya_chasov/
+Redirect 301 /shkatulki_dlya_galstukov/boks_dlya_galstukov_1/ https://timecube.ru/shkatulki_dlya_galstukov/
+Redirect 301 /shkatulki_dlya_galstukov/shkatulka_dlya_12_galstukov/ https://timecube.ru/shkatulki_dlya_galstukov/
+Redirect 301 /shkatulki_dlya_ukrasheniy_derevyannye/6104_oa_m_shkatulka_dlya_yuvelirnykh_ukrasheniy/ https://timecube.ru/shkatulki_dlya_ukrasheniy_derevyannye/
+Redirect 301 /shkatulki_dlya_ukrasheniy_derevyannye/jb_187_wn_shkatulka_dlya_ukrasheniy/ https://timecube.ru/shkatulki_dlya_ukrasheniy_derevyannye/
+Redirect 301 /shkatulki_dlya_ukrasheniy_derevyannye_1/jb_017_shkatulka_dlya_ukrasheniy/ https://timecube.ru/shkatulki_dlya_ukrasheniy_derevyannye/
+Redirect 301 /1_5_chasov/shkatulka_dlya_chasov_sw_1679b/ https://timecube.ru/shkatulki_dlya_1_5_chasov/shkatulka_dlya_chasov_sw_1679b/
+Redirect 301 /1_5_chasov/shkatulka_dlya_khraneniya_5_ti_chasov_wb_3081_eb/ https://timecube.ru/shkatulki_dlya_1_5_chasov/shkatulka_dlya_khraneniya_5_ti_chasov_wb_3081_eb/
+Redirect 301 /1_5_chasov/shkatulka_dlya_khraneniya_5_ti_chasov_wb_3081_za/ https://timecube.ru/shkatulki_dlya_1_5_chasov/shkatulka_dlya_khraneniya_5_ti_chasov_wb_3081_za/
+Redirect 301 /1_5_chasov/yashchik_dlya_khraneniya_5_ti_chasov_wb_3081_ek/ https://timecube.ru/shkatulki_dlya_1_5_chasov/yashchik_dlya_khraneniya_5_ti_chasov_wb_3081_ek/
+Redirect 301 /1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_1031_r_m/ https://timecube.ru/1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_1031_r_m/
+Redirect 301 /1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_1031_y/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/boks_dlya_1_kh_chasov_s_avtopodzavodom_1031_y/
+Redirect 301 /1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_b/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_b/
+Redirect 301 /1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_bpu/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_bpu/
+Redirect 301 /1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_cf/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_cf/
+Redirect 301 /1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_e/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1301_e/
+Redirect 301 /1_chasy/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1302_bcl/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/boks_dlya_1_kh_chasov_s_avtopodzavodom_ja_1302_bcl/
+Redirect 301 /1_chasy/boks_dlya_chasov_s_podzavodom_ka_083/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/boks_dlya_chasov_s_podzavodom_ka_083/
+Redirect 301 /1_chasy/shkatulka_dlya_1_kh_chasov_s_avtopodzavodom_ww_1219_bl/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/shkatulka_dlya_1_kh_chasov_s_avtopodzavodom_ww_1219_bl/
+Redirect 301 /1_chasy/shkatulka_dlya_1_kh_chasov_s_avtopodzavodom_ww_8096_bl/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/shkatulka_dlya_1_kh_chasov_s_avtopodzavodom_ww_8096_bl/
+Redirect 301 /1_chasy/shkatulka_dlya_chasov_s_avtopodzavodom_ww_2113bl/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_ww_2113bl/
+Redirect 301 /1_chasy/shkatulka_dlya_podzavoda_chasov_ww_2100wb/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/shkatulka_dlya_podzavoda_chasov_ww_2100wb/
+Redirect 301 /1_chasy/vinder_dlya_1_kh_chasov_pp_s1/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_1_kh_chasov/vinder_dlya_1_kh_chasov_pp_s1/
+Redirect 301 /15_24_chasov/boks_dlya_khraneniya_16_ti_chasov_wb_3059_wak/ https://timecube.ru/shkatulki_dlya_15_25_chasov/boks_dlya_khraneniya_16_ti_chasov_wb_3059_wak/
+Redirect 301 /15_24_chasov/shkatulka_dlya_20_chasov_sw_1672e/ https://timecube.ru/shkatulki_dlya_15_25_chasov/shkatulka_dlya_20_chasov_sw_1672e/
+Redirect 301 /15_24_chasov/shkatulka_dlya_chasov_modalo_6/ https://timecube.ru/shkatulki_dlya_15_25_chasov/shkatulka_dlya_chasov_modalo_6/
+Redirect 301 /15_24_chasov/shkatulka_dlya_khraneniya_18_ti_chasov_sw_2010_bl/ https://timecube.ru/shkatulki_dlya_15_25_chasov/shkatulka_dlya_khraneniya_18_ti_chasov_sw_2010_bl/
+Redirect 301 /15_24_chasov/shkatulka_dlya_khraneniya_18_ti_chasov_sw_2010_sp/ https://timecube.ru/shkatulki_dlya_15_25_chasov/shkatulka_dlya_khraneniya_18_ti_chasov_sw_2010_sp/
+Redirect 301 /15_24_chasov/shkatulka_dlya_khraneniya_24_kh_chasov_sw_1087_24_c/ https://timecube.ru/shkatulki_dlya_15_25_chasov/shkatulka_dlya_khraneniya_24_kh_chasov_sw_1087_24_c/
+Redirect 301 /2_chasov/vinder_dlya_dvukh_chasov_jbw_091_rd/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_2_kh_chasov/vinder_dlya_dvukh_chasov_jbw_091_rd/
+Redirect 301 /2_chasov/zavodnaya_shkatulka_dlya_2_kh_chasov_90721_dbc/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_2_kh_chasov/zavodnaya_shkatulka_dlya_2_kh_chasov_90721_dbc/
+Redirect 301 /2_chasov/zavodnaya_shkatulka_dlya_2_kh_chasov_ww_8116_e/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_2_kh_chasov/zavodnaya_shkatulka_dlya_2_kh_chasov_ww_8116_e/
+Redirect 301 /6_7_chasov/shkatulka_dlya_6_ti_chasov_s_avtopodzavodom_tg_6160_6tb_d/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_6_7_chasov/shkatulka_dlya_6_ti_chasov_s_avtopodzavodom_tg_6160_6tb_d/
+Redirect 301 /6_7_chasov_1/boks_dlya_khraneniya_6_ti_chasov_6w_kd/ https://timecube.ru/shkatulki_dlya_6_7_chasov/boks_dlya_khraneniya_6_ti_chasov_6w_kd/
+Redirect 301 /6_7_chasov_1/shkatulka_dlya_khraneniya_6_i_chasov_6w_sqw/ https://timecube.ru/shkatulki_dlya_6_7_chasov/shkatulka_dlya_khraneniya_6_i_chasov_6w_sqw/
+Redirect 301 /6_7_chasov_1/shkatulka_dlya_khraneniya_6_ti_chasov_sw_1087_6_e/ https://timecube.ru/shkatulki_dlya_6_7_chasov/shkatulka_dlya_khraneniya_6_ti_chasov_sw_1087_6_e/
+Redirect 301 /6_7_chasov_1/shkatulka_dlya_khraneniya_6_ti_chasov_sw_1087_6_o/ https://timecube.ru/shkatulki_dlya_6_7_chasov/shkatulka_dlya_khraneniya_6_ti_chasov_sw_1087_6_o/
+Redirect 301 /6_7_chasov_1/shkatulka_dlya_khraneniya_6_ti_chasov_wb_3035_wak/ https://timecube.ru/shkatulki_dlya_6_7_chasov/shkatulka_dlya_khraneniya_6_ti_chasov_wb_3035_wak/
+Redirect 301 /8_10_chasov/shkatulka_dlya_chasov_804_10db/ https://timecube.ru/shkatulki_dlya_8_10_chasov/shkatulka_dlya_chasov_804_10db/
+Redirect 301 /8_10_chasov/shkatulka_dlya_chasov_modalo_imperia/ https://timecube.ru/shkatulki_dlya_8_10_chasov/shkatulka_dlya_chasov_modalo_imperia/
+Redirect 301 /8_10_chasov/shkatulka_dlya_khraneniya_10_ti_chasov_sw_1087_10_c/ https://timecube.ru/shkatulki_dlya_8_10_chasov/shkatulka_dlya_khraneniya_10_ti_chasov_sw_1087_10_c/
+Redirect 301 /8_10_chasov/shkatulka_dlya_khraneniya_10_ti_chasov_sw_2039/ https://timecube.ru/shkatulki_dlya_8_10_chasov/shkatulka_dlya_khraneniya_10_ti_chasov_sw_2039/
+Redirect 301 /8_i_bolee/boks_taymmuver_dlya_8_mi_chasov_s_avtopodzavodom_93228_sp_vn/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_8_i_bolee_chasov/boks_taymmuver_dlya_8_mi_chasov_s_avtopodzavodom_93228_sp_vn/
+Redirect 301 /8_i_bolee/shkatulka_dlya_8_mi_chasov_s_avtopodzavodom_ww_8224_b/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_8_i_bolee_chasov/shkatulka_dlya_8_mi_chasov_s_avtopodzavodom_ww_8224_b/
+Redirect 301 /8_i_bolee/shkatulka_dlya_chasov_s_avtopodzavodom_luxwinder/ https://timecube.ru/shkatulki_dlya_avtopodzavoda_8_i_bolee_chasov/shkatulka_dlya_chasov_s_avtopodzavodom_luxwinder/
+Redirect 301 /actions/aktsiya-7/ https://timecube.ru/actions/
+Redirect 301 /actions/den-rozhdeniya/ https://timecube.ru/actions/
+Redirect 301 /articles/1243/ https://timecube.ru/articles/
+Redirect 301 /articles/2107/ https://timecube.ru/articles/
+Redirect 301 /articles/2400/ https://timecube.ru/articles/
+Redirect 301 /articles/2873/ https://timecube.ru/articles/
+Redirect 301 /news/2886/ https://timecube.ru/news/
+Redirect 301 /news/4248/ https://timecube.ru/news/
+Redirect 301 /news/6/1141/ https://timecube.ru/news/
+Redirect 301 /news/6/1249/ https://timecube.ru/news/
+Redirect 301 /news/6/1291/ https://timecube.ru/news/
+Redirect 301 /news/6/1427/ https://timecube.ru/news/
+Redirect 301 /news/6/1788/ https://timecube.ru/news/
+Redirect 301 /news/6/1789/ https://timecube.ru/news/
+Redirect 301 /news/6/1797/ https://timecube.ru/news/
+Redirect 301 /news/6/1802/ https://timecube.ru/news/
+Redirect 301 https://timecube.ru/news/1947/ https://timecube.ru/news/
+Redirect 301 /news/6/2073/ https://timecube.ru/news/
+Redirect 301 /news/6/2108/ https://timecube.ru/news/
+Redirect 301 /news/6/2230/ https://timecube.ru/news/
+Redirect 301 /news/6/2487/ https://timecube.ru/news/
+Redirect 301 /news/6/2755/ https://timecube.ru/news/
+Redirect 301 /news/6/2836/ https://timecube.ru/news/
+Redirect 301 /news/6/2965/ https://timecube.ru/news/
+Redirect 301 /news/6/3150/ https://timecube.ru/news/
+Redirect 301 /news/6/3213/ https://timecube.ru/news/
+Redirect 301 /news/6/3347/ https://timecube.ru/news/
+Redirect 301 /news/6/3348/ https://timecube.ru/news/
+Redirect 301 /news/6/3512/ https://timecube.ru/news/
+Redirect 301 /news/6/3518/ https://timecube.ru/news/
+Redirect 301 /news/6/4249/ https://timecube.ru/news/
+Redirect 301 /news/6/666/ https://timecube.ru/news/
+Redirect 301 /news/6/7/ https://timecube.ru/news/
+Redirect 301 /news/6/820/ https://timecube.ru/news/
+Redirect 301 /news/6/833/ https://timecube.ru/news/
+Redirect 301 /news/6/9/ https://timecube.ru/news/
+Redirect 301 /news/6/912/ https://timecube.ru/news/
+Redirect 301 /news/6/914/ https://timecube.ru/news/
+Redirect 301 /news/6/980/ https://timecube.ru/news/
+Redirect 301 /news/915/ https://timecube.ru/news/
+Redirect 301 /prazdnichnaya_upakovka/bordo/ https://timecube.ru/pack/
+Redirect 301 /news/10245/ https://timecube.ru/news/vinder-saturn-ot-modalo/
+Redirect 301 /news/10246/ https://timecube.ru/news/shkatulki-dlya-kolets-i-zaponok-teper-v-prodazhe/
+Redirect 301 /news/10247/ https://timecube.ru/news/boksy-dlya-ochkov-korobki-dlya-ochkov-novyy-katalog-na-nashem-sayte/
+Redirect 301 /news/10248/ https://timecube.ru/news/novyy-razdel-korobki-dlya-galstukov/
+Redirect 301 /news/10249/ https://timecube.ru/news/rasshirenie-kollektsii-boksov-dlya-ochkov-na-nashem-sayte/
+Redirect 301 /news/10250/ https://timecube.ru/news/teper-i-khyumidory-dlya-sigar/
+Redirect 301 /news/10251/ https://timecube.ru/news/benson-limited-edition-dlya-tekh-kto-privyk-k-eksklyuzivnosti-vo-vsem/
+Redirect 301 /news/10252/ https://timecube.ru/news/novye-byudzhetnye-shkatulki-dlya-khraneniya/
+Redirect 301 /news/10253/ https://timecube.ru/news/roskoshnaya-kollektsiya-shkatulok-modalo/
+Redirect 301 /news/10254/ https://timecube.ru/news/novyy-razdel-na-sayte/
+
