@@ -66,10 +66,24 @@ class FormatCode
 	/**
 	 * @return string
 	 */
-	private static function getRegion(): string
-	{
-		$region = Application::getInstance()->getLicense()->getRegion();
+//	private static function getRegion(): string
+//	{
+//		$region = Application::getInstance()->getLicense()->getRegion();
+//
+//		return $region ?? LANGUAGE_ID;
+//	}
+    private static function getRegion(): string
+    {
+        $application = Application::getInstance();
 
-		return $region ?? LANGUAGE_ID;
-	}
+        if (method_exists($application, 'getLicense')) {
+            $license = $application->getLicense();
+
+            if (method_exists($license, 'getRegion')) {
+                return $license->getRegion();
+            }
+        }
+
+        return defined('LANGUAGE_ID') ? LANGUAGE_ID : 'RU';
+    }
 }

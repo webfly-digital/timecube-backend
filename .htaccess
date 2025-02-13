@@ -1,4 +1,4 @@
-Options -Indexes 
+Options -Indexes
 ErrorDocument 404 /404.php
 
 <IfModule mod_php5.c>
@@ -12,12 +12,12 @@ ErrorDocument 404 /404.php
 
 <IfModule mod_php7.c>
   php_flag session.use_trans_sid off
-  # php_value default_charset UTF-8  
+  # php_value default_charset UTF-8
   #php_value default_charset windows-1251
   php_value mbstring.func_overload 2
   #php_value mbstring.internal_encoding cp1251
   php_value display_errors 1
-  php_value opcache.revalidate_freq 0  
+  php_value opcache.revalidate_freq 0
 </IfModule>
 
 <IfModule mod_rewrite.c>
@@ -63,7 +63,7 @@ ErrorDocument 404 /404.php
   ExpiresByType image/gif "access plus 3 day"
   ExpiresByType image/png "access plus 3 day"
   ExpiresByType text/css "access plus 3 day"
-  ExpiresByType application/javascript "access plus 3 day"  
+  ExpiresByType application/javascript "access plus 3 day"
 </IfModule>
 
 Redirect 301 /faq/detail.php?ID=10272 https://timecube.ru/blog/poleznye-stati/chto-takoe-zavodchik-dlya-chasov-shkatulka-dlya-avtopodzavoda-chasov-avtopodzavodchik-dlya-chasov/
@@ -263,3 +263,9 @@ Redirect 301 /news/10252/ https://timecube.ru/news/novye-byudzhetnye-shkatulki-d
 Redirect 301 /news/10253/ https://timecube.ru/news/roskoshnaya-kollektsiya-shkatulok-modalo/
 Redirect 301 /news/10254/ https://timecube.ru/news/novyy-razdel-na-sayte/
 
+<IfModule mod_php7.c>
+  php_value max_execution_time 1200
+  php_value memory_limit 2048M
+  php_value post_max_size 2048M
+  php_value upload_max_filesize 2048M
+</IfModule>
