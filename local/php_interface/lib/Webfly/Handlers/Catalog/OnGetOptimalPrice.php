@@ -16,7 +16,7 @@ class OnGetOptimalPrice
      * @return array[]|bool
      * @throws \Bitrix\Main\ArgumentException
      */
-    public function SetCatalogGroupId($productID, $quantity = 1, $arUserGroups = array(), $renewal = "N", $arPrices = array(), $siteID = false, $arDiscountCoupons = false)
+    public static function SetCatalogGroupId($productID, $quantity = 1, $arUserGroups = array(), $renewal = "N", $arPrices = array(), $siteID = false, $arDiscountCoupons = false)
     {
         if (SITE_ID != 's1') return true;//только timecube
 

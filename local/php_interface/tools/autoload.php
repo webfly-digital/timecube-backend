@@ -1,4 +1,4 @@
-<?
+<?php
 function loadPackage($dir)
 {
     $composer = json_decode(file_get_contents("$dir/autoload.json"), 1);
