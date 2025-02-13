@@ -29,5 +29,5 @@ bitrix/components/*
 /logs/
 
 # todo: временно исключаю из gitignore файлы ядра битрикс для их последующий правки под версионнмым контролям в рамках апдейта версии php
-!bitrix/modules/
+#!bitrix/modules/
 !bitrix/gadgets/
