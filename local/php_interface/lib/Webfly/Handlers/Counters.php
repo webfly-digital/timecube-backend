@@ -6,7 +6,7 @@ class Counters
 {
     const TIME_OUT = 3500;
 
-    public function insert()
+    public static function insert()
     {
         global $USER;
         echo "<script>" . PHP_EOL;
