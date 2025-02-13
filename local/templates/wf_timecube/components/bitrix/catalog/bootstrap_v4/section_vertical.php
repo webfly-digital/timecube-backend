@@ -289,7 +289,16 @@ $APPLICATION->AddViewContent("catalog_filter_button", $catalog_filter_button);
                             }
                         }
                     }
-                    $tagsParams = array_merge($f_params["ALL"], $f_params[$base_section_code]);
+
+                    $tagsParams = [];
+
+                    if (!empty($f_params["ALL"]) && is_array($f_params["ALL"])) {
+                        $tagsParams = $f_params["ALL"];
+                    }
+
+                    if (!empty($f_params[$base_section_code]) && is_array($f_params[$base_section_code])) {
+                        $tagsParams = array_merge($tagsParams, $f_params[$base_section_code]);
+                    }
 
 
                     $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
