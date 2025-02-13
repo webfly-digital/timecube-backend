@@ -1,14 +1,14 @@
-<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 global $APPLICATION;
 global $USER;
 
 ?>
 
-<? if (CSite::InDir('/tablica_podzavoda_chasov/')) { ?>
+<?php if (CSite::InDir('/tablica_podzavoda_chasov/')) { ?>
     </div>
     </section>
     </div>
-<? } ?>
+<?php } ?>
 
 </div>
 <footer class="footer">
@@ -18,7 +18,7 @@ global $USER;
                 <div class="footer-item">
                     <p class="footer-item__caption">2010 - <?= date('Y') ?> © Timecube.ru</p>
                 </div>
-                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                     "PATH" => SITE_DIR . "include/footer_info.php",
                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                 ], false, ['HIDE_ICONS' => 'N']
@@ -35,7 +35,7 @@ global $USER;
                 <div class="footer-item spoiler">
                     <p class="footer-item__caption toggler">Каталог товаров</p>
                     <div class="footer-item__content content">
-                        <? $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "footer_menu",
+                        <?php $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "footer_menu",
                             [
                                 "IBLOCK_TYPE" => WF_CATALOG_IBLOCK_TYPE,
                                 "IBLOCK_ID" => WF_CATALOG_IBLOCK_ID,
@@ -63,7 +63,7 @@ global $USER;
                 <div class="footer-item spoiler">
                     <p class="footer-item__caption toggler">Покупателю</p>
                     <div class="footer-item__content content">
-                        <? $APPLICATION->IncludeComponent(
+                        <?php $APPLICATION->IncludeComponent(
                             "bitrix:menu",
                             "footer",
                             array(
@@ -89,7 +89,7 @@ global $USER;
                     <div class="footer-item__content">
                         <div class="row">
                             <div class="col-12 col-md-4 col-xl-12">
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/telephone.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -97,7 +97,7 @@ global $USER;
                             </div>
                             <div class="col-12 col-md-4 col-xl-12">
                                 <b>Адрес</b>
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/address.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -105,12 +105,12 @@ global $USER;
                             </div>
                             <div class="col-12 col-md-4 col-xl-12">
                                 <b>Режим работы магазина</b>
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/schedule.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
                                 ); ?>
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/email.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -119,7 +119,7 @@ global $USER;
                             </div>
 
                             <div class="col-12 col-md-12">
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/socnet_sidebar.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -131,7 +131,7 @@ global $USER;
             </div>
         </div>
         <div class="mt-4">
-            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+            <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                 "PATH" => SITE_DIR . "include/footer_note.php",
                 "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
             ], false, ['HIDE_ICONS' => 'N']
@@ -142,7 +142,7 @@ global $USER;
 </section>
 </div> <!-- //bx-wrapper -->
 
-<?
+<?php
 $asset = \Bitrix\Main\Page\Asset::getInstance();
 $asset->addJs("/assets/js/vendors.js");
 $asset->addJs("/assets/js/app.js");
@@ -157,10 +157,10 @@ if (CSite::InDir('/product/')) $asset->addString('<script type="text/javascript"
 <!--            height="0" width="0" style="display:none;visibility:hidden"></iframe>-->
 <!--</noscript>-->
 
-<?
+<?php
 $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
 $uri = $request->getRequestedPageDirectory();
-$requestList = implode(array_flip($request->getQueryList()->toArray()), ':');
+$requestList = implode(':', array_flip($request->getQueryList()->toArray()));
 if (strpos($requestList, 'PAGEN_') !== false) {
     $pagen = true;
 }
@@ -222,6 +222,7 @@ if (array_intersect($noIndexParams, $request->getQueryList()->toArray())) {
 
 
 ?>
-<? Webfly\Handlers\Counters::insert(); ?>
+<?php Webfly\Handlers\Counters::insert(); ?>
+<script src="//cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script>
 </body>
 </html>
