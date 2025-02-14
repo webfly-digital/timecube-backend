@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Bitrix\Sale\Cashbox;
 use Bitrix\Main\Type\DateTime,
     Bitrix\Sale\Cashbox\Internals,
