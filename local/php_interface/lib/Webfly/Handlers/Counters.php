@@ -43,7 +43,7 @@ class Counters
         self::gtm();
         self::googleAnalytics();
         self::yaMetrika();
-        if(!$USER->isAdmin()) self::jivo();
+        if (!$USER->isAdmin()) self::jivo();
         echo "},
                         100
                     );
@@ -61,7 +61,7 @@ class Counters
     }
 
 
-    protected function gtm()
+    protected static function gtm()
     {
 
         echo <<<GTM
@@ -89,7 +89,7 @@ GTM;
 
     }
 
-    protected function googleAnalytics()
+    protected static function googleAnalytics()
     {
 
         echo <<<GA
@@ -108,18 +108,21 @@ GA;
     }
 
 
-    protected function yaMetrika()
+    protected static function yaMetrika()
     {
-
         echo <<<YA_METRIKA
              (function (m, e, t, r, i, k, a) {
             m[i] = m[i] || function () {
                 (m[i].a = m[i].a || []).push(arguments)
             };
             m[i].l = 1 * new Date();
+        
+        for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) { return; }
+        }
+
             k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(2121766, "init", {
             clickmap: true,
@@ -129,10 +132,10 @@ GA;
             ecommerce: "dataLayer"
         });
 YA_METRIKA;
-
     }
 
-    protected function jivo()
+
+    protected static function jivo()
     {
         echo <<<JIVO
             (function () {
