@@ -223,5 +223,6 @@ if (array_intersect($noIndexParams, $request->getQueryList()->toArray())) {
 
 ?>
 <?php Webfly\Handlers\Counters::insert(); ?>
+<script src="//cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script>
 </body>
 </html>
