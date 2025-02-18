@@ -1,7 +1,11 @@
-<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?if (count($arResult["BASKET_ITEMS"]["DELAY"])>0){?>
+<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();/**
+ * @var array $arResult
+ * @var array $arParams
+ */
+?>
+<?php if (!empty($arResult["BASKET_ITEMS"]["DELAY"]) && is_array($arResult["BASKET_ITEMS"]["DELAY"])) { ?>
     <div class="basket-body-table">
-        <?foreach($arResult["BASKET_ITEMS"]["DELAY"] as $arBasketItem):
+        <?php foreach($arResult["BASKET_ITEMS"]["DELAY"] as $arBasketItem):
 
                 $img = $arBasketItem["PICTURE"];
                 $img = (strlen($img)>0)
@@ -19,9 +23,9 @@
                                         </td>
                                         <td class="basket-name xs-hide">
                                                 <a href="<?=$arBasketItem["URL"]?>" class="bxr-font-hover-light"><?=$arBasketItem["NAME"]?></a>
-                                                <?  foreach ($arBasketItem["PROPS"] as $prop) {?>
+                                            <?php foreach ($arBasketItem["PROPS"] as $prop) {?>
                                                     <div class="bxr-bsmall-prop"><?=$prop["NAME"]?>: <?=$prop["VALUE"]?></div>
-                                                <?}?>
+                                            <?php }?>
                                                 <b class="basket-price"><?=$arBasketItem["FORMAT_PRICE"]?></b>
                                         </td>
                                         <td class="basket-action last">
@@ -36,7 +40,7 @@
                                 </tr>
                         </table>
                 </div>
-        <?endforeach;?>
+        <?php endforeach;?>
     </div>
 
     <div class="basket-body-title">
@@ -48,9 +52,9 @@
         </div>
     </div>
 
-<?}else{?>
+<?php }else{?>
     <p class="bxr-helper bg-info">
         <?=GetMessage('BASKET_DELAY_EMPTY')?>
     </p>
-<?}?>
+<?php }?>
 <div class="icon-close"></div>

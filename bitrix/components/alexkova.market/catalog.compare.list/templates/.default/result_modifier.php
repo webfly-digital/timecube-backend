@@ -1,38 +1,41 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-$arIDS = array();
+<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+
+/**
+ * @var array $arResult
+ */
+
+$arIDS = [];
 $iblockID = 0;
-if (count($arResult)>0){
+if (count($arResult) > 0) {
 
-	$arResult = array(
-		"ITEMS"=>$arResult
-	);
+    $arResult = [
+        "ITEMS" => $arResult
+    ];
 
 
-	foreach($arResult["ITEMS"] as $arElement){
-		$arIDS[] = $arElement["ID"];
-		$iblockID = $arElement["IBLOCK_ID"];
-	}
+    foreach ($arResult["ITEMS"] as $arElement) {
+        $arIDS[] = $arElement["ID"];
+        $iblockID = $arElement["IBLOCK_ID"];
+    }
 
-	$arFilter = array(
-		"ACTIVE"=>"Y",
-		"ID"=>$arIDS,
-		"IBLOCK_ID"=>$iblockID
-	);
+    $arFilter = [
+        "ACTIVE" => "Y",
+        "ID" => $arIDS,
+        "IBLOCK_ID" => $iblockID
+    ];
 
-	$arSelect = array("ID", "DETAIL_PICTURE");
+    $arSelect = ["ID", "DETAIL_PICTURE"];
 
-	$res = CIblockElement::GetList(array(),$arFilter, false,false, $arSelect);
-	while ($arFields = $res->Fetch()){
-		if ($arFields["DETAIL_PICTURE"]>0) $arFields["DETAIL_PICTURE"] = CFile::GetFileArray($arFields["DETAIL_PICTURE"]);
-		$arResult["DATA"][$arFields["ID"]] = $arFields;
+    $res = CIblockElement::GetList([], $arFilter, false, false, $arSelect);
+    while ($arFields = $res->Fetch()) {
+        if ($arFields["DETAIL_PICTURE"] > 0) $arFields["DETAIL_PICTURE"] = CFile::GetFileArray($arFields["DETAIL_PICTURE"]);
+        $arResult["DATA"][$arFields["ID"]] = $arFields;
 
-	}
+    }
 }
 
-if (count($arResult["ITEMS"])>0){
-	foreach ($arResult["ITEMS"] as $val){
-		$arResult["JSON"][$val["ID"]] = 1;
-	}
-
+if (!empty($arResult["ITEMS"]) && is_array($arResult["ITEMS"])) {
+    foreach ($arResult["ITEMS"] as $val) {
+        $arResult["JSON"][$val["ID"]] = 1;
+    }
 }
-?>
