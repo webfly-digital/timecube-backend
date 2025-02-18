@@ -18,6 +18,7 @@ bitrix/components/*
 
 # Исключаем конкретные файлы и папки внутри components
 !bitrix/components/alexkova.market/
+!bitrix/components/bxready/
 
 # Исключаем остальные нужные папки
 !bitrix/local/
