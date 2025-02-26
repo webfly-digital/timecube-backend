@@ -170,6 +170,17 @@ $sort = $request->getQuery("sort");
 $view = $request->getQuery("view");
 $available = $request->getQuery("available");
 $wrongStr = explode('/', $uri);
+
+/**
+ * На всякий случай дамп $wrongStr для страницы https://timecube.ru/product/shkatulka_dlya_khraneniya_chasov_50/
+ *
+ * array (size=4)
+ * 0 => string '' (length=0)
+ * 1 => string 'product' (length=7)
+ * 2 => string 'shkatulka_dlya_khraneniya_chasov_50' (length=35)
+ * 3 => string '' (length=0)
+ */
+
 if (strpos($uri, '/filter/') !== false && strpos($uri, 'apply') !== false) {
     $filter = true;
     $filterPos = strpos($uri, 'filter/');
@@ -204,7 +215,7 @@ if ((!empty($requestList) && $APPLICATION->GetPageProperty("catalog") == 'Y') ||
     } else {
         $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . rtrim($uri, '/') . '/">', true);
     }
-} elseif ((count($wrongStr) > 3 && $wrongStr[1] == 'product') || $pagen || strstr(CHTTP::GetLastStatus(), '404') || $wrongStr[1] == 'compare' || $wrongStr[1] == 'favorites') {
+} elseif ((count(array_filter($wrongStr)) > 2 && $wrongStr[1] == 'product') || $pagen || strstr(CHTTP::GetLastStatus(), '404') || $wrongStr[1] == 'compare' || $wrongStr[1] == 'favorites') {
     $APPLICATION->SetPageProperty("robots", "noindex, nofollow");
 } else {
     $APPLICATION->SetPageProperty("robots", "index, follow");
