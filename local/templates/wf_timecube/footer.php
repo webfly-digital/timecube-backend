@@ -202,13 +202,13 @@ if ((!empty($requestList) && $APPLICATION->GetPageProperty("catalog") == 'Y') ||
     if ($filter && $uriNoFilter) {
         if (!$existSeo) $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . $uriNoFilter . '">', true);
     } else {
-        $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . $uri . '/">', true);
+        $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . rtrim($uri, '/') . '/">', true);
     }
 } elseif ((count($wrongStr) > 3 && $wrongStr[1] == 'product') || $pagen || strstr(CHTTP::GetLastStatus(), '404') || $wrongStr[1] == 'compare' || $wrongStr[1] == 'favorites') {
     $APPLICATION->SetPageProperty("robots", "noindex, nofollow");
 } else {
     $APPLICATION->SetPageProperty("robots", "index, follow");
-    if (!$existSeo) $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . $uri . '/">', true);
+    if (!$existSeo) $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . rtrim($uri, '/') . '/">', true);
 }
 
 
