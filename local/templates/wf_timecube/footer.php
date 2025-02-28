@@ -235,5 +235,40 @@ if (array_intersect($noIndexParams, $request->getQueryList()->toArray())) {
 ?>
 <?php Webfly\Handlers\Counters::insert(); ?>
 <script src="//cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script>
+
+    <div class="recall-button" data-opener="recall_form">
+        <i></i>
+    </div>
+<div class="overlay">
+    <div class="recall-popup" data-popup="recall_form">
+        <i class="close"></i>
+    <? $APPLICATION->IncludeComponent(
+        "bitrix:form.result.new",
+        "call",
+        array(
+            "SEF_MODE" => "N",
+            "WEB_FORM_ID" => "1",
+            "LIST_URL" => "",
+            "EDIT_URL" => "",
+            "SUCCESS_URL" => "",
+            "CHAIN_ITEM_TEXT" => "",
+            "CHAIN_ITEM_LINK" => "",
+            "IGNORE_CUSTOM_TEMPLATE" => "Y",
+            "USE_EXTENDED_ERRORS" => "N",
+            "CACHE_TYPE" => "A",
+            "CACHE_TIME" => "3600",
+            "SEF_FOLDER" => "/",
+            "AJAX_MODE" => "Y",
+            "COMPONENT_TEMPLATE" => "call",
+            "VARIABLE_ALIASES" => array(
+                "WEB_FORM_ID" => "WEB_FORM_ID",
+                "RESULT_ID" => "RESULT_ID",
+            )
+        ),
+        false
+    ); ?>
+    </div>
+</div>
+
 </body>
 </html>
