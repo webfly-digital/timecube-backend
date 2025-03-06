@@ -143,6 +143,12 @@ class WFReviews extends CBitrixComponent implements Controllerable
      */
     public function executeComponent()
     {
+        global $USER;
+
+        if (!$USER->IsAdmin()) {
+            return; // Просто прекращаем выполнение
+        }
+
         $this->checkModules();
 
         // some actions
