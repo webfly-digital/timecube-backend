@@ -158,7 +158,7 @@ Array(
 				<div class="contact-group__content">
 					<div class="photo-group">
 						<p class="photo-group__title caption-gray">
-							 1. Дойти до конца здания, до одноэтажной проходной с надписью «Чистый город».
+							 1. Дойти до конца здания, до одноэтажной проходной с надписью «ГАРАЖ».
 						</p>
  <img src="null" class="lozad" data-src="/assets/img/contacts/1.jpg" alt="">
 					</div>
