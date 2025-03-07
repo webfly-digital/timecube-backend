@@ -148,8 +148,7 @@ $APPLICATION->SetTitle("Контакты");
                         <div class="contact-group__map">
                             <div class="map-box" id="map_box">
                                 <script type="text/javascript" charset="utf-8" async
-                                        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1901949f45a672e84a3f18ee31f810c6bc97f441326eed059f2da72cb7697e66&amp;
-                                        width=100%&amp;height=513&amp;lang=ru_RU&amp;scroll=true">
+                                        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1901949f45a672e84a3f18ee31f810c6bc97f441326eed059f2da72cb7697e66&amp;width=100%&amp;height=513&amp;lang=ru_RU&amp;scroll=true&id=map_box">
                                 </script>
                             </div>
                         </div>
