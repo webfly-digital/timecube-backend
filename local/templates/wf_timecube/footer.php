@@ -66,18 +66,18 @@ global $USER;
                         <?php $APPLICATION->IncludeComponent(
                             "bitrix:menu",
                             "footer",
-                            array(
+                            [
                                 "ROOT_MENU_TYPE" => "top",
                                 "MENU_CACHE_TYPE" => "A",
                                 "MENU_CACHE_TIME" => "3600",
                                 "MENU_CACHE_USE_GROUPS" => "N",
-                                "MENU_CACHE_GET_VARS" => array(),
+                                "MENU_CACHE_GET_VARS" => [],
                                 "MAX_LEVEL" => "1",
                                 "CHILD_MENU_TYPE" => "",
                                 "USE_EXT" => "Y",
                                 "DELAY" => "N",
                                 "ALLOW_MULTI_SELECT" => "N"
-                            ),
+                            ],
                             false
                         ); ?>
                     </div>
@@ -226,7 +226,7 @@ if ((!empty($requestList) && $APPLICATION->GetPageProperty("catalog") == 'Y') ||
 $noIndexParams = ['action', 'bxajaxi', 'backurl'];
 if (array_intersect($noIndexParams, $request->getQueryList()->toArray())) {
     $APPLICATION->SetPageProperty("robots", "noindex, nofollow");
-    $APPLICATION->SetPageProperty("googlebot","noindex, nofollow");
+    $APPLICATION->SetPageProperty("googlebot", "noindex, nofollow");
     if (!defined("ERROR_404")) define("ERROR_404", "Y");
     \CHTTP::setStatus("404 Not Found");
 }
@@ -236,37 +236,37 @@ if (array_intersect($noIndexParams, $request->getQueryList()->toArray())) {
 <?php Webfly\Handlers\Counters::insert(); ?>
 <script src="//cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script>
 
-    <div class="recall-button" data-opener="recall_form">
-        <i></i>
-    </div>
+<div class="recall-button" data-opener="recall_form">
+    <i></i>
+</div>
 <div class="overlay">
     <div class="recall-popup" data-popup="recall_form">
         <i class="close"></i>
-    <? $APPLICATION->IncludeComponent(
-        "bitrix:form.result.new",
-        "call",
-        array(
-            "SEF_MODE" => "N",
-            "WEB_FORM_ID" => "1",
-            "LIST_URL" => "",
-            "EDIT_URL" => "",
-            "SUCCESS_URL" => "",
-            "CHAIN_ITEM_TEXT" => "",
-            "CHAIN_ITEM_LINK" => "",
-            "IGNORE_CUSTOM_TEMPLATE" => "Y",
-            "USE_EXTENDED_ERRORS" => "N",
-            "CACHE_TYPE" => "A",
-            "CACHE_TIME" => "3600",
-            "SEF_FOLDER" => "/",
-            "AJAX_MODE" => "Y",
-            "COMPONENT_TEMPLATE" => "call",
-            "VARIABLE_ALIASES" => array(
-                "WEB_FORM_ID" => "WEB_FORM_ID",
-                "RESULT_ID" => "RESULT_ID",
-            )
-        ),
-        false
-    ); ?>
+        <?php $APPLICATION->IncludeComponent(
+            "bitrix:form.result.new",
+            "call",
+            [
+                "SEF_MODE" => "N",
+                "WEB_FORM_ID" => "1",
+                "LIST_URL" => "",
+                "EDIT_URL" => "",
+                "SUCCESS_URL" => "",
+                "CHAIN_ITEM_TEXT" => "",
+                "CHAIN_ITEM_LINK" => "",
+                "IGNORE_CUSTOM_TEMPLATE" => "Y",
+                "USE_EXTENDED_ERRORS" => "N",
+                "CACHE_TYPE" => "A",
+                "CACHE_TIME" => "3600",
+                "SEF_FOLDER" => "/",
+                "AJAX_MODE" => "Y",
+                "COMPONENT_TEMPLATE" => "call",
+                "VARIABLE_ALIASES" => [
+                    "WEB_FORM_ID" => "WEB_FORM_ID",
+                    "RESULT_ID" => "RESULT_ID",
+                ]
+            ],
+            false
+        ); ?>
     </div>
 </div>
 
