@@ -19,7 +19,7 @@ class SetDimensions
      * Проставление размеров и веса товара из свойств при добавлении нового элемента
      * @param \Bitrix\Main\Event $e
      */
-    function SetCatalogData(\Bitrix\Main\Event $event)
+    public static function SetCatalogData(\Bitrix\Main\Event $event)
     {
         $params = $event->getParameters();
         $arFields = $params['primary'] ? $params['primary'] : $params['fields'];

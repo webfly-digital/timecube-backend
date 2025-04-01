@@ -1,0 +1,142 @@
+#bxr-bestsellers-container .slick-slider .slick-prev
+,#bxr-bestsellers-container .slick-slider .slick-next
+{
+    content: ' ';
+    display: block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 50%;
+    margin-top: -34px;
+}
+
+#bxr-bestsellers div.lent .slick-prev
+,#bxr-bestsellers div.lent .slick-next{
+    width: 32px !important;
+    height: 32px !important;
+    top: 50%;
+    margin-top: -17px;
+}
+
+
+.slick-slider .slick-next{
+    right: 0;
+    left: auto;
+}
+
+.slick-dots {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.slick-dots li {
+    float: left;
+    margin-right: 6px;
+}
+
+.slick-dots li button {
+    cursor: pointer;
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border: none;
+    color: transparent;
+    border-radius: 50%;
+    font-size: 0;
+}
+
+#bxr-bestsellers{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#bxr-bestsellers div.lent{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+}
+
+.bxr-bestsellers-group{
+    display: block;
+    float: left;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.bxr-bestsellers-group > div{
+    padding: 5px 40px;
+    margin-right: 10px;
+}
+
+.bxr-bestsellers-group-active{
+
+}
+
+.bxr-bestsellers-mobile-group{
+    display: block;
+    width: 100%;
+    color: #FFF;
+    background: #F00;
+    text-decoration: none;
+}
+
+.bxr-bestsellers-mobile-group-container{
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.bxr-bestsellers-mobile-group-container li{
+    display: block;
+    width: 100%;
+}
+
+#bxr-bestsellers .hidden-arrow{
+    display: none !important;
+    top: 24px;
+}
+
+#bxr-bestsellers .slick-prev{
+    left: -10px;
+}
+
+#bxr-bestsellers .slick-next{
+    right: -10px;
+}
+
+#bxr-bestsellers:hover .hidden-arrow{
+    display: block !important;
+}
+
+#bxr-bestsellers-container{
+    min-height: 300px;
+}
+
+#bxr-bestsellers-container .bxr-mobile-names{
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+#bxr-bestsellers-container h2{
+    padding: 0;
+    margin: 20px 0 20px 0;
+    font-size: 24px;
+}
+
+#bxr-bestsellers-container .bxr-font-color .fa{
+    font-size: 30px;
+    margin-right: 10px;
+    top: -2px;
+    position: relative;
+}

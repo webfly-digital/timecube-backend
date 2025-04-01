@@ -1,0 +1,118 @@
+.bxr-li-top-menu-parent {
+    position: static !important;
+}
+
+.bxr-list-hover-menu {
+    width: 100%;
+    background-color: #fff;
+    z-index: 1014;
+    position: relative;
+    padding: 30px 10px 0 20px;
+    box-shadow: rgba(0, 0, 0, 0.172549) 0px 6px 12px 0px;
+}
+
+.bxr-list-hover-menu > ul > li {
+    
+}
+
+.bxr-list-hover-menu > ul  > li > a {
+    color: #6c6c6c !important;
+}
+
+.bxr-element-hover-menu {
+    display: none;
+    margin-bottom: 30px;
+}
+
+.bxr-element-hover-menu.show {
+    display: block;
+}
+
+.bxr-element-hover-menu > ul {
+    margin-top: 10px !important;
+}
+
+.bxr-element-hover-menu > ul > li {
+    margin-right: 25px;
+}
+
+/**************************/
+
+.bxr-element-hover-menu{
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.bxr-element-hover-menu .bxr-element-image{
+    width: 82px;
+    text-align: center;
+    line-height: 82px;
+    float: left;
+    margin-right: 20px;
+    display: table-cell;
+}
+
+.bxr-element-hover-menu .bxr-element-content{
+    display: table-cell;
+    width: auto;
+}
+
+.bxr-element-hover-menu .bxr-element-image img{
+    max-width: 100%;
+    border: 1px solid #f6f6f6;
+}
+
+.bxr-element-hover-menu .bxr-element-name{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.bxr-element-hover-menu .bxr-element-name a {
+    color: #414141;
+}
+
+.bxr-element-hover-menu .bxr-element-name a:hover
+,.bxr-element-hover-menu .bxr-element-name a:visited
+{
+    text-decoration: none;
+} 
+
+.bxr-element-hover-menu .bxr-element-items a{
+    font-size: 13px;
+    text-decoration: none;
+    padding-right: 15px;
+    white-space: nowrap;
+    color: #6c6c6c;
+}
+
+.bxr-element-hover-menu .bxr-element-description{
+    border-top: 1px solid #e3e3e3;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #808080;
+    padding-top: 10px;
+}
+
+.bxr-element-hover-menu .bxr-ico-menu {
+    float: left;
+    width: 16px;
+    margin-right: 15px;
+    margin-top: 2px;
+    opacity: 0.7;
+}
+
+.bxr-list-hover-menu .bxr-element-big-image img{
+    border: 1px solid #f6f6f6;
+    margin-bottom: 20px;
+}
+
+/**************************/
+
+.bxr-clear {
+    clear: both
+}
+
+.columns-left {
+}

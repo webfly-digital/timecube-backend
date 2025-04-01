@@ -1,14 +1,14 @@
-<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 global $APPLICATION;
 global $USER;
 
 ?>
 
-<? if (CSite::InDir('/tablica_podzavoda_chasov/')) { ?>
+<?php if (CSite::InDir('/tablica_podzavoda_chasov/')) { ?>
     </div>
     </section>
     </div>
-<? } ?>
+<?php } ?>
 
 </div>
 <footer class="footer">
@@ -18,7 +18,7 @@ global $USER;
                 <div class="footer-item">
                     <p class="footer-item__caption">2010 - <?= date('Y') ?> © Timecube.ru</p>
                 </div>
-                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                     "PATH" => SITE_DIR . "include/footer_info.php",
                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                 ], false, ['HIDE_ICONS' => 'N']
@@ -35,7 +35,7 @@ global $USER;
                 <div class="footer-item spoiler">
                     <p class="footer-item__caption toggler">Каталог товаров</p>
                     <div class="footer-item__content content">
-                        <? $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "footer_menu",
+                        <?php $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "footer_menu",
                             [
                                 "IBLOCK_TYPE" => WF_CATALOG_IBLOCK_TYPE,
                                 "IBLOCK_ID" => WF_CATALOG_IBLOCK_ID,
@@ -63,21 +63,21 @@ global $USER;
                 <div class="footer-item spoiler">
                     <p class="footer-item__caption toggler">Покупателю</p>
                     <div class="footer-item__content content">
-                        <? $APPLICATION->IncludeComponent(
+                        <?php $APPLICATION->IncludeComponent(
                             "bitrix:menu",
                             "footer",
-                            array(
+                            [
                                 "ROOT_MENU_TYPE" => "top",
                                 "MENU_CACHE_TYPE" => "A",
                                 "MENU_CACHE_TIME" => "3600",
                                 "MENU_CACHE_USE_GROUPS" => "N",
-                                "MENU_CACHE_GET_VARS" => array(),
+                                "MENU_CACHE_GET_VARS" => [],
                                 "MAX_LEVEL" => "1",
                                 "CHILD_MENU_TYPE" => "",
                                 "USE_EXT" => "Y",
                                 "DELAY" => "N",
                                 "ALLOW_MULTI_SELECT" => "N"
-                            ),
+                            ],
                             false
                         ); ?>
                     </div>
@@ -89,7 +89,7 @@ global $USER;
                     <div class="footer-item__content">
                         <div class="row">
                             <div class="col-12 col-md-4 col-xl-12">
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/telephone.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -97,7 +97,7 @@ global $USER;
                             </div>
                             <div class="col-12 col-md-4 col-xl-12">
                                 <b>Адрес</b>
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/address.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -105,12 +105,12 @@ global $USER;
                             </div>
                             <div class="col-12 col-md-4 col-xl-12">
                                 <b>Режим работы магазина</b>
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/schedule.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
                                 ); ?>
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/email.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -119,7 +119,7 @@ global $USER;
                             </div>
 
                             <div class="col-12 col-md-12">
-                                <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+                                <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                                     "PATH" => SITE_DIR . "include/socnet_sidebar.php",
                                     "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
                                 ], false, ['HIDE_ICONS' => 'N']
@@ -131,7 +131,7 @@ global $USER;
             </div>
         </div>
         <div class="mt-4">
-            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", [
+            <?php $APPLICATION->IncludeComponent("bitrix:main.include", "", [
                 "PATH" => SITE_DIR . "include/footer_note.php",
                 "AREA_FILE_SHOW" => "file", "EDIT_MODE" => "html",
             ], false, ['HIDE_ICONS' => 'N']
@@ -142,7 +142,7 @@ global $USER;
 </section>
 </div> <!-- //bx-wrapper -->
 
-<?
+<?php
 $asset = \Bitrix\Main\Page\Asset::getInstance();
 $asset->addJs("/assets/js/vendors.js");
 $asset->addJs("/assets/js/app.js");
@@ -157,10 +157,10 @@ if (CSite::InDir('/product/')) $asset->addString('<script type="text/javascript"
 <!--            height="0" width="0" style="display:none;visibility:hidden"></iframe>-->
 <!--</noscript>-->
 
-<?
+<?php
 $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
 $uri = $request->getRequestedPageDirectory();
-$requestList = implode(array_flip($request->getQueryList()->toArray()), ':');
+$requestList = implode(':', array_flip($request->getQueryList()->toArray()));
 if (strpos($requestList, 'PAGEN_') !== false) {
     $pagen = true;
 }
@@ -170,6 +170,17 @@ $sort = $request->getQuery("sort");
 $view = $request->getQuery("view");
 $available = $request->getQuery("available");
 $wrongStr = explode('/', $uri);
+
+/**
+ * На всякий случай дамп $wrongStr для страницы https://timecube.ru/product/shkatulka_dlya_khraneniya_chasov_50/
+ *
+ * array (size=4)
+ * 0 => string '' (length=0)
+ * 1 => string 'product' (length=7)
+ * 2 => string 'shkatulka_dlya_khraneniya_chasov_50' (length=35)
+ * 3 => string '' (length=0)
+ */
+
 if (strpos($uri, '/filter/') !== false && strpos($uri, 'apply') !== false) {
     $filter = true;
     $filterPos = strpos($uri, 'filter/');
@@ -202,26 +213,62 @@ if ((!empty($requestList) && $APPLICATION->GetPageProperty("catalog") == 'Y') ||
     if ($filter && $uriNoFilter) {
         if (!$existSeo) $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . $uriNoFilter . '">', true);
     } else {
-        $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . $uri . '/">', true);
+        $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . rtrim($uri, '/') . '/">', true);
     }
-} elseif ((count($wrongStr) > 3 && $wrongStr[1] == 'product') || $pagen || strstr(CHTTP::GetLastStatus(), '404') || $wrongStr[1] == 'compare' || $wrongStr[1] == 'favorites') {
+} elseif ((count(array_filter($wrongStr)) > 2 && $wrongStr[1] == 'product') || $pagen || strstr(CHTTP::GetLastStatus(), '404') || $wrongStr[1] == 'compare' || $wrongStr[1] == 'favorites') {
     $APPLICATION->SetPageProperty("robots", "noindex, nofollow");
 } else {
     $APPLICATION->SetPageProperty("robots", "index, follow");
-    if (!$existSeo) $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . $uri . '/">', true);
+    if (!$existSeo) $APPLICATION->AddHeadString('<link rel="canonical" href="https://timecube.ru' . rtrim($uri, '/') . '/">', true);
 }
 
 
 $noIndexParams = ['action', 'bxajaxi', 'backurl'];
 if (array_intersect($noIndexParams, $request->getQueryList()->toArray())) {
     $APPLICATION->SetPageProperty("robots", "noindex, nofollow");
-    $APPLICATION->SetPageProperty("googlebot","noindex, nofollow");
+    $APPLICATION->SetPageProperty("googlebot", "noindex, nofollow");
     if (!defined("ERROR_404")) define("ERROR_404", "Y");
     \CHTTP::setStatus("404 Not Found");
 }
 
 
 ?>
-<? Webfly\Handlers\Counters::insert(); ?>
+<?php Webfly\Handlers\Counters::insert(); ?>
+<script src="//cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script>
+
+<div class="recall-button" data-opener="recall_form">
+    <i></i>
+</div>
+<div class="overlay">
+    <div class="recall-popup" data-popup="recall_form">
+        <i class="close"></i>
+        <?php $APPLICATION->IncludeComponent(
+            "bitrix:form.result.new",
+            "call",
+            [
+                "SEF_MODE" => "N",
+                "WEB_FORM_ID" => "1",
+                "LIST_URL" => "",
+                "EDIT_URL" => "",
+                "SUCCESS_URL" => "",
+                "CHAIN_ITEM_TEXT" => "",
+                "CHAIN_ITEM_LINK" => "",
+                "IGNORE_CUSTOM_TEMPLATE" => "Y",
+                "USE_EXTENDED_ERRORS" => "N",
+                "CACHE_TYPE" => "A",
+                "CACHE_TIME" => "3600",
+                "SEF_FOLDER" => "/",
+                "AJAX_MODE" => "Y",
+                "COMPONENT_TEMPLATE" => "call",
+                "VARIABLE_ALIASES" => [
+                    "WEB_FORM_ID" => "WEB_FORM_ID",
+                    "RESULT_ID" => "RESULT_ID",
+                ]
+            ],
+            false
+        ); ?>
+    </div>
+</div>
+
 </body>
 </html>

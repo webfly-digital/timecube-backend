@@ -1,4 +1,4 @@
-<? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
+<?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Localization\Loc;
 
@@ -23,18 +23,18 @@ use Bitrix\Main\Localization\Loc;
  */
 global $arResult;
 ?>
-<?
+<?php
 if ($item['PROPERTIES']['SHOW_YOUTUBE']["VALUE_XML_ID"] == "74871818d9ae45163be185c1318f2909") {
     ?>
     <div class="product-card__yt-icon"></div>
-<?
+    <?php
 } ?>
     <div class="product-card__top">
         <div class="product-card__columns product-card__columns-centered">
             <div class="product-card__column">
                 <span class="product-card__brand"><?= $arResult['MANUFACTUR']['NAME'] ?></span>
             </div>
-            <? if ($arResult['MANUFACTUR']['FLAG_URL']['VALUE'] != 'china') { ?>
+            <?php if ($arResult['MANUFACTUR']['FLAG_URL']['VALUE'] != 'china') { ?>
                 <div class="product-card__column">
             <span class="product-card__country"><?= $arResult['MANUFACTUR']['COUNTRY_RU']['VALUE'] ?>
                 <svg class="sprite-icon">
@@ -42,21 +42,21 @@ if ($item['PROPERTIES']['SHOW_YOUTUBE']["VALUE_XML_ID"] == "74871818d9ae45163be1
                 </svg>
             </span>
                 </div>
-                <?
+                <?php
             } ?>
         </div>
     </div>
     <div class="product-card__pic product-card__row" data-entity="image-wrapper">
         <a href="<?= $item['DETAIL_PAGE_URL'] ?>">
-            <? if (!empty($item['HOVER_PHOTO'])) { ?>
+            <?php if (!empty($item['HOVER_PHOTO'])) { ?>
                 <img class="lozad main" id="<?= $itemIds['PICT'] ?>" alt='<?= $imgTitle ?>' title="<?= $imgTitle ?>"
                      data-src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>">
                 <img class="lozad hover" alt='<?= $imgTitle ?>'  title="<?= $imgTitle ?> data-src="<?= $item['HOVER_PHOTO'] ?>"
                      src="<?= $item['HOVER_PHOTO'] ?>">
-            <? } else { ?>
+            <?php } else { ?>
                 <img id="<?= $itemIds['PICT'] ?>" title="<?= $imgTitle ?>" alt='<?= $imgTitle ?>' class="lozad"
                      data-src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>">
-                <?
+                <?php
             } ?>
         </a>
     </div>
@@ -64,7 +64,7 @@ if ($item['PROPERTIES']['SHOW_YOUTUBE']["VALUE_XML_ID"] == "74871818d9ae45163be1
         <p class="product-card__title"><a href="<?= $item['DETAIL_PAGE_URL'] ?>"><?= $productTitle ?></a></p>
     </div>
 
-<?
+<?php
 
 // region price
 ?>
@@ -74,7 +74,7 @@ if ($item['PROPERTIES']['SHOW_YOUTUBE']["VALUE_XML_ID"] == "74871818d9ae45163be1
                 <p class="caption-gray"><?= ($showSubscribe & !$actualItem['CAN_BUY']) ? '' : 'Цена' ?></p>
                 <p class="product-card__price <?= ($showSubscribe & !$actualItem['CAN_BUY']) ? 'not_available' : '' ?>"
                    id="<?= $itemIds['PRICE'] ?>">
-                    <? if (!empty($price)) {
+                    <?php if (!empty($price)) {
                         if ($arParams['PRODUCT_DISPLAY_MODE'] === 'N' && $haveOffers) {
                             echo Loc::getMessage('CT_BCI_TPL_MESS_PRICE_SIMPLE_MODE', [
                                 '#PRICE#' => $price['PRINT_RATIO_PRICE'],
@@ -89,25 +89,25 @@ if ($item['PROPERTIES']['SHOW_YOUTUBE']["VALUE_XML_ID"] == "74871818d9ae45163be1
                         echo $arParams['MESS_NOT_AVAILABLE'];
                     } ?>
                 </p>
-                <? if ($showSubscribe & !$actualItem['CAN_BUY']): ?>
-                <? else: ?>
+                <?php if ($showSubscribe & !$actualItem['CAN_BUY']): ?>
+                <?php else: ?>
                     <p class="product-card__oldprice" id="<?= $itemIds['PRICE_OLD'] ?>"
                         <?= ($price['RATIO_PRICE'] >= $price['RATIO_BASE_PRICE'] ? 'style="display: none;"' : '') ?>>
                         <?= $price['PRINT_RATIO_BASE_PRICE'] ?>
                     </p>
-                <? endif; ?>
+                <?php endif; ?>
             </div>
         </div>
-        <? if (!$actualItem['CAN_BUY']): ?>
-        <? else: ?>
+        <?php if (!$actualItem['CAN_BUY']): ?>
+        <?php else: ?>
             <div class="product-card__column">
-                <?
+                <?php
                 include 'labels.php';
                 ?>
             </div>
-        <? endif; ?>
+        <?php endif; ?>
     </div>
-<?
+<?php
 // endregion price
 
 //region quantity
@@ -129,7 +129,7 @@ if (!$haveOffers) {
                     <span id="<?= $itemIds['PRICE_TOTAL'] ?>"></span>
                 </span>
         </div>
-        <?
+        <?php
     }
 } elseif ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y') {
     if ($arParams['USE_PRODUCT_QUANTITY']) {
@@ -147,7 +147,7 @@ if (!$haveOffers) {
                     <span id="<?= $itemIds['PRICE_TOTAL'] ?>"></span>
                 </span>
         </div>
-        <?
+        <?php
     }
 }
 //endregion quantity
@@ -155,7 +155,7 @@ if (!$haveOffers) {
 if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OFFERS_PROP'])) {
     ?>
     <div class="product-card__row product-item-info-container product-item-hidden" id="<?= $itemIds['PROP_DIV'] ?>">
-        <?
+        <?php
         foreach ($arParams['SKU_PROPS'] as $skuProperty) {
             $propertyId = $skuProperty['ID'];
             $skuProperty['NAME'] = htmlspecialcharsbx($skuProperty['NAME']);
@@ -168,7 +168,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                     <div class="product-item-scu-block">
                         <div class="product-item-scu-list">
                             <ul class="product-item-scu-item-list">
-                                <?
+                                <?php
                                 foreach ($skuProperty['VALUES'] as $value) {
                                     if (!isset($item['SKU_TREE_VALUES'][$propertyId][$value['ID']]))
                                         continue;
@@ -187,7 +187,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                                                      style="background-image: url('<?= $value['PICT']['SRC'] ?>');"></div>
                                             </div>
                                         </li>
-                                        <?
+                                        <?php
                                     } else {
                                         ?>
                                         <li class="product-item-scu-item-text-container"
@@ -198,7 +198,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                                                 <div class="product-item-scu-item-text"><?= $value['NAME'] ?></div>
                                             </div>
                                         </li>
-                                        <?
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -207,11 +207,11 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                     </div>
                 </div>
             </div>
-            <?
+            <?php
         }
         ?>
     </div>
-    <?
+    <?php
     foreach ($arParams['SKU_PROPS'] as $skuProperty) {
         if (!isset($item['OFFERS_PROP'][$skuProperty['CODE']]))
             continue;
@@ -250,7 +250,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
 //region buttons
 ?>
     <div class="product-card__buttons product-card__row" data-entity="buttons-block">
-        <?
+        <?php
         if (!$haveOffers) {
             if ($actualItem['CAN_BUY']) {
                 ?>
@@ -258,15 +258,15 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                      id="<?= $itemIds['BASKET_ACTIONS'] ?>">
                     <button class="btn btn-sm btn-third btn-animated btn-cart"
                             title="<?= ($arParams['ADD_TO_BASKET_ACTION'] === 'BUY' ? $arParams['MESS_BTN_BUY'] : $arParams['MESS_BTN_ADD_TO_BASKET']) ?>"
-                            id="<?= $itemIds['BUY_LINK'] ?>" rel="nofollow"><?
+                            id="<?= $itemIds['BUY_LINK'] ?>" rel="nofollow"><?php
                         echo($arParams['ADD_TO_BASKET_ACTION'] === 'BUY' ? $arParams['MESS_BTN_BUY'] : $arParams['MESS_BTN_ADD_TO_BASKET']);
                         ?></button>
                 </div>
-                <?
+                <?php
             } else {
                 ?>
                 <div class="product-item-button-container btn-animated-wrapper">
-                    <?
+                    <?php
                     if ($showSubscribe) {
                         $APPLICATION->IncludeComponent(
                             'bitrix:catalog.product.subscribe',
@@ -289,13 +289,13 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                         <?= $arParams['MESS_NOT_AVAILABLE'] ?>
                     </button>
                 </div>
-                <?
+                <?php
             }
         } else {
             if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y') {
                 ?>
                 <div class="product-item-button-container btn-animated-wrapper">
-                    <?
+                    <?php
                     if ($showSubscribe) {
                         $APPLICATION->IncludeComponent(
                             'bitrix:catalog.product.subscribe',
@@ -312,7 +312,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                         );
                     }
                     ?>
-                  <?/*  <button class="btn btn-sm btn-third btn-animated btn-cart" rel="nofollow"
+                    <?php /*  <button class="btn btn-sm btn-third btn-animated btn-cart" rel="nofollow"
                             title="<?= $arParams['MESS_NOT_AVAILABLE'] ?>"
                             id="<?= $itemIds['NOT_AVAILABLE_MESS'] ?>" href="javascript:void(0)"
                         <?= ($actualItem['CAN_BUY'] ? 'style="display: none;"' : '') ?>><?
@@ -322,19 +322,19 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                     <div id="<?= $itemIds['BASKET_ACTIONS'] ?>" <?= ($actualItem['CAN_BUY'] ? '' : 'style="display: none;"') ?>>
                         <button class="btn btn-sm btn-third btn-animated btn-cart"
                                 title="<?= ($arParams['ADD_TO_BASKET_ACTION'] === 'BUY' ? $arParams['MESS_BTN_BUY'] : $arParams['MESS_BTN_ADD_TO_BASKET']) ?>"
-                                rel="nofollow" id="<?= $itemIds['BUY_LINK'] ?>"><?
+                                rel="nofollow" id="<?= $itemIds['BUY_LINK'] ?>"><?php
                             echo($arParams['ADD_TO_BASKET_ACTION'] === 'BUY' ? $arParams['MESS_BTN_BUY'] : $arParams['MESS_BTN_ADD_TO_BASKET']);
                             ?></button>
                     </div>
                 </div>
-                <?
+                <?php
             } else {
                 ?>
                 <div class="product-card__button-wrapper btn-animated-wrapper wide">
                     <a class="btn btn-sm btn-third btn-animated btn-cart" title="<?= $arParams['MESS_BTN_DETAIL'] ?>"
                        href="<?= $item['DETAIL_PAGE_URL'] ?>"><?= $arParams['MESS_BTN_DETAIL'] ?></a>
                 </div>
-                <?
+                <?php
             }
         }
 
@@ -350,7 +350,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
                     <span class="svg-icon icon-compare"></span>
                 </div>
             </div>
-            <?
+            <?php
         }
         ?>
         <div class="product-card__button-wrapper btn-animated-wrapper">
@@ -361,7 +361,7 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
             </button>
         </div>
     </div>
-<?
+<?php
 //endregion buttons
 
 //region availability
@@ -369,10 +369,17 @@ if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OF
 if ($arParams['SHOW_MAX_QUANTITY'] !== 'N') {
 
     $svgParam = 'high';
-    if ((float)$actualItem['PRODUCT']['QUANTITY'] / $measureRatio < $arParams['RELATIVE_QUANTITY_FACTOR'])
-        $svgParam = 'medium';
-    if ((float)$actualItem['PRODUCT']['QUANTITY'] / $measureRatio == 1)
-        $svgParam = 'low';
+
+    if ($measureRatio > 0) {
+        $quantityRatio = (float)$actualItem['PRODUCT']['QUANTITY'] / $measureRatio;
+
+        if ($quantityRatio < $arParams['RELATIVE_QUANTITY_FACTOR']) {
+            $svgParam = 'medium';
+        }
+        if ($quantityRatio == 1) {
+            $svgParam = 'low';
+        }
+    }
 
     if ($haveOffers) {
         if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y') {
@@ -392,7 +399,7 @@ if ($arParams['SHOW_MAX_QUANTITY'] !== 'N') {
                     </div>
                 </div>
             </div>
-            <?
+            <?php
 
         }
     } else {
@@ -413,7 +420,7 @@ if ($arParams['SHOW_MAX_QUANTITY'] !== 'N') {
                             </svg>
                         </span>
                         <span class="availability__caption" data-entity="quantity-limit-value">
-                            <?
+                            <?php
                             if ($arParams['SHOW_MAX_QUANTITY'] === 'M') {
                                 if ((float)$actualItem['CATALOG_QUANTITY'] / $measureRatio >= $arParams['RELATIVE_QUANTITY_FACTOR']) {
                                     echo $arParams['MESS_RELATIVE_QUANTITY_MANY'];
@@ -428,7 +435,7 @@ if ($arParams['SHOW_MAX_QUANTITY'] !== 'N') {
                     </div>
                 </div>
             </div>
-            <?
+            <?php
         }
     }
 }

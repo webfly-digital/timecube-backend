@@ -1,0 +1,50 @@
+.bxr-approx-element{
+    height: 250px;
+    overflow: hidden;
+}
+
+.bxr-approx-element .bxr-promo-ribbon-info{
+    position: absolute;
+    bottom: 7px;
+    left: 30px;
+    text-align: left;
+    padding-right: 20px;
+}
+
+.bxr-approx-element .bxr-promo-ribbon-info > span{
+    display: inline-block;
+    margin-bottom: 5px;
+    padding: 5px 20px;
+}
+
+.bxr-approx-element .bxr-promo-ribbon-info > span.bxr-promo-ribbon-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+.bxr-approx-element .bxr-promo-ribbon-info > span.bxr-promo-ribbon-text {
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.bxr-approx-element .bxr-promo-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-position: center;
+    
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.bxr-approx-element .bxr-promo-image:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}

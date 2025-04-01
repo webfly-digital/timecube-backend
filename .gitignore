@@ -12,6 +12,39 @@ bitrix/php_interface/*
 !bitrix/php_interface/ammina.optimizer.init.php
 !bitrix/php_interface/this_site_support.php
 
+# Сначала исключаем саму папку components, чтобы её содержимое можно было обработать
+!bitrix/components/
+bitrix/components/*
+
+# Исключаем конкретные файлы и папки внутри components
+!bitrix/components/alexkova.market/
+!bitrix/components/bxready/
+
+# Сначала исключаем саму папку modules, чтобы её содержимое можно было обработать
+!bitrix/modules/
+bitrix/modules/*
+
+# Исключаем конкретные файлы и папки внутри modules
+!bitrix/modules/ammina.optimizer/
+!bitrix/modules/zverushki.seofilter/
+!bitrix/modules/creative.kkmserver/
+!bitrix/modules/yandex.market/
+!bitrix/modules/ammina.optimizer.disabled/
+!bitrix/modules/ipol.sdek/
+
 # Исключаем остальные нужные папки
 !bitrix/local/
 !bitrix/templates/
+
+# Исключаем логи
+/bitrix/logs/
+/local/logs/
+/logs/
+
+# Исключаем песочницы
+/test.php
+/sandbox.php
+
+# Исключаем прочие подразделы bitrix
+!bitrix/gadgets/
+!bitrix/js/

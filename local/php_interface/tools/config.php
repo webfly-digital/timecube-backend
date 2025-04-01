@@ -1,4 +1,4 @@
-<?
+<?php
 //Лог
 define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/bitrix/log.txt" );
 //автозагружаемые классы

@@ -1,0 +1,34 @@
+<?
+
+namespace PHPWee;
+
+
+// Open-source (BSD) PHP inline minifier functions for HTML, XHTML, HTML5, CSS 1-3 and Javascript.
+// BSD Licensed  - https://github.com/searchturbine/phpwee-php-minifier/blob/master/LICENSE
+// 
+// Usage
+//	$output = 	 \PHPWee\Minify::html($any_html);
+//  $output =     \PHPWee\Minify::css($any_css);
+//  $output =     \PHPWee\Minify::js($any_js);
+
+
+class Minify
+{
+
+	public static function html($html, $js = true, $css = true)
+	{
+		return HtmlMin::minify($html, $js, $css);
+	}
+
+	public static function css($css)
+	{
+		return CssMin::minify($css);
+	}
+
+	public static function js($js)
+	{
+		return JsMin::minify($js);
+	}
+
+}
+	

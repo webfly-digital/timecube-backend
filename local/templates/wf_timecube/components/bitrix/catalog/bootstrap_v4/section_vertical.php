@@ -289,7 +289,16 @@ $APPLICATION->AddViewContent("catalog_filter_button", $catalog_filter_button);
                             }
                         }
                     }
-                    $tagsParams = array_merge($f_params["ALL"], $f_params[$base_section_code]);
+
+                    $tagsParams = [];
+
+                    if (!empty($f_params["ALL"]) && is_array($f_params["ALL"])) {
+                        $tagsParams = $f_params["ALL"];
+                    }
+
+                    if (!empty($f_params[$base_section_code]) && is_array($f_params[$base_section_code])) {
+                        $tagsParams = array_merge($tagsParams, $f_params[$base_section_code]);
+                    }
 
 
                     $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
@@ -649,7 +658,11 @@ $APPLICATION->AddViewContent("catalog_filter_button", $catalog_filter_button);
 
                 $iprop = new \Bitrix\Iblock\InheritedProperty\SectionValues($arParams["IBLOCK_ID"], $arCurSection["ID"]);
                 $SEOValues = $iprop->getValues();
-                $sectionTitle = $arCurSection['UF_BROWSER_TITLE'] ? $arCurSection['UF_BROWSER_TITLE'] : $arCurSection['NAME'];
+
+                //Теперь если свойство раздела UF_BROWSER_TITLE не установлено, берем $sectionTitle из заголовка страницы, а не из названия раздела.
+                //$sectionTitle = $arCurSection['UF_BROWSER_TITLE'] ? $arCurSection['UF_BROWSER_TITLE'] : $arCurSection['NAME'];
+                $sectionTitle = $arCurSection['UF_BROWSER_TITLE'] ?: $APPLICATION->GetPageProperty("title");
+
 
                 $resImgOG = CIBlockSection::GetByID($arCurSection["ID"]);
                 if ($ar_res = $resImgOG->GetNext())

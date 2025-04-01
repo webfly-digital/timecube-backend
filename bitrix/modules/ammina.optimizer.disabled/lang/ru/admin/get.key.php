@@ -1,0 +1,23 @@
+<?
+$MESS['AMMINA_OPTIMIZER_PAGE_TITLE'] = "Запрос ключа для оптимизации на серверах Ammina";
+$MESS['AMMINA_OPTIMIZER_FORM_TITLE'] = "Заполните форму ниже, чтобы получить ключ доступа";
+$MESS['AMMINA_OPTIMIZER_FORM_FIELD_EMAIL'] = "EMail *";
+$MESS['AMMINA_OPTIMIZER_FORM_FIELD_NAME'] = "Имя";
+$MESS['AMMINA_OPTIMIZER_FORM_FIELD_PHONE'] = "Телефон";
+$MESS['AMMINA_OPTIMIZER_FORM_FIELDS_REQUIRED'] = "Обязательно для заполнения только поле EMail. Обязательно укажите реальный EMail. На него придет ссылка для активации ключа.";
+$MESS['AMMINA_OPTIMIZER_FORM_RULES'] = "Ключ позволит вам использовать сервера Ammina для оптимизации CSS, JS файлов, изображений. Оптимизация будет происходить с небольшой задержкой (но при этом незаметно для посетителей). Ключ будет активен в демо-период работы модуля и в период активности технической поддержки модуля (1 год после получения или продления лицензии на модуль). Ключ будет активирован после перехода по ссылке в письме.";
+$MESS['AMMINA_OPTIMIZER_FORM_TITLE2'] = "Использование серверов Ammina позволяет воспользоваться всем функционалом оптимизации сайта на любом хостинге";
+$MESS['AMMINA_OPTIMIZER_FORM_RULES2'] = 'Нажимая на кнопку &laquo;Получить ключ&raquo;, я даю согласие на обработку персональных данных и соглашаюсь c <a href="https://www.ammina.ru/confidential/" target="_blank">политикой конфиденциальности</a>.';
+$MESS['AMMINA_OPTIMIZER_FORM_BUTTON'] = "Получить ключ";
+$MESS['AMMINA_OPTIMIZER_GETKEY_OK'] = "Ключ успешно получен";
+$MESS['AMMINA_OPTIMIZER_GETKEY_OK2'] = "Для использования ключа его необходимо активировать. Перейдите по ссылке, которая будет в письме, отправленном на ваш EMail. После активации ключа повторно проверьте <a href=\"/bitrix/admin/ammina.optimizer.check.library.php?lang=ru\">доступность библиотек</a>.";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";
+$MESS[''] = "";

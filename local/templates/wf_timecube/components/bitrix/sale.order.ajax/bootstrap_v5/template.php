@@ -1,4 +1,4 @@
-<? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
+<?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main;
 use Bitrix\Main\Localization\Loc;
@@ -245,7 +245,7 @@ $this->addExternalJs($templateFolder . '/script.js');
     <NOSCRIPT>
         <div style="color:red"><?= Loc::getMessage('SOA_NO_JS') ?></div>
     </NOSCRIPT>
-<?
+<?php
 
 if (strlen($request->get('ORDER_ID')) > 0) {
     include(Main\Application::getDocumentRoot() . $templateFolder . '/confirm.php');
@@ -260,7 +260,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
     ?>
     <form action="<?= POST_FORM_ACTION_URI ?>" method="POST" name="ORDER_FORM"
           class="bx-soa-wrapper mb-4<?= $themeClass ?>" id="bx-soa-order-form" enctype="multipart/form-data">
-        <?
+        <?php
         echo bitrix_sessid_post();
 
         if (strlen($arResult['PREPAY_ADIT_FIELDS']) > 0) {
@@ -291,7 +291,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                 <!--	DUPLICATE MOBILE ORDER SAVE BLOCK	-->
                 <div id="bx-soa-total-mobile" style="margin-bottom: 6px;"></div>
 
-                <? if ($arParams['BASKET_POSITION'] === 'before'): ?>
+                <?php if ($arParams['BASKET_POSITION'] === 'before'): ?>
                     <!--	BASKET ITEMS BLOCK	-->
                     <div id="bx-soa-basket" data-visited="false" class="bx-soa-section collapse-section bx-active">
                         <div class="bx-soa-section-title-container collapse-mode d-flex justify-content-between align-items-center flex-nowrap">
@@ -308,7 +308,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                         </div>
                         <div id="bx-soa-basket-content" class="bx-soa-section-content"></div>
                     </div>
-                <? endif ?>
+                <?php endif ?>
 
                 <!--	REGION BLOCK	-->
                 <div id="bx-soa-region" data-visited="false" class="bx-soa-section bx-active">
@@ -321,7 +321,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                     <div class="bx-soa-section-content"></div>
                 </div>
 
-                <? if ($arParams['DELIVERY_TO_PAYSYSTEM'] === 'p2d'): ?>
+                <?php if ($arParams['DELIVERY_TO_PAYSYSTEM'] === 'p2d'): ?>
                     <!--	PAY SYSTEMS BLOCK	-->
                     <div id="bx-soa-paysystem" data-visited="false" class="bx-soa-section bx-active">
                         <div class="bx-soa-section-title-container d-flex justify-content-between align-items-center flex-nowrap">
@@ -353,7 +353,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                         </div>
                         <div class="bx-soa-section-content"></div>
                     </div>
-                <? else: ?>
+                <?php else: ?>
                     <!--	DELIVERY BLOCK	-->
                     <div id="bx-soa-delivery" data-visited="false"
                          class="bx-soa-section bx-active" <?= ($hideDelivery ? 'style="display:none"' : '') ?>>
@@ -385,7 +385,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                         </div>
                         <div class="bx-soa-section-content"></div>
                     </div>
-                <? endif ?>
+                <?php endif ?>
                 <!--	BUYER PROPS BLOCK	-->
                 <div id="bx-soa-properties" data-visited="false" class="bx-soa-section bx-active">
                     <div class="bx-soa-section-title-container d-flex justify-content-between align-items-center flex-nowrap">
@@ -397,7 +397,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                     <div class="bx-soa-section-content"></div>
                 </div>
 
-                <? if ($arParams['BASKET_POSITION'] === 'after'): ?>
+                <?php if ($arParams['BASKET_POSITION'] === 'after'): ?>
                     <!--	BASKET ITEMS BLOCK	-->
                     <div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
                         <div class="bx-soa-section-title-container d-flex justify-content-between align-items-center flex-nowrap">
@@ -409,12 +409,12 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                         </div>
                         <div class="bx-soa-section-content"></div>
                     </div>
-                <? endif ?>
+                <?php endif ?>
 
                 <!--	ORDER SAVE BLOCK	-->
                 <div id="bx-soa-orderSave">
                     <div class="checkbox">
-                        <?
+                        <?php
                         if ($arParams['USER_CONSENT'] === 'Y') {
                             $APPLICATION->IncludeComponent(
                                 'bitrix:main.userconsent.request',
@@ -466,7 +466,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
 
     <div id="bx-soa-saved-files" style="display:none"></div>
     <div id="bx-soa-soc-auth-services" style="display:none">
-        <?
+        <?php
         $arServices = false;
         $arResult['ALLOW_SOCSERV_AUTHORIZATION'] = Main\Config\Option::get('main', 'allow_socserv_authorization', 'Y') != 'N' ? 'Y' : 'N';
         $arResult['FOR_INTRANET'] = false;
@@ -499,7 +499,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
     </div>
 
     <div style="display: none">
-        <?
+        <?php
         // we need to have all styles for sale.location.selector.steps, but RestartBuffer() cuts off document head with styles in it
         $APPLICATION->IncludeComponent(
             'bitrix:sale.location.selector.steps',
@@ -517,7 +517,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
 
         ?>
     </div>
-    <?
+    <?php
     $signer = new Main\Security\Sign\Signer;
     $signedParams = $signer->sign(base64_encode(serialize($arParams)), 'sale.order.ajax');
     $messages = Loc::loadLanguageFile(__FILE__);
@@ -564,7 +564,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
         });
     </script>
     <script>
-        <?
+        <?php
         // spike: for children of cities we place this prompt
         $city = \Bitrix\Sale\Location\TypeTable::getList(array('filter' => array('=CODE' => 'CITY'), 'select' => array('ID')))->fetch();
         ?>
@@ -582,7 +582,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
             )
         ))?>);
     </script>
-    <?
+    <?php
     if ($arParams['SHOW_PICKUP_MAP'] === 'Y' || $arParams['SHOW_MAP_IN_PROPS'] === 'Y') {
         if ($arParams['PICKUP_MAP_TYPE'] === 'yandex') {
             $this->addExternalJs($templateFolder . '/scripts/yandex_maps.js');
@@ -596,7 +596,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                         setTimeout(bx_ymaps_waiter, 100);
                 })();
             </script>
-            <?
+            <?php
         }
 
         if ($arParams['PICKUP_MAP_TYPE'] === 'google') {
@@ -614,7 +614,7 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                         setTimeout(bx_gmaps_waiter, 100);
                 }
             </script>
-            <?
+            <?php
         }
     }
 
@@ -634,6 +634,6 @@ if (strlen($request->get('ORDER_ID')) > 0) {
                     }, 100);
             })();
         </script>
-        <?
+        <?php
     }
 }

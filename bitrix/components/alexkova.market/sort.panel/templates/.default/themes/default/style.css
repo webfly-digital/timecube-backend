@@ -1,0 +1,42 @@
+.bxr-sort-panel{
+    margin-bottom: 20px;
+}
+
+.bxr-sortbutton
+,.bxr-view-mode{
+    text-decoration: none;
+    margin: 10px 10px 10px 0px;
+    padding: 7px 10px;
+    display: inline-block;
+    border: 1px solid rgba(255,255,255, 0);
+    font-size: 13px;
+}
+
+.bxr-sortbutton i{
+    margin-left: 10px;
+}
+
+
+.bxr-sortbutton i{
+    margin: 0 0 0 10px;
+}
+
+.bxr-view-mode {
+    margin-left: 3px;
+    margin-right: 0;
+    min-width: 36px;
+    text-align: center;
+}
+
+.bxr-view-mode i{
+    font-size: 16px;
+    padding: 0;
+}
+
+.bxr-sortbutton.active
+,.bxr-sortbutton:hover
+,.bxr-view-mode.active
+,.bxr-view-mode:hover{
+    text-decoration: none;
+}
+

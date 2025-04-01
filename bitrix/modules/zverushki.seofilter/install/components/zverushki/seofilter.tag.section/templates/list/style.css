@@ -1,0 +1,21 @@
+.zverushki-tags{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px -5px;
+    padding-left: 0;
+}
+.zverushki-tags>li{list-style: none;padding-left: 0}
+.zverushki-tags>li:first-child{margin-left: 0; padding-left: 0}
+.zverushki-tags>li a{
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 5px 5px;text-decoration: none
+}
+.zverushki-tags>li a:hover,
+.zverushki-tags>li a:focus{opacity:0.9}
+ul.zverushki-tags>li:before{display:none}
+.zverushki-tags li.zver-hide{display: none;}

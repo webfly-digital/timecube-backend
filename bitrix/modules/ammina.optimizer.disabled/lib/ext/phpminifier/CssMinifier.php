@@ -1,0 +1,103 @@
+<?php
+
+namespace PHPMinifier;
+
+/**************************************************************************************************************
+ *
+ * NAME
+ * CssMinifier.phpclass
+ *
+ * DESCRIPTION
+ * Minifier for css sources.
+ *
+ * AUTHOR
+ * Christian Vigh, 10/2015.
+ *
+ * HISTORY
+ * [Version : 1.0]    [Date : 2015/10/16]     [Author : CV]
+ * Initial version.
+ **************************************************************************************************************/
+/*==============================================================================================================
+
+    CssMinifier class -
+        Minifier for javascript sources.
+
+  ==============================================================================================================*/
+
+class    CssMinifier extends Minifier
+{
+	/*--------------------------------------------------------------------------------------------------------------
+
+	   Constructor -
+		Initializes the parent minifier class.
+	 
+	 *-------------------------------------------------------------------------------------------------------------*/
+	public function __construct()
+	{
+		static $single_comments = [];
+		static $multi_comments =
+			[
+				[
+					'start' => '/*',
+					'end' => '*/',
+					'nested' => false,
+				],
+			];
+
+		static $quoted_strings =
+			[
+				[
+					'quote' => '"',
+				],
+				[
+					'quote' => "'",
+				],
+			];
+
+		static $tokens =
+			[
+				':', ';', '{', '}', ',',
+			];
+
+		$this->SetComments($single_comments, $multi_comments);
+		$this->SetQuotedStrings($quoted_strings);
+		$this->SetContinuation("\\");
+		$this->SetIdentifierRegex('[a-z0-9_.#\-\$][a-z0-9_.#\-\$]*');
+		$this->SetTokens($tokens);
+
+		parent::__construct();
+	}
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+
+	   MinifyData -
+		Process the input stream.
+	 
+	 *-------------------------------------------------------------------------------------------------------------*/
+	protected function MinifyData()
+	{
+		$data = '';
+		$offset = 0;
+		$token = NULL;
+		$token_type = self::TOKEN_NONE;
+
+		while ($this->GetNextToken($offset, $token, $token_type)) {
+			switch ($token) {
+				case    "\n" :
+					break;
+
+				default :
+					if ($token_type == self::TOKEN_IDENTIFIER)
+						$token .= ' ';
+					elseif ($token_type == self::TOKEN_ELEMENT)
+						$data = rtrim($data);
+
+					$data .= $token;
+			}
+		}
+
+		return ($data);
+	}
+
+}
