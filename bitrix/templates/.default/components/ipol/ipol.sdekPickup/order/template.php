@@ -1,44 +1,53 @@
-<?
+<?php
 // Profiler - link 4 future profiles
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+
+/** @var array $arParams */
+/** @var array $arResult */
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/js/' . CDeliverySDEK::$MODULE_ID . '/jsloader.php');
+
 global $APPLICATION;
+
 $pathToYmaps = Ipolh\SDEK\pvzWidjetHandler::getMapsScript();
-if ($arParams['NOMAPS'] != 'Y')
+
+if ($arParams['NOMAPS'] != 'Y') {
     $APPLICATION->AddHeadString('<script data-id="' . CDeliverySDEK::$MODULE_ID . '" src="' . $pathToYmaps . '" type="text/javascript"></script>');
+}
+
 $APPLICATION->AddHeadString('<link href="/bitrix/js/' . CDeliverySDEK::$MODULE_ID . '/jquery.jscrollpane.css" type="text/css"  rel="stylesheet" />');
 
-$objProfiles = array();
-$arModes = array( // Profiler
-    'PVZ' => array(
+$objProfiles = [];
+$arModes = [ // Profiler
+    'PVZ' => [
         'forced' => \Ipolh\SDEK\option::get('pvzID'),
         'profs' => CDeliverySDEK::getDeliveryId('pickup')
-    ),
-    'POSTAMAT' => array(
+    ],
+    'POSTAMAT' => [
         'forced' => COption::GetOptionString(CDeliverySDEK::$MODULE_ID, 'pickupID', false),
         'profs' => CDeliverySDEK::getDeliveryId('postamat')
-    )
-);
+    ]
+];
 
 foreach ($arModes as $mode => $content) {
-    $objProfiles[$mode] = array();
+    $objProfiles[$mode] = [];
     if ($content['forced']) {
         foreach ($content['profs'] as $id) {
-            $objProfiles[$mode][$id] = array(
+            $objProfiles[$mode][$id] = [
                 'tag' => false,
                 'price' => false,
                 'self' => $content['forced'],
                 'link' => $id
-            );
+            ];
         }
     } else
         foreach ($content['profs'] as $id)
-            $objProfiles[$mode][$id] = array(
+            $objProfiles[$mode][$id] = [
                 'tag' => false,
                 'price' => false,
                 'self' => false,
                 'link' => $id
-            );
+            ];
 }
 
 $linkNamePVZ = \Ipolh\SDEK\option::get('buttonName'); // Profiler
@@ -493,10 +502,10 @@ if (!$linkNamePOSTAMAT) $linkNamePOSTAMAT = GetMessage("IPOLSDEK_FRNT_CHOOSEPOST
 
         // displaying
         close: function (fromChoose) {
-            <?if(\Ipolh\SDEK\option::get('autoSelOne') == 'Y'){?>
+            <?php if(\Ipolh\SDEK\option::get('autoSelOne') == 'Y'){?>
             if (IPOLSDEK_pvz.multiPVZ !== false && typeof (fromChoose) === 'undefined')
                 IPOLSDEK_pvz.choozePVZ(IPOLSDEK_pvz.multiPVZ);
-            <?}?>
+            <?php }?>
             if (IPOLSDEK_pvz.scrollPVZ && typeof (IPOLSDEK_pvz.scrollPVZ.data('jsp')) !== 'undefined')
                 IPOLSDEK_pvz.scrollPVZ.data('jsp').destroy();
             $('#SDEK_pvz').css('display', 'none');
@@ -843,13 +852,13 @@ if (!$linkNamePOSTAMAT) $linkNamePOSTAMAT = GetMessage("IPOLSDEK_FRNT_CHOOSEPOST
     IPOL_JSloader.checkScript('', "/bitrix/js/<?=CDeliverySDEK::$MODULE_ID?>/jquery.mousewheel.js");
     IPOL_JSloader.checkScript('$("body").jScrollPane', "/bitrix/js/<?=CDeliverySDEK::$MODULE_ID?>/jquery.jscrollpane.js", IPOLSDEK_pvz.jquiready);
 </script>
-<? // HTML of the vidjet ?>
+<?php // HTML of the vidjet ?>
 <div id='SDEK_pvz'>
     <div id='SDEK_head'>
         <div id='SDEK_logo'><a href='http://ipolh.com' rel='nofollow' target='_blank'></a></div>
-        <? if ($arParams['SEARCH_ADDRESS'] === 'Y') { ?>
+        <?php if ($arParams['SEARCH_ADDRESS'] === 'Y') { ?>
             <div id="SDEK_looper" onclick="IPOLSDEK_pvz.Y_turnSearch()"></div>
-        <? } ?>
+        <?php } ?>
         <div id='SDEK_closer' onclick='IPOLSDEK_pvz.close()'></div>
     </div>
     <div id='SDEK_map'></div>
